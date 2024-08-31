@@ -152,7 +152,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 		if (globeRef.current && globeData) {
 			globeRef.current
 				.hexPolygonsData(countries.features)
-				.hexPolygonResolution(3)
+				.hexPolygonResolution(2)
 				.hexPolygonMargin(0.7)
 				.showAtmosphere(defaultProps.showAtmosphere)
 				.atmosphereColor(defaultProps.atmosphereColor)
