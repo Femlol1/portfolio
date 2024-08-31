@@ -1,7 +1,7 @@
 export const navItems = [
 	{ name: "About", link: "#about" },
 	{ name: "Projects", link: "#projects" },
-	{ name: "Testimonials", link: "#testimonials" },
+	// { name: "Testimonials", link: "#testimonials" },
 	{ name: "Contact", link: "#contact" },
 ];
 
@@ -49,7 +49,7 @@ export const gridItems = [
 
 	{
 		id: 5,
-		title: "Currently building a JS Animation library",
+		title: "Currently building a Ticketing website",
 		description: "The Inside Scoop",
 		className: "md:col-span-3 md:row-span-2",
 		imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -72,36 +72,36 @@ export const gridItems = [
 export const projects = [
 	{
 		id: 1,
-		title: "3D Solar System Planets to Explore",
-		des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-		img: "/p1.svg",
-		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-		link: "https://github.com/adrianhajdin?tab=repositories",
+		title: "Wedding Rsvp website",
+		des: "Created a dynamic wedding website for my sister",
+		img: "/to.png",
+		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/fm.svg"],
+		link: "https://www.toluandope.com/",
 	},
 	{
 		id: 2,
-		title: "Yoom - Video Conferencing App",
-		des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-		img: "/p2.svg",
+		title: "Events Management Website",
+		des: "Developed a full-featured events management platform using Next.js, focusing on responsive design, seamless user interactions, and optimized performance.",
+		img: "/kgn.png",
 		iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-		link: "https://github.com/adrianhajdin/zoom-clone",
+		link: "https://www.kunlesgamesnight.com/",
 	},
 	{
 		id: 3,
-		title: "AI Image SaaS - Canva Application",
-		des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-		img: "/p3.svg",
-		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-		link: "https://github.com/adrianhajdin/ai_saas_app",
+		title: "E-commerce website with an AI chatbot for customer service",
+		des: "Built a chatbot leveraging AI to enhance customer support capabilities, focusing on improving response times and customer satisfaction.",
+		img: "/gad.png",
+		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/c.svg"],
+		link: "https://gadgetco-3794d.web.app/home",
 	},
-	{
-		id: 4,
-		title: "Animated Apple Iphone 3D Website",
-		des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-		img: "/p4.svg",
-		iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-		link: "https://github.com/adrianhajdin/iphone",
-	},
+	// {
+	// 	id: 4,
+	// 	title: "AI Currency Detector",
+	// 	des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
+	// 	img: "/p4.svg",
+	// 	iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+	// 	link: "https://github.com/Femlol1/Currency-detector-",
+	// },
 ];
 
 export const testimonials = [
@@ -173,22 +173,22 @@ export const companies = [
 export const workExperience = [
 	{
 		id: 1,
-		title: "Frontend Engineer Intern",
-		desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+		title: "Next.js Developer",
+		desc: "Developed a responsive events management platform, enhancing UX across various devices.",
 		className: "md:col-span-2",
 		thumbnail: "/exp1.svg",
 	},
 	{
 		id: 2,
-		title: "Mobile App Dev - JSM Tech",
-		desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+		title: "Curriculum Consultant - University of Leicester",
+		desc: "Enhanced course curricula and collaborated with academic staff to improve teaching methods.",
 		className: "md:col-span-2", // change to md:col-span-2
 		thumbnail: "/exp2.svg",
 	},
 	{
 		id: 3,
 		title: "Freelance App Dev Project",
-		desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
+		desc: "Created an E-commerce application, from initial concept to deployment.",
 		className: "md:col-span-2", // change to md:col-span-2
 		thumbnail: "/exp3.svg",
 	},
@@ -206,15 +206,18 @@ export const socialMedia = [
 		id: 1,
 		img: "/git.svg",
 		alt: "github",
+		link: "https://github.com/Femlol1",
 	},
 	{
 		id: 2,
 		img: "/twit.svg",
-		alt: "twitter",
+		alt: "instagram",
+		link: "",
 	},
 	{
 		id: 3,
 		img: "/link.svg",
 		alt: "linkedin",
+		link: "https://www.linkedin.com/in/sfemi/",
 	},
 ];
