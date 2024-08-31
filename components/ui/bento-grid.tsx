@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import { cn } from "@/lib/utils";
 
 import animationData from "@/data/confetti.json";
+import Image from "next/image";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "./MagicButton";
@@ -41,6 +42,8 @@ export const BentoGridItem = ({
 	imgClassName,
 	titleClassName,
 	spareImg,
+	width,
+	height,
 }: {
 	className?: string;
 	id: number;
@@ -50,6 +53,8 @@ export const BentoGridItem = ({
 	imgClassName?: string;
 	titleClassName?: string;
 	spareImg?: string;
+	width: number;
+	height: number;
 }) => {
 	const leftLists = ["ReactJS", "Express", "Typescript"];
 	const rightLists = ["Django", "MongoDb", "Firebase"];
@@ -86,9 +91,11 @@ export const BentoGridItem = ({
 			<div className={`${id === 6 && "flex justify-center"} h-full`}>
 				<div className="w-full h-full absolute">
 					{img && (
-						<img
+						<Image
 							src={img}
 							alt={img}
+							width={width}
+							height={height}
 							className={cn(imgClassName, "object-cover object-center ")}
 						/>
 					)}
@@ -99,10 +106,11 @@ export const BentoGridItem = ({
 					} `}
 				>
 					{spareImg && (
-						<img
+						<Image
 							src={spareImg}
 							alt={spareImg}
-							//   width={220}
+							width={width}
+							height={height}
 							className="object-cover object-center w-full h-full"
 						/>
 					)}

@@ -15,6 +15,8 @@ export const gridItems = [
 		titleClassName: "justify-end",
 		img: "/b1.svg",
 		spareImg: "",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 2,
@@ -25,6 +27,8 @@ export const gridItems = [
 		titleClassName: "justify-start",
 		img: "",
 		spareImg: "",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 3,
@@ -35,6 +39,8 @@ export const gridItems = [
 		titleClassName: "justify-center",
 		img: "",
 		spareImg: "",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 4,
@@ -45,6 +51,8 @@ export const gridItems = [
 		titleClassName: "justify-start",
 		img: "/grid.svg",
 		spareImg: "/b4.svg",
+		width: 500,
+		height: 500,
 	},
 
 	{
@@ -56,6 +64,8 @@ export const gridItems = [
 		titleClassName: "justify-center md:justify-start lg:justify-center",
 		img: "/b5.svg",
 		spareImg: "/grid.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 6,
@@ -66,6 +76,8 @@ export const gridItems = [
 		titleClassName: "justify-center md:max-w-full max-w-60 text-center",
 		img: "",
 		spareImg: "",
+		width: 500,
+		height: 500,
 	},
 ];
 
@@ -77,6 +89,8 @@ export const projects = [
 		img: "/to.png",
 		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/fm.svg"],
 		link: "https://www.toluandope.com/",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 2,
@@ -85,6 +99,8 @@ export const projects = [
 		img: "/kgn.png",
 		iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
 		link: "https://www.kunlesgamesnight.com/",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 3,
@@ -93,6 +109,8 @@ export const projects = [
 		img: "/gad.png",
 		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/c.svg"],
 		link: "https://gadgetco-3794d.web.app/home",
+		width: 500,
+		height: 500,
 	},
 	// {
 	// 	id: 4,
@@ -143,30 +161,40 @@ export const companies = [
 		name: "cloudinary",
 		img: "/cloud.svg",
 		nameImg: "/cloudName.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 2,
 		name: "appwrite",
 		img: "/app.svg",
 		nameImg: "/appName.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 3,
 		name: "HOSTINGER",
 		img: "/host.svg",
 		nameImg: "/hostName.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 4,
 		name: "stream",
 		img: "/s.svg",
 		nameImg: "/streamName.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 5,
 		name: "docker.",
 		img: "/dock.svg",
 		nameImg: "/dockerName.svg",
+		width: 500,
+		height: 500,
 	},
 ];
 
@@ -177,6 +205,8 @@ export const workExperience = [
 		desc: "Developed a responsive events management platform, enhancing UX across various devices.",
 		className: "md:col-span-2",
 		thumbnail: "/exp1.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 2,
@@ -184,6 +214,8 @@ export const workExperience = [
 		desc: "Enhanced course curricula and collaborated with academic staff to improve teaching methods.",
 		className: "md:col-span-2", // change to md:col-span-2
 		thumbnail: "/exp2.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 3,
@@ -191,6 +223,8 @@ export const workExperience = [
 		desc: "Created an E-commerce application, from initial concept to deployment.",
 		className: "md:col-span-2", // change to md:col-span-2
 		thumbnail: "/exp3.svg",
+		width: 500,
+		height: 500,
 	},
 	{
 		id: 4,
@@ -198,6 +232,8 @@ export const workExperience = [
 		desc: "Developed and maintained user-facing features using modern frontend technologies.",
 		className: "md:col-span-2",
 		thumbnail: "/exp4.svg",
+		width: 500,
+		height: 500,
 	},
 ];
 
@@ -207,17 +243,23 @@ export const socialMedia = [
 		img: "/git.svg",
 		alt: "github",
 		link: "https://github.com/Femlol1",
+		width: 20,
+		height: 20,
 	},
 	{
 		id: 2,
 		img: "/twit.svg",
 		alt: "instagram",
 		link: "",
+		width: 20,
+		height: 20,
 	},
 	{
 		id: 3,
 		img: "/link.svg",
 		alt: "linkedin",
 		link: "https://www.linkedin.com/in/sfemi/",
+		width: 20,
+		height: 20,
 	},
 ];

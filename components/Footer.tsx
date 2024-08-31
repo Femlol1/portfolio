@@ -1,4 +1,5 @@
 import { socialMedia } from "@/data";
+import Image from "next/image";
 import Link from "next/link";
 import { FaLocationArrow, FaRegCopyright } from "react-icons/fa6";
 import MagicButton from "./ui/MagicButton";
@@ -27,7 +28,7 @@ const Footer = () => {
 				<p className="md:text-base text-sm md:font-normal font-light">
 					Copyright{" "}
 					<FaRegCopyright className="inline text-center justify-center items-center" />{" "}
-					2024 Femi
+					2024 Osifemi Osibemekun
 				</p>
 				<div className="flex items-center md:gap-3 gap-6">
 					{socialMedia.map((profile) => (
@@ -36,7 +37,7 @@ const Footer = () => {
 							className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
 						>
 							<Link href={profile.link}>
-								<img
+								<Image
 									src={profile.img}
 									alt={profile.alt}
 									width={20}
