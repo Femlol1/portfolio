@@ -248,9 +248,9 @@ export const socialMedia = [
 	},
 	{
 		id: 2,
-		img: "/twit.svg",
+		img: "/insta.svg",
 		alt: "instagram",
-		link: "",
+		link: "https://www.instagram.com/femlol/",
 		width: 20,
 		height: 20,
 	},
