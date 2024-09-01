@@ -30,7 +30,7 @@ const Footer = () => {
 					<FaRegCopyright className="inline text-center justify-center items-center" />{" "}
 					2024 Osifemi Osibemekun
 				</p>
-				<div className="flex items-center md:gap-3 gap-6">
+				<div className="flex items-center md:gap-3 gap-6 py-6">
 					{socialMedia.map((profile) => (
 						<div
 							key={profile.id}
