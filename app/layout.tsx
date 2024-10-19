@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 	title: "Osifemi's Portfolio",
 	description:
 		"Modern and Minimalist Next.js web app created to advertise what I can do and increase my job prospects.",
+	icons: {
+		icon: ["/assets/myface.jpeg"],
+	},
 };
 
 export default function RootLayout({
