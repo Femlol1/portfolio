@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 		await transporter.sendMail({
 			from: process.env.SMTP_USER, // The sender's email address
 			to: "osibemekunosifemi@gmail.com", // Replace with your email address to receive messages
-			subject: `New Contact Form Submission from ${name}`,
+			subject: `New Portfolio message from ${name}`,
 			html: `<p><strong>Name:</strong> ${name}</p>
              <p><strong>Email:</strong> ${email}</p>
              <p><strong>Message:</strong> ${message}</p>`,
