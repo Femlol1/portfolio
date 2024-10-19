@@ -1,9 +1,10 @@
-import Approach from "@/components/Approach";
-import Experience from "@/components/Experience";
-import Footer from "@/components/Footer";
-import Grid from "@/components/Grid";
-import Hero from "@/components/Hero";
-import RecentProjects from "@/components/RecentProjects";
+import Approach from "@/components/shared/Approach";
+import ContactMe from "@/components/shared/ContactMe";
+import Experience from "@/components/shared/Experience";
+import Footer from "@/components/shared/Footer";
+import Grid from "@/components/shared/Grid";
+import Hero from "@/components/shared/Hero";
+import RecentProjects from "@/components/shared/RecentProjects";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
 
@@ -18,6 +19,7 @@ export default function Home() {
 				{/* <Clients /> */}
 				<Experience />
 				<Approach />
+				<ContactMe />
 				<Footer />
 			</div>
 		</main>

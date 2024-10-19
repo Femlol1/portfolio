@@ -1,6 +1,6 @@
 import { companies, testimonials } from "@/data";
 import Image from "next/image";
-import { InfiniteMovingCards } from "./ui/InfiniteMovingCards";
+import { InfiniteMovingCards } from "../ui/InfiniteMovingCards";
 
 const Clients = () => {
 	return (
