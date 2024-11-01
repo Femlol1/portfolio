@@ -85,7 +85,7 @@ export const projects = [
 	{
 		id: 1,
 		title: "Wedding Rsvp website",
-		des: "Created a dynamic wedding website for my sister",
+		des: "Created a dynamic wedding website",
 		img: "/to.png",
 		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/fm.svg"],
 		link: "https://www.toluandope.com/",
