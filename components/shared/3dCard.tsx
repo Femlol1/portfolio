@@ -37,6 +37,7 @@ export function ProjectsShowcase() {
 										className="h-auto w-auto object-cover rounded-xl group-hover/card:shadow-xl"
 										autoPlay
 										loop
+										muted
 									/>
 								) : (
 									<Image
