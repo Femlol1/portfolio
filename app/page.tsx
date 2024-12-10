@@ -1,10 +1,10 @@
+import { ProjectsShowcase } from "@/components/shared/3dCard";
 import Approach from "@/components/shared/Approach";
 import ContactMe from "@/components/shared/ContactMe";
 import Experience from "@/components/shared/Experience";
 import Footer from "@/components/shared/Footer";
 import Grid from "@/components/shared/Grid";
 import Hero from "@/components/shared/Hero";
-import RecentProjects from "@/components/shared/RecentProjects";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
 
@@ -15,7 +15,8 @@ export default function Home() {
 				<FloatingNav navItems={navItems} />
 				<Hero />
 				<Grid />
-				<RecentProjects />
+				<ProjectsShowcase />
+				{/* <RecentProjects /> */}
 				{/* <Clients /> */}
 				<Experience />
 				<Approach />

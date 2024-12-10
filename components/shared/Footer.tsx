@@ -25,6 +25,7 @@ const Footer = () => {
 									alt={profile.alt}
 									width={20}
 									height={20}
+									title={profile.title}
 								/>
 							</Link>
 						</div>
