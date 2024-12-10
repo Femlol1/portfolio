@@ -39,6 +39,7 @@ export const BentoGridItem = ({
 	title,
 	description,
 	img,
+	imgalt,
 	imgClassName,
 	titleClassName,
 	spareImg,
@@ -50,6 +51,7 @@ export const BentoGridItem = ({
 	title?: string | React.ReactNode;
 	description?: string | React.ReactNode;
 	img?: string;
+	imgalt: string;
 	imgClassName?: string;
 	titleClassName?: string;
 	spareImg?: string;
@@ -93,7 +95,7 @@ export const BentoGridItem = ({
 					{img && (
 						<Image
 							src={img}
-							alt={img}
+							alt={imgalt}
 							width={width}
 							height={height}
 							className={cn(imgClassName, "object-cover object-center ")}
