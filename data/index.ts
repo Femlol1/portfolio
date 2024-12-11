@@ -127,7 +127,7 @@ export const projects = [
 		width: 500,
 		height: 500,
 		iconLists: ["/flutter.svg"],
-		link: "https://github.com/Femlol1/Currency-detector-",
+		link: "https://animated-xi.vercel.app/",
 	},
 ];
 
@@ -260,7 +260,7 @@ export const socialMedia = [
 		id: 2,
 		img: "/insta.svg",
 		alt: "instagram",
-		link: "https://www.instagram.com/femlol/",
+		link: "https://www.instagram.com/osifemi.dev/",
 		width: 20,
 		height: 20,
 		title: "instagram",
@@ -269,7 +269,7 @@ export const socialMedia = [
 		id: 3,
 		img: "/link.svg",
 		alt: "linkedin",
-		link: "https://www.linkedin.com/in/sfemi/",
+		link: "https://www.linkedin.com/in/osifemi/",
 		width: 20,
 		height: 20,
 		title: "linkedin",
