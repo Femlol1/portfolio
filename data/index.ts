@@ -1,6 +1,7 @@
 export const navItems = [
 	{ name: "About", link: "#about" },
 	{ name: "Projects", link: "#projects" },
+	{ name: "Services", link: "#services" },
 	// { name: "Testimonials", link: "#testimonials" },
 	{ name: "Contact", link: "#contact" },
 ];
@@ -13,7 +14,7 @@ export const gridItems = [
 		className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
 		imgClassName: "w-full h-full",
 		titleClassName: "justify-end",
-		img: "/assets/blue.jpeg",
+		img: "/assets/Blue.jpeg",
 		imgalt: "blue flames",
 		spareImg: "",
 		width: 500,
@@ -243,6 +244,152 @@ export const workExperience = [
 		thumbnail: "/exp4.svg",
 		width: 500,
 		height: 500,
+	},
+];
+
+export const services = [
+	{
+		id: 1,
+		title: "Full-Stack Web Development",
+		description:
+			"End-to-end web application development using modern technologies like Next.js, React, TypeScript, and Node.js. From concept to deployment.",
+		features: [
+			"Custom web applications",
+			"Responsive design across all devices",
+			"Database integration & management",
+			"API development & integration",
+			"Performance optimization",
+		],
+		icon: "/next.svg",
+		gradient: "from-blue-500 to-purple-600",
+	},
+	{
+		id: 2,
+		title: "E-commerce Solutions",
+		description:
+			"Complete e-commerce platforms with payment integration, inventory management, and admin dashboards. Built for scalability and performance.",
+		features: [
+			"Custom shopping cart functionality",
+			"Payment gateway integration",
+			"Inventory management systems",
+			"Admin dashboards",
+			"AI-powered chatbots for customer support",
+		],
+		icon: "/s.svg",
+		gradient: "from-green-500 to-teal-600",
+	},
+	{
+		id: 3,
+		title: "Events Management Systems",
+		description:
+			"Comprehensive event management platforms for weddings, corporate events, and community gatherings with RSVP functionality and real-time updates.",
+		features: [
+			"Event registration & RSVP systems",
+			"Real-time event updates",
+			"Guest management",
+			"Custom event websites",
+			"Integration with payment systems",
+		],
+		icon: "/exp1.svg",
+		gradient: "from-orange-500 to-red-600",
+	},
+	{
+		id: 4,
+		title: "UI/UX Design & Animation",
+		description:
+			"Modern, engaging user interfaces with smooth animations using GSAP, Framer Motion, and Three.js for immersive user experiences.",
+		features: [
+			"Interactive 3D animations",
+			"Responsive design systems",
+			"Modern UI/UX principles",
+			"GSAP & Three.js animations",
+			"Brand-consistent design",
+		],
+		icon: "/three.svg",
+		gradient: "from-purple-500 to-pink-600",
+	},
+	{
+		id: 5,
+		title: "Database & Backend Solutions",
+		description:
+			"Robust backend systems with database design, API development, and cloud integration for scalable applications.",
+		features: [
+			"Database design & optimization",
+			"RESTful API development",
+			"Cloud deployment & hosting",
+			"Authentication & security",
+			"Real-time data synchronization",
+		],
+		icon: "/mongodb.svg",
+		gradient: "from-cyan-500 to-blue-600",
+	},
+	{
+		id: 6,
+		title: "Maintenance & Support",
+		description:
+			"Ongoing maintenance, updates, and technical support for existing applications. Keep your applications running smoothly and securely.",
+		features: [
+			"Regular updates & patches",
+			"Performance monitoring",
+			"Security audits",
+			"Bug fixes & troubleshooting",
+			"24/7 technical support",
+		],
+		icon: "/git.svg",
+		gradient: "from-indigo-500 to-purple-600",
+	},
+];
+
+export const pricingPlans = [
+	{
+		id: 1,
+		name: "Starter",
+		price: "£150",
+		duration: "per project",
+		description: "Perfect for small businesses and personal projects",
+		features: [
+			"Responsive website design",
+			"Up to 5 pages",
+			"Basic contact form",
+			"Mobile optimization",
+			"1 month support",
+		],
+		popular: false,
+		color: "from-blue-500 to-purple-600",
+	},
+	{
+		id: 2,
+		name: "Professional",
+		price: "£500",
+		duration: "per project",
+		description: "Ideal for growing businesses with advanced needs",
+		features: [
+			"Custom web application",
+			"Database integration",
+			"API development",
+			"Admin dashboard",
+			"E-commerce functionality",
+			"3 months support",
+		],
+		popular: true,
+		color: "from-purple-500 to-pink-600",
+	},
+	{
+		id: 3,
+		name: "Enterprise",
+		price: "£1000+",
+		duration: "per project",
+		description: "For large-scale applications and complex requirements",
+		features: [
+			"Full-stack development",
+			"Custom integrations",
+			"Advanced animations",
+			"Performance optimization",
+			"Ongoing maintenance",
+			"6 months support",
+		],
+		popular: false,
+		color: "from-orange-500 to-red-600",
 	},
 ];
 

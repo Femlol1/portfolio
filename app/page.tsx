@@ -5,6 +5,7 @@ import Experience from "@/components/shared/Experience";
 import Footer from "@/components/shared/Footer";
 import Grid from "@/components/shared/Grid";
 import Hero from "@/components/shared/Hero";
+import ServicesPreview from "@/components/shared/ServicesPreview";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
 
@@ -18,6 +19,7 @@ export default function Home() {
 				<ProjectsShowcase />
 				{/* <RecentProjects /> */}
 				{/* <Clients /> */}
+				<ServicesPreview />
 				<Experience />
 				<Approach />
 				<ContactMe />

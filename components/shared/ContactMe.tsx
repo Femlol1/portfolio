@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input"; // Assuming you're using shadcn input component
 import { Textarea } from "@/components/ui/textarea"; // Assuming you're using shadcn textarea component
+import { services } from "@/data";
 import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
 import { Label } from "../ui/label";
@@ -12,6 +13,7 @@ const ContactMe: React.FC = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
+	const [service, setService] = useState("");
 	const [success, setSuccess] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false); // State for loading
@@ -28,7 +30,7 @@ const ContactMe: React.FC = () => {
 			return;
 		}
 
-		const formData = { name, email, message };
+		const formData = { name, email, message, service };
 
 		try {
 			const response = await fetch("/api/contact", {
@@ -44,6 +46,7 @@ const ContactMe: React.FC = () => {
 				setName("");
 				setEmail("");
 				setMessage("");
+				setService("");
 			} else {
 				setError("Failed to send the message.");
 			}
@@ -88,6 +91,27 @@ const ContactMe: React.FC = () => {
 								required
 								className="mt-1 bg-[#2A2A40] text-white border-gray-600 w-full"
 							/>
+						</div>
+						<div>
+							<Label
+								htmlFor="service"
+								className="block text-sm font-medium text-gray-300"
+							>
+								Service of Interest (Optional):
+							</Label>
+							<select
+								id="service"
+								value={service}
+								onChange={(e) => setService(e.target.value)}
+								className="mt-1 bg-[#2A2A40] text-white border-gray-600 w-full rounded-md px-3 py-2 border"
+							>
+								<option value="">Select a service...</option>
+								{services.map((serviceOption) => (
+									<option key={serviceOption.id} value={serviceOption.title}>
+										{serviceOption.title}
+									</option>
+								))}
+							</select>
 						</div>
 						<div>
 							<Label
