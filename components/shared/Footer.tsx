@@ -11,7 +11,7 @@ const Footer = () => {
 				<p className="md:text-base text-sm md:font-normal font-light">
 					Copyright{" "}
 					<FaRegCopyright className="inline text-center justify-center items-center" />{" "}
-					2024 Osifemi Osibemekun
+					2025 Osifemi Osibemekun
 				</p>
 				<div className="flex items-center md:gap-3 gap-6 py-6">
 					{socialMedia.map((profile) => (
