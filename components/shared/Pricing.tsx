@@ -39,7 +39,7 @@ const PricingCard = ({ plan }: { plan: any }) => {
 	return (
 		<div className={`relative ${plan.popular ? "transform scale-105" : ""}`}>
 			{plan.popular && (
-				<div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+				<div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
 					<span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
 						Most Popular
 					</span>
@@ -82,15 +82,15 @@ const PricingCard = ({ plan }: { plan: any }) => {
 					{/* CTA */}
 					<div className="text-center">
 						<a href="#contact" className="inline-block w-full">
-							<button
-								className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-300 ${
+							<div
+								className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-300 cursor-pointer ${
 									plan.popular
 										? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
 										: "border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white"
 								}`}
 							>
 								Get Started
-							</button>
+							</div>
 						</a>
 					</div>
 				</div>

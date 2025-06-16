@@ -92,9 +92,12 @@ const ServiceCard = ({ service }: { service: any }) => {
 
 				{/* CTA */}
 				<div className="mt-6 pt-4 border-t border-slate-800">
-					<button className="text-purple hover:text-white transition-colors text-sm font-medium">
+					<a
+						href="#contact"
+						className="text-purple hover:text-white transition-colors text-sm font-medium cursor-pointer"
+					>
 						Get Started →
-					</button>
+					</a>
 				</div>
 			</div>
 		</Button>

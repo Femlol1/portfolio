@@ -2,7 +2,7 @@
 const nextConfig = {
 	images: {
 		// Add image formats for better optimization
-		formats: ['image/webp', 'image/avif'],
+		formats: ["image/webp", "image/avif"],
 		// Configure image domains if needed for external images
 		// domains: ['example.com'],
 		// Add image sizes for responsive images

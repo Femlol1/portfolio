@@ -5,8 +5,8 @@ import { IoCopyOutline } from "react-icons/io5";
 // Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie";
 
-import { cn } from "@/lib/utils";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/imageUtils";
+import { cn } from "@/lib/utils";
 
 import animationData from "@/data/confetti.json";
 import Image from "next/image";
@@ -104,10 +104,10 @@ export const BentoGridItem = ({
 							placeholder="blur"
 							blurDataURL={DEFAULT_BLUR_DATA_URL}
 							onError={(e) => {
-								console.error('Failed to load image:', img);
+								console.error("Failed to load image:", img);
 								// Hide the image container if it fails to load
 								const target = e.target as HTMLImageElement;
-								target.style.display = 'none';
+								target.style.display = "none";
 							}}
 						/>
 					)}
