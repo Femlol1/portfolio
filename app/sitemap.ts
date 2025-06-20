@@ -1,0 +1,44 @@
+import { MetadataRoute } from "next";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+	const baseUrl = "https://www.osifemi.dev";
+
+	// Static pages
+	const staticPages = [
+		{
+			url: baseUrl,
+			lastModified: new Date(),
+			changeFrequency: "monthly" as const,
+			priority: 1,
+		},
+		{
+			url: `${baseUrl}/services`,
+			lastModified: new Date(),
+			changeFrequency: "monthly" as const,
+			priority: 0.8,
+		},
+		{
+			url: `${baseUrl}/contact-me`,
+			lastModified: new Date(),
+			changeFrequency: "yearly" as const,
+			priority: 0.5,
+		},
+	];
+
+	// Add project pages if they exist as individual routes
+	const projectSlugs = [
+		"wedding-rsvp-website",
+		"events-management-platform",
+		"ecommerce-ai-chatbot",
+		"zentry-website-clone",
+	];
+
+	const projectPages = projectSlugs.map((slug) => ({
+		url: `${baseUrl}/projects/${slug}`,
+		lastModified: new Date(),
+		changeFrequency: "yearly" as const,
+		priority: 0.6,
+	}));
+
+	return [...staticPages, ...projectPages];
+}

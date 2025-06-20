@@ -23,11 +23,21 @@ const Hero = () => {
 			</div>
 			<div className="flex justify-center relative my-20 z-10">
 				<div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-					<TextGenerateEffect
-						className="text-center text-[40px] md:text-5xl lg:text-6xl"
-						words="Hi, I'm Femi, a Full-Stack Developer"
-					/>
-					<a href="#about">
+					<header>
+						<h1 className="sr-only">
+							Osifemi Osibemekun - Full-Stack Web Developer
+						</h1>
+						<TextGenerateEffect
+							className="text-center text-[40px] md:text-5xl lg:text-6xl"
+							words="Hi, I'm Femi, a Full-Stack Developer"
+						/>
+					</header>
+					<p className="text-center text-white-200 mt-4 text-lg max-w-2xl sr-only">
+						Professional full-stack web developer specializing in Next.js,
+						React, TypeScript, and modern web technologies. Creating exceptional
+						digital experiences.
+					</p>
+					<a href="#about" aria-label="View my work and projects">
 						<MagicButton
 							title="Show my work"
 							icon={<FaLocationArrow />}
