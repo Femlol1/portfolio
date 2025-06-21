@@ -37,7 +37,7 @@ const Hero = () => {
 						React, TypeScript, and modern web technologies. Creating exceptional
 						digital experiences.
 					</p>
-					<a href="#about" aria-label="View my work and projects">
+					<a href="#projects" aria-label="View my work and projects">
 						<MagicButton
 							title="View my work"
 							icon={<FaLocationArrow />}
