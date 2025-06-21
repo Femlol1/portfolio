@@ -39,7 +39,7 @@ const Hero = () => {
 					</p>
 					<a href="#about" aria-label="View my work and projects">
 						<MagicButton
-							title="Show my work"
+							title="View my work"
 							icon={<FaLocationArrow />}
 							position="right"
 						/>
