@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaChevronRight, FaHome } from "react-icons/fa";
 
 interface BreadcrumbItem {
@@ -11,6 +12,11 @@ interface BreadcrumbItem {
 
 const Breadcrumb = () => {
 	const pathname = usePathname();
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	const generateBreadcrumbs = (): BreadcrumbItem[] => {
 		const paths = pathname.split("/").filter(Boolean);
@@ -36,6 +42,9 @@ const Breadcrumb = () => {
 
 		return breadcrumbs;
 	};
+
+	// Don't render until mounted to avoid hydration mismatch
+	if (!isMounted) return null;
 
 	const breadcrumbs = generateBreadcrumbs();
 

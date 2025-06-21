@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
 import { Label } from "../ui/label";
 import MagicButton from "../ui/MagicButton";
+import LegalLinks from "./LegalLinks";
 import Loading from "./loading";
 
 const ContactMe: React.FC = () => {
@@ -156,6 +157,9 @@ const ContactMe: React.FC = () => {
 						{error && <p className="text-red-500 text-center">{error}</p>}
 					</form>
 				</div>
+
+				{/* Legal Links */}
+				<LegalLinks />
 			</div>
 		</section>
 	);
