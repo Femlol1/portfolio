@@ -30,15 +30,26 @@ export function ProjectsShowcase() {
 							</CardItem>
 							<CardItem translateZ="100" className="w-full mt-4">
 								{project.video ? (
-									<video
-										src={project.video}
-										height={project.height}
-										width={project.width}
-										className="h-auto w-auto object-cover rounded-xl group-hover/card:shadow-xl"
-										autoPlay
-										loop
-										muted
-									/>
+									<Link
+										href={`/videos/${project.slug}`}
+										className="block relative group"
+									>
+										<div className="relative w-full h-48 rounded-xl overflow-hidden border border-white/[0.1]">
+											<video
+												src={project.video}
+												width={project.width}
+												height={project.height}
+												autoPlay
+												loop
+												muted
+												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+											/>
+
+											<div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+												Video Demo
+											</div>
+										</div>
+									</Link>
 								) : (
 									<Image
 										src={project.img}
@@ -72,14 +83,26 @@ export function ProjectsShowcase() {
 
 							{/* Action Buttons */}
 							<div className="flex justify-between items-center mt-auto">
-								<CardItem
-									translateZ={20}
-									as={Link}
-									href={`/projects/${project.slug}`}
-									className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white hover:text-purple transition-colors"
-								>
-									More Info →
-								</CardItem>
+								<div className="flex gap-2">
+									<CardItem
+										translateZ={20}
+										as={Link}
+										href={`/projects/${project.slug}`}
+										className="px-3 py-2 rounded-xl text-xs font-normal dark:text-white hover:text-purple transition-colors"
+									>
+										More Info →
+									</CardItem>
+									{project.video && (
+										<CardItem
+											translateZ={20}
+											as={Link}
+											href={`/videos/${project.slug}`}
+											className="px-3 py-2 rounded-xl text-xs font-normal text-purple hover:text-white transition-colors"
+										>
+											📹 Watch
+										</CardItem>
+									)}
+								</div>
 								<CardItem
 									translateZ={20}
 									as={Link}

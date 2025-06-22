@@ -1,3 +1,4 @@
+import { projects } from "@/data";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -58,5 +59,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		priority: 0.6,
 	}));
 
-	return [...staticPages, ...projectPages];
+	// Add video pages for projects that have videos
+	const videoPages = projects
+		.filter((project) => project.video)
+		.map((project) => ({
+			url: `${baseUrl}/videos/${project.slug}`,
+			lastModified: new Date(),
+			changeFrequency: "yearly" as const,
+			priority: 0.7,
+		}));
+
+	return [...staticPages, ...projectPages, ...videoPages];
 }
