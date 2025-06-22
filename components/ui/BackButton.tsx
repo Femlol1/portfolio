@@ -10,7 +10,7 @@ export default function BackButton() {
 	};
 
 	return (
-		<button 
+		<button
 			onClick={handleGoBack}
 			className="flex items-center gap-2 text-white-200 hover:text-purple transition-colors duration-200 mx-auto text-sm"
 		>

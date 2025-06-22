@@ -1,14 +1,15 @@
+import BackButton from "@/components/ui/BackButton";
+import MagicButton from "@/components/ui/MagicButton";
+import { Spotlight } from "@/components/ui/Spotlight";
+import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { Metadata } from "next";
 import Link from "next/link";
 import { FaHome, FaSearch } from "react-icons/fa";
-import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { Spotlight } from "@/components/ui/Spotlight";
-import MagicButton from "@/components/ui/MagicButton";
-import BackButton from "@/components/ui/BackButton";
 
 export const metadata: Metadata = {
 	title: "404 - Page Not Found | Osifemi Osibemekun",
-	description: "The page you're looking for doesn't exist. Explore our portfolio, projects, and services instead.",
+	description:
+		"The page you're looking for doesn't exist. Explore our portfolio, projects, and services instead.",
 	robots: {
 		index: false,
 		follow: false,
@@ -46,7 +47,7 @@ export default function NotFound() {
 						<h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase tracking-widest">
 							Page Not Found
 						</h2>
-						
+
 						<div className="mb-8 max-w-2xl mx-auto">
 							<TextGenerateEffect
 								words={words}
@@ -55,8 +56,9 @@ export default function NotFound() {
 						</div>
 
 						<p className="text-white-200 text-base md:text-lg mb-12 max-w-xl mx-auto">
-							The page you&apos;re looking for might have been moved, deleted, or never existed. 
-							But don&apos;t worry, there&apos;s plenty more to explore!
+							The page you&apos;re looking for might have been moved, deleted,
+							or never existed. But don&apos;t worry, there&apos;s plenty more
+							to explore!
 						</p>
 
 						{/* Action Buttons */}
@@ -68,7 +70,7 @@ export default function NotFound() {
 									position="left"
 								/>
 							</Link>
-							
+
 							<Link href="/projects">
 								<MagicButton
 									title="View Projects"
@@ -81,22 +83,24 @@ export default function NotFound() {
 
 						{/* Quick Navigation */}
 						<div className="border-t border-white/[0.1] pt-8">
-							<p className="text-white-200 text-sm mb-4">Or explore these sections:</p>
+							<p className="text-white-200 text-sm mb-4">
+								Or explore these sections:
+							</p>
 							<div className="flex flex-wrap gap-4 justify-center">
-								<Link 
-									href="/projects" 
+								<Link
+									href="/projects"
 									className="text-purple hover:text-white transition-colors duration-200 text-sm underline"
 								>
 									Projects
 								</Link>
-								<Link 
-									href="/services" 
+								<Link
+									href="/services"
 									className="text-purple hover:text-white transition-colors duration-200 text-sm underline"
 								>
 									Services
 								</Link>
-								<Link 
-									href="/contact-me" 
+								<Link
+									href="/contact-me"
 									className="text-purple hover:text-white transition-colors duration-200 text-sm underline"
 								>
 									Contact
