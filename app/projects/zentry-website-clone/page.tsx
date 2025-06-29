@@ -81,7 +81,6 @@ export default function ZentryCloneProjectPage() {
 							<div className="relative w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden border border-white/[0.1]">
 								<video
 									className="w-full h-full object-cover"
-									autoPlay
 									muted
 									loop
 									playsInline
