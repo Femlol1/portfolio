@@ -39,7 +39,6 @@ export function ProjectsShowcase() {
 												src={project.video}
 												width={project.width}
 												height={project.height}
-												autoPlay
 												loop
 												muted
 												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
