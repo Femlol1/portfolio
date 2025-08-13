@@ -83,7 +83,6 @@ export default function ProjectsPage() {
 										{project.video ? (
 											<video
 												className="w-full h-full object-cover"
-												autoPlay
 												muted
 												loop
 												playsInline
