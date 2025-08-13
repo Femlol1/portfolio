@@ -4,6 +4,7 @@ export const navItems = [
 	{ name: "Services", link: "/services" },
 	// { name: "Testimonials", link: "#testimonials" },
 	{ name: "Contact", link: "/contact-me" },
+	{ name: "CV", link: "/Osibemekun_Femi_SoftwareEngineer.pdf", download: true },
 ];
 
 export const gridItems = [

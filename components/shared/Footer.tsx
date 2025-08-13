@@ -4,7 +4,19 @@ import Link from "next/link";
 import { FaRegCopyright } from "react-icons/fa6";
 
 const Footer = () => {
-	const footerLinks = [
+	interface FooterLink {
+		name: string;
+		href: string;
+		external: boolean;
+		download?: boolean;
+	}
+
+	interface FooterSection {
+		title: string;
+		links: FooterLink[];
+	}
+
+	const footerLinks: FooterSection[] = [
 		{
 			title: "Navigation",
 			links: [
@@ -13,6 +25,12 @@ const Footer = () => {
 				{ name: "Projects", href: "/projects", external: false },
 				{ name: "Services", href: "/services", external: false },
 				{ name: "Contact", href: "/contact-me", external: false },
+				{
+					name: "Download CV",
+					href: "/Osibemekun_Femi_SoftwareEngineer.pdf",
+					external: true,
+					download: true,
+				},
 			],
 		},
 		{
@@ -110,6 +128,7 @@ const Footer = () => {
 												href={link.href}
 												target="_blank"
 												rel="noopener noreferrer"
+												{...(link.download && { download: true })}
 												className="text-white-200 hover:text-purple transition-colors duration-200 text-sm"
 											>
 												{link.name}

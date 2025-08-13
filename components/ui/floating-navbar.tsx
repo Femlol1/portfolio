@@ -18,6 +18,7 @@ export const FloatingNav = ({
 		name: string;
 		link: string;
 		icon?: ReactNode;
+		download?: boolean;
 	}[];
 	className?: string;
 }) => {
@@ -65,6 +66,7 @@ export const FloatingNav = ({
 					<Link
 						key={`link=${idx}`}
 						href={navItem.link}
+						{...(navItem.download && { download: true, target: "_blank" })}
 						className={cn(
 							"relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
 						)}
