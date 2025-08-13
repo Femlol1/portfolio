@@ -1,4 +1,5 @@
 import { FaLocationArrow } from "react-icons/fa6";
+import CVDownloadButton from "../ui/CVDownloadButton";
 import MagicButton from "../ui/MagicButton";
 import { Spotlight } from "../ui/Spotlight";
 import { TextGenerateEffect } from "../ui/TextGenerateEffect";
@@ -37,13 +38,16 @@ const Hero = () => {
 						React, TypeScript, and modern web technologies. Creating exceptional
 						digital experiences.
 					</p>
-					<a href="#projects" aria-label="View my work and projects">
-						<MagicButton
-							title="View my work"
-							icon={<FaLocationArrow />}
-							position="right"
-						/>
-					</a>
+					<div className="flex flex-col sm:flex-row gap-4 mt-6 items-center">
+						<a href="#projects" aria-label="View my work and projects">
+							<MagicButton
+								title="View my work"
+								icon={<FaLocationArrow />}
+								position="right"
+							/>
+						</a>
+						<CVDownloadButton />
+					</div>
 				</div>
 			</div>
 		</div>

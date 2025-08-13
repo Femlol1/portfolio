@@ -7,6 +7,7 @@ import FAQ from "@/components/shared/FAQ";
 import Footer from "@/components/shared/Footer";
 import Grid from "@/components/shared/Grid";
 import Hero from "@/components/shared/Hero";
+import PricingSection from "@/components/shared/Pricing";
 import ServicesPreview from "@/components/shared/ServicesPreview";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
@@ -25,6 +26,7 @@ export default function Home() {
 					{/* <RecentProjects /> */}
 					{/* <Clients /> */}
 					<ServicesPreview />
+					<PricingSection />
 					<Experience />
 					<Approach />
 					<FAQ />

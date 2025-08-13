@@ -5,9 +5,9 @@ import { Textarea } from "@/components/ui/textarea"; // Assuming you're using sh
 import { services } from "@/data";
 import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
+import CVDownloadButton from "../ui/CVDownloadButton";
 import { Label } from "../ui/label";
 import MagicButton from "../ui/MagicButton";
-import LegalLinks from "./LegalLinks";
 import Loading from "./loading";
 
 const ContactMe: React.FC = () => {
@@ -158,8 +158,18 @@ const ContactMe: React.FC = () => {
 					</form>
 				</div>
 
-				{/* Legal Links */}
-				<LegalLinks />
+				{/* CV Download Section */}
+				<div className="w-full max-w-[90%] md:max-w-[70%] lg:max-w-[50%] mx-auto p-6 bg-[#1E1E2F] rounded-lg shadow-md mb-5">
+					<h3 className="text-xl font-semibold text-center mb-4">
+						Want to know more about my experience?
+					</h3>
+					<p className="text-white-200 text-center mb-4">
+						Download my CV to see my full professional background and skills.
+					</p>
+					<div className="flex justify-center">
+						<CVDownloadButton />
+					</div>
+				</div>
 			</div>
 		</section>
 	);
