@@ -130,11 +130,6 @@ export default function RootLayout({
 								name: "Osifemi Osibemekun",
 								jobTitle: "Full-Stack Web Developer",
 							},
-							potentialAction: {
-								"@type": "SearchAction",
-								target: "https://www.osifemi.dev/search?q={search_term_string}",
-								"query-input": "required name=search_term_string",
-							},
 						}),
 					}}
 				/>

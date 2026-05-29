@@ -2,7 +2,7 @@
 import countries from "@/data/globe.json";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, extend, Object3DNode, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Color, Fog, PerspectiveCamera, Scene, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 
@@ -77,31 +77,27 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
 	const globeRef = useRef<ThreeGlobe | null>(null);
 
-	const defaultProps = {
-		pointSize: 1,
-		atmosphereColor: "#ffffff",
-		showAtmosphere: true,
-		atmosphereAltitude: 0.1,
-		polygonColor: "rgba(255,255,255,0.7)",
-		globeColor: "#1d072e",
-		emissive: "#000000",
-		emissiveIntensity: 0.1,
-		shininess: 0.9,
-		arcTime: 2000,
-		arcLength: 0.9,
-		rings: 1,
-		maxRings: 3,
-		...globeConfig,
-	};
+	const defaultProps = useMemo(
+		() => ({
+			pointSize: 1,
+			atmosphereColor: "#ffffff",
+			showAtmosphere: true,
+			atmosphereAltitude: 0.1,
+			polygonColor: "rgba(255,255,255,0.7)",
+			globeColor: "#1d072e",
+			emissive: "#000000",
+			emissiveIntensity: 0.1,
+			shininess: 0.9,
+			arcTime: 2000,
+			arcLength: 0.9,
+			rings: 1,
+			maxRings: 3,
+			...globeConfig,
+		}),
+		[globeConfig]
+	);
 
-	useEffect(() => {
-		if (globeRef.current) {
-			_buildData();
-			_buildMaterial();
-		}
-	}, [globeRef.current]);
-
-	const _buildMaterial = () => {
+	const _buildMaterial = useCallback(() => {
 		if (!globeRef.current) return;
 
 		const globeMaterial = globeRef.current.globeMaterial() as unknown as {
@@ -110,13 +106,13 @@ export function Globe({ globeConfig, data }: WorldProps) {
 			emissiveIntensity: number;
 			shininess: number;
 		};
-		globeMaterial.color = new Color(globeConfig.globeColor);
-		globeMaterial.emissive = new Color(globeConfig.emissive);
-		globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-		globeMaterial.shininess = globeConfig.shininess || 0.9;
-	};
+		globeMaterial.color = new Color(defaultProps.globeColor);
+		globeMaterial.emissive = new Color(defaultProps.emissive);
+		globeMaterial.emissiveIntensity = defaultProps.emissiveIntensity;
+		globeMaterial.shininess = defaultProps.shininess;
+	}, [defaultProps]);
 
-	const _buildData = () => {
+	const _buildData = useCallback(() => {
 		const arcs = data;
 		let points = [];
 		for (let i = 0; i < arcs.length; i++) {
@@ -149,26 +145,16 @@ export function Globe({ globeConfig, data }: WorldProps) {
 		);
 
 		setGlobeData(filteredPoints);
-	};
+	}, [data, defaultProps.pointSize]);
 
 	useEffect(() => {
-		if (globeRef.current && globeData) {
-			globeRef.current
-				.hexPolygonsData(countries.features)
-				.hexPolygonResolution(2)
-				.hexPolygonMargin(0.7)
-				.showAtmosphere(defaultProps.showAtmosphere)
-				.atmosphereColor(defaultProps.atmosphereColor)
-				.atmosphereAltitude(defaultProps.atmosphereAltitude)
-				// eslint-disable-next-line no-unused-vars
-				.hexPolygonColor((e) => {
-					return defaultProps.polygonColor;
-				});
-			startAnimation();
+		if (globeRef.current) {
+			_buildData();
+			_buildMaterial();
 		}
-	}, [globeData]);
+	}, [_buildData, _buildMaterial]);
 
-	const startAnimation = () => {
+	const startAnimation = useCallback(() => {
 		if (!globeRef.current || !globeData) return;
 
 		globeRef.current
@@ -208,7 +194,31 @@ export function Globe({ globeConfig, data }: WorldProps) {
 			.ringRepeatPeriod(
 				(defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
 			);
-	};
+	}, [data, defaultProps, globeData]);
+
+	useEffect(() => {
+		if (globeRef.current && globeData) {
+			globeRef.current
+				.hexPolygonsData(countries.features)
+				.hexPolygonResolution(2)
+				.hexPolygonMargin(0.7)
+				.showAtmosphere(defaultProps.showAtmosphere)
+				.atmosphereColor(defaultProps.atmosphereColor)
+				.atmosphereAltitude(defaultProps.atmosphereAltitude)
+				// eslint-disable-next-line no-unused-vars
+				.hexPolygonColor((e) => {
+					return defaultProps.polygonColor;
+				});
+			startAnimation();
+		}
+	}, [
+		defaultProps.atmosphereAltitude,
+		defaultProps.atmosphereColor,
+		defaultProps.polygonColor,
+		defaultProps.showAtmosphere,
+		globeData,
+		startAnimation,
+	]);
 
 	useEffect(() => {
 		if (!globeRef.current || !globeData) return;
@@ -229,7 +239,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [globeRef.current, globeData]);
+	}, [data.length, globeData]);
 
 	return (
 		<>
@@ -245,7 +255,7 @@ export function WebGLRendererConfig() {
 		gl.setPixelRatio(window.devicePixelRatio);
 		gl.setSize(size.width, size.height);
 		gl.setClearColor(0xffaaff, 0);
-	}, []);
+	}, [gl, size.height, size.width]);
 
 	return null;
 }

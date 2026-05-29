@@ -41,6 +41,7 @@ const Hero = () => {
 					<div className="flex flex-col sm:flex-row gap-4 mt-6 items-center">
 						<a href="#projects" aria-label="View my work and projects">
 							<MagicButton
+								as="span"
 								title="View my work"
 								icon={<FaLocationArrow />}
 								position="right"

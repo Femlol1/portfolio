@@ -47,11 +47,12 @@ const ServiceCard = ({ service }: { service: any }) => {
 		.toLowerCase()
 		.replace(/[^a-z0-9]+/g, "-")
 		.replace(/(^-|-$)/g, "");
+	const duration = 10000 + service.id * 1250;
 
 	return (
 		<div id={anchorId}>
 			<Button
-				duration={Math.floor(Math.random() * 10000) + 10000}
+				duration={duration}
 				borderRadius="1.75rem"
 				className="flex-1 text-white border-neutral-200 dark:border-slate-800"
 			>

@@ -36,6 +36,8 @@ const PricingSection = () => {
 };
 
 const PricingCard = ({ plan }: { plan: any }) => {
+	const duration = 10000 + plan.id * 1750;
+
 	return (
 		<div className={`relative ${plan.popular ? "transform scale-105" : ""}`}>
 			{plan.popular && (
@@ -47,7 +49,7 @@ const PricingCard = ({ plan }: { plan: any }) => {
 			)}
 
 			<Button
-				duration={Math.floor(Math.random() * 10000) + 10000}
+				duration={duration}
 				borderRadius="1.75rem"
 				className="flex-1 text-white border-neutral-200 dark:border-slate-800 h-full"
 			>

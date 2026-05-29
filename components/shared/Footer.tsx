@@ -20,18 +20,22 @@ const Footer = () => {
 			links: [
 				{
 					name: "Full-Stack Development",
-					href: "/services#full-stack",
+					href: "/services#full-stack-web-development",
 					external: false,
 				},
 				{
 					name: "E-commerce Solutions",
-					href: "/services#ecommerce",
+					href: "/services#e-commerce-solutions",
 					external: false,
 				},
-				{ name: "UI/UX Design", href: "/services#design", external: false },
+				{
+					name: "UI/UX Design",
+					href: "/services#ui-ux-design-animation",
+					external: false,
+				},
 				{
 					name: "Maintenance & Support",
-					href: "/services#maintenance",
+					href: "/services#maintenance-support",
 					external: false,
 				},
 			],
@@ -132,7 +136,7 @@ const Footer = () => {
 				{/* Bottom Footer */}
 				<div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/[0.1]">
 					<p className="text-white-200 text-sm mb-4 md:mb-0">
-						Copyright <FaRegCopyright className="inline mx-1" /> 2025 Osifemi
+						Copyright <FaRegCopyright className="inline mx-1" /> 2026 Osifemi
 						Osibemekun. All rights reserved.
 					</p>
 					<div className="flex gap-6 text-xs text-white-200">

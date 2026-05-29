@@ -26,10 +26,10 @@ export const metadata: Metadata = {
 		title: "My Projects - Web Development Portfolio | Osifemi Osibemekun",
 		description:
 			"Explore my web development projects including e-commerce solutions, event management platforms, and modern web applications.",
-		url: "https://osifemi.dev/projects",
+		url: "https://www.osifemi.dev/projects",
 	},
 	alternates: {
-		canonical: "https://osifemi.dev/projects",
+		canonical: "https://www.osifemi.dev/projects",
 	},
 };
 
