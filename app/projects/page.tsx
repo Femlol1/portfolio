@@ -7,7 +7,7 @@ import { navItems, projects } from "@/data";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
 
 export const metadata: Metadata = {
 	title: "My Projects - Web Development Portfolio",
@@ -79,7 +79,11 @@ export default function ProjectsPage() {
 									key={project.id}
 									className="bg-black-200 border border-white/[0.1] rounded-lg overflow-hidden hover:border-purple/50 transition-colors duration-300"
 								>
-									<div className="relative h-64">
+									<Link
+										href={`/projects/${project.slug}`}
+										className="relative block h-64 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
+										aria-label={`Read the ${project.title} case study`}
+									>
 										{project.video ? (
 											<video
 												className="w-full h-full object-cover"
@@ -98,7 +102,7 @@ export default function ProjectsPage() {
 												sizes="(max-width: 768px) 100vw, 50vw"
 											/>
 										)}
-									</div>
+									</Link>
 
 									<div className="p-6">
 										<h2 className="text-xl font-semibold text-white mb-3">
@@ -124,12 +128,19 @@ export default function ProjectsPage() {
 											))}
 										</div>
 
-										<div className="flex gap-4">
+										<div className="flex flex-wrap gap-4">
+											<Link
+												href={`/projects/${project.slug}`}
+												className="flex items-center gap-2 rounded-lg bg-purple px-4 py-2 text-white transition-colors hover:bg-purple/80"
+											>
+												<FaInfoCircle className="w-4 h-4" />
+												<span>Read case study</span>
+											</Link>
 											<Link
 												href={project.link}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex items-center gap-2 text-purple hover:text-purple-light transition-colors"
+												className="flex items-center gap-2 px-2 py-2 text-purple hover:text-purple-light transition-colors"
 											>
 												<FaExternalLinkAlt className="w-4 h-4" />
 												<span>Live Demo</span>

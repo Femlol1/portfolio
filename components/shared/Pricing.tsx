@@ -4,7 +4,7 @@ import { Button } from "../ui/moving-border";
 
 const PricingSection = () => {
 	return (
-		<div className="py-20">
+		<section className="py-20" id="pricing">
 			<div className="text-center mb-16">
 				<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
 					Transparent <span className="text-purple">Pricing</span>
@@ -31,7 +31,7 @@ const PricingSection = () => {
 					</button>
 				</a>
 			</div>
-		</div>
+		</section>
 	);
 };
 

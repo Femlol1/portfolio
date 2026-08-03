@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { pricingPlans } from "@/data";
 
 interface StructuredDataProps {
 	type: "person" | "service" | "organization" | "project" | "breadcrumb";
@@ -58,30 +59,25 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					},
 					serviceType: "Web Development",
 					areaServed: "Worldwide",
-					offers: [
-						{
+					offers: pricingPlans.map((plan) => {
+						const numericPrice = plan.price.replace(/[^0-9.]/g, "");
+
+						return {
 							"@type": "Offer",
-							name: "Starter Package",
-							description: "Perfect for small businesses and personal projects",
-							price: "500",
-							priceCurrency: "GBP",
-						},
-						{
-							"@type": "Offer",
-							name: "Professional Package",
-							description: "Ideal for growing businesses with advanced needs",
-							price: "1200",
-							priceCurrency: "GBP",
-						},
-						{
-							"@type": "Offer",
-							name: "Enterprise Package",
-							description:
-								"For large-scale applications and complex requirements",
-							price: "2500",
-							priceCurrency: "GBP",
-						},
-					],
+							name: `${plan.name} Package`,
+							description: plan.description,
+							url: `${baseUrl}/services#pricing`,
+							...(plan.price.includes("+")
+								? {
+										priceSpecification: {
+											"@type": "PriceSpecification",
+											minPrice: numericPrice,
+											priceCurrency: "GBP",
+										},
+								  }
+								: { price: numericPrice, priceCurrency: "GBP" }),
+						};
+					}),
 				};
 
 			case "organization":

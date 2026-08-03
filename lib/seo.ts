@@ -76,7 +76,7 @@ export const seoConfigs = {
 	services: {
 		title: "Web Development Services & Pricing",
 		description:
-			"Professional web development services including full-stack development, e-commerce solutions, events management systems, and UI/UX design. Transparent pricing from £500-£2500+.",
+			"Professional web development services including full-stack development, e-commerce solutions, events management systems, and UI/UX design. Transparent project pricing from £150 to £1,000+.",
 		keywords: [
 			"web development services",
 			"full-stack development",
