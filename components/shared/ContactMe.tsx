@@ -49,7 +49,10 @@ const ContactMe: React.FC = () => {
 				setMessage("");
 				setService("");
 			} else {
-				setError("Failed to send the message.");
+				const result = (await response.json().catch(() => null)) as {
+					message?: string;
+				} | null;
+				setError(result?.message || "Failed to send the message.");
 			}
 		} catch (error) {
 			setError("An error occurred.");
@@ -87,7 +90,8 @@ const ContactMe: React.FC = () => {
 							<Input
 								type="text"
 								id="name"
-								value={name}
+				value={name}
+				maxLength={80}
 								onChange={(e) => setName(e.target.value)}
 								required
 								className="mt-1 bg-[#2A2A40] text-white border-gray-600 w-full"
@@ -124,7 +128,8 @@ const ContactMe: React.FC = () => {
 							<Input
 								type="email"
 								id="email"
-								value={email}
+				value={email}
+				maxLength={254}
 								onChange={(e) => setEmail(e.target.value)}
 								required
 								className="mt-1 bg-[#2A2A40] text-white border-gray-600 w-full"
@@ -139,7 +144,8 @@ const ContactMe: React.FC = () => {
 							</Label>
 							<Textarea
 								id="message"
-								value={message}
+				value={message}
+				maxLength={2000}
 								onChange={(e) => setMessage(e.target.value)}
 								required
 								className="mt-1 bg-[#2A2A40] text-white border-gray-600 w-full"
@@ -151,6 +157,7 @@ const ContactMe: React.FC = () => {
 								icon={isLoading ? <Loading /> : <FaLocationArrow />}
 								position="right"
 								otherClasses={isLoading ? "opacity-50 cursor-not-allowed" : ""}
+								disabled={isLoading}
 							/>
 						</div>
 						{success && <p className="text-green-500 text-center">{success}</p>}

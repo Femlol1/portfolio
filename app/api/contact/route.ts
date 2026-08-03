@@ -1,8 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { services } from "@/data";
 
 // Ensure the route is dynamically generated
 export const dynamic = "force-dynamic";
+
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const MAX_REQUEST_BYTES = 16_384;
+const INPUT_LIMITS = {
+	name: 80,
+	email: 254,
+	message: 2_000,
+	service: 100,
+} as const;
+
+type RateLimitEntry = { count: number; resetAt: number };
+const rateLimitStore = new Map<string, RateLimitEntry>();
+
+const getClientIp = (req: NextRequest) =>
+	req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+	req.headers.get("x-real-ip") ||
+	"unknown";
+
+const checkRateLimit = (key: string) => {
+	const now = Date.now();
+	const current = rateLimitStore.get(key);
+
+	if (!current || current.resetAt <= now) {
+		const resetAt = now + RATE_LIMIT_WINDOW_MS;
+		rateLimitStore.set(key, { count: 1, resetAt });
+		return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt };
+	}
+
+	if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+		return { allowed: false, remaining: 0, resetAt: current.resetAt };
+	}
+
+	current.count += 1;
+	return {
+		allowed: true,
+		remaining: RATE_LIMIT_MAX_REQUESTS - current.count,
+		resetAt: current.resetAt,
+	};
+};
 
 const escapeHtml = (value: string) =>
 	value
@@ -17,46 +58,97 @@ const isValidEmail = (email: string) =>
 
 // Named export for the POST method
 export async function POST(req: NextRequest) {
-	let body: {
-		name?: string;
-		email?: string;
-		message?: string;
-		service?: string;
+	const rateLimit = checkRateLimit(getClientIp(req));
+	const rateLimitHeaders = {
+		"X-RateLimit-Limit": String(RATE_LIMIT_MAX_REQUESTS),
+		"X-RateLimit-Remaining": String(rateLimit.remaining),
+		"X-RateLimit-Reset": String(Math.ceil(rateLimit.resetAt / 1000)),
 	};
 
-	try {
-		body = await req.json();
-	} catch {
+	if (!rateLimit.allowed) {
 		return NextResponse.json(
-			{ message: "Invalid request body." },
-			{ status: 400 }
+			{ message: "Too many requests. Please try again later." },
+			{
+				status: 429,
+				headers: {
+					...rateLimitHeaders,
+					"Retry-After": String(
+						Math.max(1, Math.ceil((rateLimit.resetAt - Date.now()) / 1000))
+					),
+				},
+			}
 		);
 	}
 
-	const name = body.name?.trim() ?? "";
-	const email = body.email?.trim() ?? "";
-	const message = body.message?.trim() ?? "";
-	const service = body.service?.trim() ?? "";
+	const declaredLength = Number(req.headers.get("content-length") ?? 0);
+	if (declaredLength > MAX_REQUEST_BYTES) {
+		return NextResponse.json(
+			{ message: "Request body is too large." },
+			{ status: 413, headers: rateLimitHeaders }
+		);
+	}
+
+	let body: Record<string, unknown>;
+
+	try {
+		const rawBody = await req.text();
+		if (new TextEncoder().encode(rawBody).length > MAX_REQUEST_BYTES) {
+			return NextResponse.json(
+				{ message: "Request body is too large." },
+				{ status: 413, headers: rateLimitHeaders }
+			);
+		}
+		body = JSON.parse(rawBody) as Record<string, unknown>;
+	} catch {
+		return NextResponse.json(
+			{ message: "Invalid request body." },
+			{ status: 400, headers: rateLimitHeaders }
+		);
+	}
+
+	const name = typeof body.name === "string" ? body.name.trim() : "";
+	const email = typeof body.email === "string" ? body.email.trim() : "";
+	const message = typeof body.message === "string" ? body.message.trim() : "";
+	const service = typeof body.service === "string" ? body.service.trim() : "";
 
 	// Basic validation
 	if (!name || !email || !message) {
 		return NextResponse.json(
 			{ message: "All fields are required." },
-			{ status: 400 }
+			{ status: 400, headers: rateLimitHeaders }
+		);
+	}
+
+	if (
+		name.length > INPUT_LIMITS.name ||
+		email.length > INPUT_LIMITS.email ||
+		message.length > INPUT_LIMITS.message ||
+		service.length > INPUT_LIMITS.service
+	) {
+		return NextResponse.json(
+			{ message: "One or more fields exceed the allowed length." },
+			{ status: 400, headers: rateLimitHeaders }
 		);
 	}
 
 	if (!isValidEmail(email)) {
 		return NextResponse.json(
 			{ message: "Please provide a valid email address." },
-			{ status: 400 }
+			{ status: 400, headers: rateLimitHeaders }
+		);
+	}
+
+	if (service && !services.some((item) => item.title === service)) {
+		return NextResponse.json(
+			{ message: "Please select a valid service." },
+			{ status: 400, headers: rateLimitHeaders }
 		);
 	}
 
 	if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
 		return NextResponse.json(
 			{ message: "Contact form is not configured." },
-			{ status: 500 }
+			{ status: 500, headers: rateLimitHeaders }
 		);
 	}
 
@@ -120,13 +212,13 @@ export async function POST(req: NextRequest) {
 
 		return NextResponse.json(
 			{ message: "Message sent successfully!" },
-			{ status: 200 }
+			{ status: 200, headers: rateLimitHeaders }
 		);
 	} catch (error) {
 		console.error("Error sending email:", error);
 		return NextResponse.json(
 			{ message: "Error sending email." },
-			{ status: 500 }
+			{ status: 500, headers: rateLimitHeaders }
 		);
 	}
 }

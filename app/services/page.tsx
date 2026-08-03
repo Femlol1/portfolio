@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 		url: "https://www.osifemi.dev/services",
 		images: [
 			{
-				url: "/assets/myface.jpeg",
+				url: "/social-preview.png",
 				width: 1200,
 				height: 630,
 				alt: "Web Development Services by Osifemi Osibemekun",
@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 		title: "Web Development Services & Pricing | Osifemi Osibemekun",
 		description:
 			"Professional web development services including full-stack development, e-commerce solutions, and UI/UX design.",
+		images: ["/social-preview.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/services",

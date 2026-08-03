@@ -35,7 +35,7 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
 			url: config.canonical || baseUrl,
 			images: [
 				{
-					url: config.image || "/assets/myface.jpeg",
+					url: config.image || "/social-preview.png",
 					width: 1200,
 					height: 630,
 					alt: config.title,
@@ -47,7 +47,7 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
 			card: "summary_large_image",
 			title: config.title,
 			description: config.description,
-			images: [config.image || "/assets/myface.jpeg"],
+			images: [config.image || "/social-preview.png"],
 			creator: "@osifemi_dev",
 		},
 		alternates: {

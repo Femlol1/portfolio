@@ -16,8 +16,10 @@ export function ProjectsShowcase() {
 					<CardContainer key={project.id} className="inter-var">
 						<CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full max-w-sm mx-auto rounded-xl p-6 border min-h-[500px] items-stretch flex flex-col">
 							<CardItem
+								as={Link}
+								href={`/projects/${project.slug}`}
 								translateZ="50"
-								className="text-lg font-bold text-neutral-600 dark:text-white line-clamp-2 leading-tight"
+								className="text-lg font-bold text-neutral-600 dark:text-white line-clamp-2 leading-tight hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
 							>
 								{project.title}
 							</CardItem>
@@ -29,11 +31,12 @@ export function ProjectsShowcase() {
 								{project.des}
 							</CardItem>
 							<CardItem translateZ="100" className="w-full mt-4">
-								{project.video ? (
-									<Link
-										href={`/videos/${project.slug}`}
-										className="block relative group"
-									>
+								<Link
+									href={`/projects/${project.slug}`}
+									className="block relative group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
+									aria-label={`Read the ${project.title} case study`}
+								>
+									{project.video ? (
 										<div className="relative w-full h-48 rounded-xl overflow-hidden border border-white/[0.1]">
 											<video
 												src={project.video}
@@ -41,6 +44,8 @@ export function ProjectsShowcase() {
 												height={project.height}
 												loop
 												muted
+												playsInline
+												preload="none"
 												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 											/>
 
@@ -48,16 +53,16 @@ export function ProjectsShowcase() {
 												Video Demo
 											</div>
 										</div>
-									</Link>
-								) : (
-									<Image
+									) : (
+										<Image
 										src={project.img}
 										height={project.height}
 										width={project.width}
 										className="h-auto w-auto object-cover rounded-xl group-hover/card:shadow-xl"
 										alt={project.title}
-									/>
-								)}
+										/>
+									)}
+								</Link>
 							</CardItem>
 							<div className="flex-grow"></div>
 
@@ -89,7 +94,7 @@ export function ProjectsShowcase() {
 										href={`/projects/${project.slug}`}
 										className="px-3 py-2 rounded-xl text-xs font-normal dark:text-white hover:text-purple transition-colors"
 									>
-										More Info →
+										Read case study →
 									</CardItem>
 									{project.video && (
 										<CardItem

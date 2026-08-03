@@ -3,42 +3,48 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = "https://www.osifemi.dev";
+	const projectModifiedDates: Record<string, string> = {
+		"wedding-rsvp-website": "2025-06-22",
+		"events-management-platform": "2025-06-22",
+		"ecommerce-ai-chatbot": "2025-06-22",
+		"zentry-website-clone": "2025-06-29",
+	};
 
 	// Static pages
 	const staticPages = [
 		{
 			url: baseUrl,
-			lastModified: new Date(),
+			lastModified: "2026-05-29",
 			changeFrequency: "monthly" as const,
 			priority: 1,
 		},
 		{
 			url: `${baseUrl}/projects`,
-			lastModified: new Date(),
+			lastModified: "2026-08-03",
 			changeFrequency: "weekly" as const,
 			priority: 0.9,
 		},
 		{
 			url: `${baseUrl}/services`,
-			lastModified: new Date(),
+			lastModified: "2026-08-03",
 			changeFrequency: "monthly" as const,
 			priority: 0.8,
 		},
 		{
 			url: `${baseUrl}/contact-me`,
-			lastModified: new Date(),
+			lastModified: "2025-06-20",
 			changeFrequency: "yearly" as const,
 			priority: 0.5,
 		},
 		{
 			url: `${baseUrl}/terms`,
-			lastModified: new Date(),
+			lastModified: "2025-06-21",
 			changeFrequency: "yearly" as const,
 			priority: 0.3,
 		},
 		{
 			url: `${baseUrl}/privacy`,
-			lastModified: new Date(),
+			lastModified: "2025-06-21",
 			changeFrequency: "yearly" as const,
 			priority: 0.3,
 		},
@@ -54,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	const projectPages = projectSlugs.map((slug) => ({
 		url: `${baseUrl}/projects/${slug}`,
-		lastModified: new Date(),
+		lastModified: projectModifiedDates[slug],
 		changeFrequency: "yearly" as const,
 		priority: 0.6,
 	}));
@@ -64,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		.filter((project) => project.video)
 		.map((project) => ({
 			url: `${baseUrl}/videos/${project.slug}`,
-			lastModified: new Date(),
+			lastModified: "2025-06-22",
 			changeFrequency: "yearly" as const,
 			priority: 0.7,
 		}));

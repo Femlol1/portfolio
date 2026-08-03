@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 		url: "https://www.osifemi.dev/contact-me",
 		images: [
 			{
-				url: "/assets/myface.jpeg",
+				url: "/social-preview.png",
 				width: 1200,
 				height: 630,
 				alt: "Contact Osifemi Osibemekun - Full-Stack Web Developer",
@@ -39,6 +39,7 @@ export const metadata: Metadata = {
 		title: "Contact Me - Get In Touch | Osifemi Osibemekun",
 		description:
 			"Get in touch with a professional full-stack web developer. Let's discuss your next project.",
+		images: ["/social-preview.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/contact-me",

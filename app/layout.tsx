@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 		siteName: "Osifemi Osibemekun Portfolio",
 		images: [
 			{
-				url: "/assets/myface.jpeg",
+				url: "/social-preview.png",
 				width: 1200,
 				height: 630,
 				alt: "Osifemi Osibemekun - Full-Stack Web Developer",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 		title: "Osifemi Osibemekun - Full-Stack Web Developer",
 		description:
 			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies.",
-		images: ["/assets/myface.jpeg"],
+		images: ["/social-preview.png"],
 		creator: "@osifemi_dev",
 	},
 

@@ -5,6 +5,7 @@ const MagicButton = ({
 	position,
 	handleClick,
 	otherClasses,
+	disabled = false,
 }: {
 	as?: "button" | "span";
 	title: string;
@@ -12,11 +13,13 @@ const MagicButton = ({
 	position: string;
 	handleClick?: () => void;
 	otherClasses?: string;
+	disabled?: boolean;
 }) => {
 	const Component = as;
 
 	return (
 		<Component
+			disabled={as === "button" ? disabled : undefined}
 			className="relative inline-flex h-12 w-full overflow-hidden rounded-lg p-[1px] focus:outline-none md:w-60 md:mt-10 "
 			onClick={as === "button" ? handleClick : undefined}
 		>

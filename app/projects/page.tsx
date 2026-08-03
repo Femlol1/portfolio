@@ -27,6 +27,21 @@ export const metadata: Metadata = {
 		description:
 			"Explore my web development projects including e-commerce solutions, event management platforms, and modern web applications.",
 		url: "https://www.osifemi.dev/projects",
+		images: [
+			{
+				url: "/social-preview.png",
+				width: 1200,
+				height: 630,
+				alt: "Osifemi Osibemekun - Full-Stack Web Developer",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "My Projects | Osifemi Osibemekun",
+		description:
+			"Explore web development case studies built with Next.js, React, and TypeScript.",
+		images: ["/social-preview.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects",
