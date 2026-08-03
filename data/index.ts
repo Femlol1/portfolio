@@ -97,7 +97,7 @@ export const projects = [
 		img: "/to.png",
 		alt: "Wedding RSVP website homepage showing elegant design and RSVP functionality",
 		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/firebase.svg"],
-		link: "https://www.toluandope.com/",
+		link: "https://www.meettheafolabis.com/",
 		slug: "wedding-rsvp-website",
 		width: 500,
 		height: 500,
