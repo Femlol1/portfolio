@@ -1,0 +1,46 @@
+name: Daily text update
+
+on:
+  schedule:
+    # 00:17 UTC (00:17 GMT / 01:17 BST).
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-text-update
+  cancel-in-progress: false
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Update text file
+        run: printf 'Last updated: %s (UTC)\n' "$(date -u +'%Y-%m-%d')" > daily-update.txt
+
+      - name: Commit and push the update
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily-update.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update daily text file"
+          git pull --rebase origin "$DEFAULT_BRANCH"
+          git push origin "HEAD:$DEFAULT_BRANCH"
