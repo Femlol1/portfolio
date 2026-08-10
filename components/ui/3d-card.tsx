@@ -23,26 +23,70 @@ export const CardContainer = ({
 	containerClassName?: string;
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const boundsRef = useRef<{
+		left: number;
+		top: number;
+		width: number;
+		height: number;
+	} | null>(null);
+	const animationFrameRef = useRef<number | null>(null);
+	const pendingTransformRef = useRef<string | null>(null);
 	const [isMouseEntered, setIsMouseEntered] = useState(false);
+	const prefersReducedMotion = () =>
+		typeof window !== "undefined" &&
+		window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+	useEffect(() => {
+		return () => {
+			if (animationFrameRef.current !== null) {
+				window.cancelAnimationFrame(animationFrameRef.current);
+			}
+		};
+	}, []);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!containerRef.current) return;
-		const { left, top, width, height } =
-			containerRef.current.getBoundingClientRect();
+		if (!containerRef.current || !boundsRef.current || prefersReducedMotion()) {
+			return;
+		}
+
+		const { left, top, width, height } = boundsRef.current;
 		const x = (e.clientX - left - width / 2) / 25;
 		const y = (e.clientY - top - height / 2) / 25;
-		containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+		pendingTransformRef.current = `rotateY(${x}deg) rotateX(${y}deg)`;
+
+		if (animationFrameRef.current !== null) return;
+
+		animationFrameRef.current = window.requestAnimationFrame(() => {
+			animationFrameRef.current = null;
+			if (!containerRef.current || !pendingTransformRef.current) return;
+
+			containerRef.current.style.transform = pendingTransformRef.current;
+		});
 	};
 
 	const handleMouseEnter = () => {
-		setIsMouseEntered(true);
+		if (prefersReducedMotion()) return;
 		if (!containerRef.current) return;
+
+		const { left, top, width, height } =
+			containerRef.current.getBoundingClientRect();
+		boundsRef.current = { left, top, width, height };
+		setIsMouseEntered(true);
 	};
 
 	const handleMouseLeave = () => {
-		if (!containerRef.current) return;
+		if (animationFrameRef.current !== null) {
+			window.cancelAnimationFrame(animationFrameRef.current);
+			animationFrameRef.current = null;
+		}
+
+		boundsRef.current = null;
+		pendingTransformRef.current = null;
 		setIsMouseEntered(false);
-		containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+
+		if (containerRef.current) {
+			containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+		}
 	};
 	return (
 		<MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
@@ -94,8 +138,23 @@ export const CardBody = ({
 	);
 };
 
-export const CardItem = ({
-	as: Tag = "div",
+type CardItemOwnProps<T extends React.ElementType> = {
+	as?: T;
+	children: React.ReactNode;
+	className?: string;
+	translateX?: number | string;
+	translateY?: number | string;
+	translateZ?: number | string;
+	rotateX?: number | string;
+	rotateY?: number | string;
+	rotateZ?: number | string;
+};
+
+type CardItemProps<T extends React.ElementType> = CardItemOwnProps<T> &
+	Omit<React.ComponentPropsWithoutRef<T>, keyof CardItemOwnProps<T>>;
+
+export const CardItem = <T extends React.ElementType = "div">({
+	as,
 	children,
 	className,
 	translateX = 0,
@@ -105,18 +164,8 @@ export const CardItem = ({
 	rotateY = 0,
 	rotateZ = 0,
 	...rest
-}: {
-	as?: React.ElementType;
-	children: React.ReactNode;
-	className?: string;
-	translateX?: number | string;
-	translateY?: number | string;
-	translateZ?: number | string;
-	rotateX?: number | string;
-	rotateY?: number | string;
-	rotateZ?: number | string;
-	[key: string]: any;
-}) => {
+}: CardItemProps<T>) => {
+	const Tag = (as ?? "div") as React.ElementType<any>;
 	const ref = useRef<HTMLDivElement>(null);
 	const [isMouseEntered] = useMouseEnter();
 
@@ -147,14 +196,14 @@ export const CardItem = ({
 	// 	}
 	// };
 
-	return (
-		<Tag
-			ref={ref}
-			className={cn("w-fit transition duration-200 ease-linear", className)}
-			{...rest}
-		>
-			{children}
-		</Tag>
+	return React.createElement(
+		Tag,
+		{
+			...rest,
+			ref,
+			className: cn("w-fit transition duration-200 ease-linear", className),
+		},
+		children
 	);
 };
 

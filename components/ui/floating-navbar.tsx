@@ -1,14 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import {
-	AnimatePresence,
-	motion,
-	useMotionValueEvent,
-	useScroll,
-} from "framer-motion";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 
 type NavItem = {
 	name: string;
@@ -24,77 +19,68 @@ export const FloatingNav = ({
 	navItems: NavItem[];
 	className?: string;
 }) => {
-	const { scrollYProgress } = useScroll();
-
-	const [visible, setVisible] = useState(true);
-
-	useMotionValueEvent(scrollYProgress, "change", (current) => {
-		// Check if current is not undefined and is a number
-		if (typeof current === "number") {
-			const previous = scrollYProgress.getPrevious() ?? current;
-			const direction = current - previous;
-
-			if (scrollYProgress.get() < 0.05) {
-				setVisible(true);
-			} else {
-				if (direction < 0) {
-					setVisible(true);
-				} else {
-					setVisible(false);
-				}
-			}
-		}
-	});
+	const pathname = usePathname();
+	const linkClassName =
+		"system-nav-link relative flex min-h-11 shrink-0 items-center gap-1 rounded-md px-1 text-xs text-neutral-100 transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none sm:px-2 sm:text-sm";
 
 	return (
-		<AnimatePresence mode="wait">
-			<motion.nav
-				aria-label="Primary navigation"
-				initial={false}
-				animate={{
-					y: visible ? 0 : -100,
-					opacity: visible ? 1 : 0,
-				}}
-				transition={{
-					duration: 0.2,
-				}}
-				className={cn(
-					"fixed top-4 sm:top-10 inset-x-0 z-[5000] mx-auto flex w-[calc(100%-2rem)] max-w-fit items-center justify-start sm:justify-center gap-3 sm:gap-4 overflow-x-auto rounded-full border border-white/[0.2] bg-black-100/95 px-5 sm:px-10 py-3 sm:py-5 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-md",
-					className
-				)}
-			>
-				{navItems.map((navItem) => {
-					if (navItem.external) {
-						return (
-							<a
-								key={navItem.link}
-								href={navItem.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								className={cn(
-									"relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-								)}
-							>
-								<span className="block sm:hidden">{navItem.icon}</span>
-								<span className="text-sm !cursor-pointer">{navItem.name}</span>
-							</a>
-						);
-					}
+		<nav
+			aria-label="Primary navigation"
+			className={cn(
+				"system-nav fixed inset-x-0 top-4 z-[5000] mx-auto flex w-[calc(100%-2rem)] max-w-fit items-center gap-1 overflow-x-auto rounded-full border border-white/20 bg-black-100/95 px-2 py-2 shadow-lg backdrop-blur-md sm:top-8 sm:gap-3 sm:px-7",
+				className
+			)}
+		>
+			{navItems.map((navItem) => {
+				const isHashLink = navItem.link.includes("#");
+				const navPath = navItem.link.split("#")[0] || "/";
+				const isCurrentPage =
+					!isHashLink && navPath === "/"
+						? pathname === "/"
+						: !isHashLink &&
+							(pathname === navPath || pathname.startsWith(`${navPath}/`));
 
+				const content = (
+					<>
+						{navItem.icon ? (
+							<span aria-hidden="true" className="block sm:hidden">
+								{navItem.icon}
+							</span>
+						) : null}
+						<span className="whitespace-nowrap">{navItem.name}</span>
+					</>
+				);
+
+				if (navItem.external) {
 					return (
-						<Link
+						<a
 							key={navItem.link}
 							href={navItem.link}
-							className={cn(
-								"relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-							)}
+							target="_blank"
+							rel="noopener noreferrer"
+							className={linkClassName}
 						>
-							<span className="block sm:hidden">{navItem.icon}</span>
-							<span className="text-sm !cursor-pointer">{navItem.name}</span>
-						</Link>
+							{content}
+							<span className="sr-only"> (opens in a new tab)</span>
+						</a>
 					);
-				})}
-			</motion.nav>
-		</AnimatePresence>
+				}
+
+				return (
+					<Link
+						key={navItem.link}
+						href={navItem.link}
+						aria-current={isCurrentPage ? "page" : undefined}
+						className={cn(
+							linkClassName,
+							isCurrentPage &&
+								"system-nav-link--active bg-white/10 text-purple"
+						)}
+					>
+						{content}
+					</Link>
+				);
+			})}
+		</nav>
 	);
 };

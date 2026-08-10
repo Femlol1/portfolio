@@ -1,4 +1,3 @@
-"use client";
 import { services } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +5,7 @@ import { Button } from "../ui/moving-border";
 
 const ServicesSection = () => {
 	return (
-		<div className="py-20" id="services">
+		<section aria-label="Web development services" className="py-20" id="services">
 			<div className="w-full mt-12 grid lg:grid-cols-2 grid-cols-1 gap-8">
 				{services.map((service) => (
 					<ServiceCard key={service.id} service={service} />
@@ -16,28 +15,30 @@ const ServicesSection = () => {
 			{/* Call to Action Section */}
 			<div className="mt-20 text-center">
 				<div className="max-w-2xl mx-auto">
-					<h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+					<h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
 						Ready to Start Your Project?
-					</h3>
+					</h2>
 					<p className="text-white-100 mb-8">
 						Let&apos;s discuss how I can help bring your vision to life with
 						custom web solutions tailored to your needs.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<Link href="#contact" className="inline-block">
-							<button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
-								Get Started Today
-							</button>
+						<Link
+							href="#contact"
+							className="inline-flex min-h-11 items-center justify-center rounded-full bg-purple px-8 py-3 font-semibold text-black-100 transition-colors duration-300 hover:bg-purple/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+						>
+							Get Started Today
 						</Link>
-						<Link href="/" className="inline-block">
-							<button className="px-8 py-3 border border-purple-500 text-purple-500 font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300">
-								View My Work
-							</button>
+						<Link
+							href="/projects"
+							className="inline-flex min-h-11 items-center justify-center rounded-full border border-purple px-8 py-3 font-semibold text-purple transition-all duration-300 hover:bg-purple hover:text-black-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+						>
+							View My Work
 						</Link>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 
@@ -52,8 +53,11 @@ const ServiceCard = ({ service }: { service: any }) => {
 	return (
 		<div id={anchorId}>
 			<Button
+				as="article"
+				aria-labelledby={`${anchorId}-title`}
 				duration={duration}
 				borderRadius="1.75rem"
+				containerClassName="system-surface--lift"
 				className="flex-1 text-white border-neutral-200 dark:border-slate-800"
 			>
 				<div className="flex flex-col p-6 md:p-8 gap-4 h-full">
@@ -64,13 +68,16 @@ const ServiceCard = ({ service }: { service: any }) => {
 						>
 							<Image
 								src={service.icon}
-								alt={service.title}
+								alt=""
 								width={32}
 								height={32}
 								className="w-8 h-8"
 							/>
 						</div>
-						<h2 className="text-xl md:text-2xl font-bold text-white">
+						<h2
+							id={`${anchorId}-title`}
+							className="text-xl md:text-2xl font-bold text-white"
+						>
 							{service.title}
 						</h2>
 					</div>
@@ -91,7 +98,9 @@ const ServiceCard = ({ service }: { service: any }) => {
 									key={index}
 									className="flex items-start gap-2 text-white-100 text-sm"
 								>
-									<span className="text-purple mt-1 text-xs">✦</span>
+									<span aria-hidden="true" className="text-purple mt-1 text-xs">
+										✦
+									</span>
 									{feature}
 								</li>
 							))}
@@ -100,12 +109,12 @@ const ServiceCard = ({ service }: { service: any }) => {
 
 					{/* CTA */}
 					<div className="mt-6 pt-4 border-t border-slate-800">
-						<a
+						<Link
 							href="/#contact"
-							className="text-purple hover:text-white transition-colors text-sm font-medium cursor-pointer"
+							className="inline-flex min-h-11 items-center rounded-md text-sm font-medium text-purple transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 						>
 							Get Started →
-						</a>
+						</Link>
 					</div>
 				</div>
 			</Button>

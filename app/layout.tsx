@@ -1,4 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
+import Footer from "@/components/shared/Footer";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { navItems } from "@/data";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,7 +13,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://www.osifemi.dev"),
 	title: {
 		default:
-			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React Expert",
+			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React",
 		template: "%s | Osifemi Osibemekun - Web Developer",
 	},
 	description:
@@ -50,9 +53,8 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: "website",
 		locale: "en_GB",
-		url: "https://www.osifemi.dev",
 		title:
-			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React Expert",
+			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React",
 		description:
 			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies. Creating exceptional digital experiences.",
 		siteName: "Osifemi Osibemekun Portfolio",
@@ -71,20 +73,9 @@ export const metadata: Metadata = {
 		description:
 			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies.",
 		images: ["/social-preview.png"],
-		creator: "@osifemi_dev",
-	},
-
-	alternates: {
-		canonical: "https://www.osifemi.dev",
 	},
 	icons: {
-		icon: [
-			{ url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-			{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-		],
-		apple: [
-			{ url: "/assets/myface.jpeg", sizes: "180x180", type: "image/jpeg" },
-		],
+		icon: "/favicon.ico",
 	},
 	manifest: "/site.webmanifest",
 };
@@ -96,24 +87,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<Analytics />
-			{/* Global metadata and SEO */}
 			<head>
-				{/* Preload critical resources */}
-				<link
-					rel="preload"
-					href="/assets/myface.jpeg"
-					as="image"
-					type="image/jpeg"
-				/>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
-				/>
-				{/* DNS prefetch for external domains */}
-				<link rel="dns-prefetch" href="//vercel.app" />
 				{/* Schema.org markup for Organization */}
 				<script
 					type="application/ld+json"
@@ -141,8 +115,17 @@ export default function RootLayout({
 					enableSystem={false}
 					disableTransitionOnChange
 				>
+					<a
+						href="#main-content"
+						className="fixed left-4 top-4 z-[6000] -translate-y-24 rounded-md bg-purple px-4 py-3 font-semibold text-black-100 shadow-lg transition-transform focus:translate-y-0 focus:outline-none motion-reduce:transition-none"
+					>
+						Skip to main content
+					</a>
+					<FloatingNav navItems={navItems} />
 					{children}
+					<Footer />
 				</ThemeProvider>
+				{process.env.VERCEL === "1" ? <Analytics /> : null}
 			</body>
 		</html>
 	);

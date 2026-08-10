@@ -1,9 +1,7 @@
 import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { FloatingNav } from "@/components/ui/floating-navbar";
-import { navItems, projects } from "@/data";
+import { projects } from "@/data";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,6 +55,8 @@ export default function ProjectsPage() {
 					name: "Web Development Projects Portfolio",
 					description:
 						"Professional web development projects showcasing modern technologies and innovative solutions.",
+					url: "https://www.osifemi.dev/projects",
+					image: "https://www.osifemi.dev/social-preview.png",
 					keywords: [
 						"web development",
 						"React",
@@ -67,14 +67,13 @@ export default function ProjectsPage() {
 					],
 				}}
 			/>
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
 				<div className="max-w-7xl w-full">
-					<FloatingNav navItems={navItems} />
 					<Breadcrumb />
 
 					<div className="pt-36">
 						<div className="flex justify-center">
-							<div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
+							<div className="system-reveal max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
 								<h1 className="text-center text-[40px] md:text-5xl lg:text-6xl font-bold">
 									My <span className="text-purple">Projects</span>
 								</h1>
@@ -92,7 +91,7 @@ export default function ProjectsPage() {
 							{projects.map((project) => (
 								<article
 									key={project.id}
-									className="bg-black-200 border border-white/[0.1] rounded-lg overflow-hidden hover:border-purple/50 transition-colors duration-300"
+									className="system-surface system-surface--lift bg-black-200 border border-white/[0.1] rounded-lg overflow-hidden hover:border-purple/50 transition-colors duration-300"
 								>
 									<Link
 										href={`/projects/${project.slug}`}
@@ -105,6 +104,8 @@ export default function ProjectsPage() {
 												muted
 												loop
 												playsInline
+												preload="none"
+												poster={project.img}
 											>
 												<source src={project.video} type="video/mp4" />
 											</video>
@@ -146,7 +147,7 @@ export default function ProjectsPage() {
 										<div className="flex flex-wrap gap-4">
 											<Link
 												href={`/projects/${project.slug}`}
-												className="flex items-center gap-2 rounded-lg bg-purple px-4 py-2 text-white transition-colors hover:bg-purple/80"
+												className="flex items-center gap-2 rounded-lg bg-purple px-4 py-2 font-semibold text-black-100 transition-colors hover:bg-purple/90"
 											>
 												<FaInfoCircle className="w-4 h-4" />
 												<span>Read case study</span>
@@ -168,7 +169,6 @@ export default function ProjectsPage() {
 					</section>
 
 					<QuickLinks currentPage="projects" />
-					<Footer />
 				</div>
 			</main>
 		</>

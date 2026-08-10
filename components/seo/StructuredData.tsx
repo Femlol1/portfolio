@@ -1,11 +1,24 @@
-"use client";
+import { CONTACT_EMAIL, pricingPlans } from "@/data";
 
-import Script from "next/script";
-import { pricingPlans } from "@/data";
+interface StructuredDataItem {
+	name: string;
+	url: string;
+}
+
+interface StructuredDataDetails {
+	name?: string;
+	description?: string;
+	dateCreated?: string;
+	url?: string;
+	image?: string;
+	keywords?: string[];
+	sameAs?: string;
+	items?: StructuredDataItem[];
+}
 
 interface StructuredDataProps {
 	type: "person" | "service" | "organization" | "project" | "breadcrumb";
-	data?: any; // Additional data for specific types
+	data?: StructuredDataDetails;
 }
 
 const StructuredData = ({ type, data }: StructuredDataProps) => {
@@ -96,7 +109,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					contactPoint: {
 						"@type": "ContactPoint",
 						contactType: "Customer Service",
-						email: "osibemekunosifemi@gmail.com",
+						email: CONTACT_EMAIL,
 					},
 					areaServed: "Worldwide",
 					serviceArea: "Worldwide",
@@ -113,10 +126,14 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					creator: {
 						"@type": "Person",
 						name: "Osifemi Osibemekun",
+						url: baseUrl,
 					},
 					dateCreated: data?.dateCreated,
 					url: data?.url,
 					image: data?.image,
+					mainEntityOfPage: data?.url,
+					sameAs: data?.sameAs,
+					inLanguage: "en-GB",
 					genre: "Web Development",
 					keywords: data?.keywords || [
 						"web development",
@@ -131,7 +148,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					"@context": "https://schema.org",
 					"@type": "BreadcrumbList",
 					itemListElement:
-						data?.items?.map((item: any, index: number) => ({
+						data?.items?.map((item, index) => ({
 							"@type": "ListItem",
 							position: index + 1,
 							name: item.name,
@@ -144,12 +161,17 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 		}
 	};
 
+	const serializedData = JSON.stringify(getStructuredData()).replace(
+		/</g,
+		"\\u003c"
+	);
+
 	return (
-		<Script
+		<script
 			id={`structured-data-${type}`}
 			type="application/ld+json"
 			dangerouslySetInnerHTML={{
-				__html: JSON.stringify(getStructuredData()),
+				__html: serializedData,
 			}}
 		/>
 	);

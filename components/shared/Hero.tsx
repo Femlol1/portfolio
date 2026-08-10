@@ -1,12 +1,13 @@
 import { FaLocationArrow } from "react-icons/fa6";
 import CVDownloadButton from "../ui/CVDownloadButton";
 import MagicButton from "../ui/MagicButton";
+import RequestReleaseLoop from "../ui/RequestReleaseLoop";
 import { Spotlight } from "../ui/Spotlight";
 import { TextGenerateEffect } from "../ui/TextGenerateEffect";
 
 const Hero = () => {
 	return (
-		<div className="pb-20 pt-36">
+		<div className="orbital-hero relative isolate pb-20 pt-36">
 			<div>
 				<Spotlight
 					className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -22,23 +23,25 @@ const Hero = () => {
 				{/* Radial gradient for the container to give a faded look */}
 				<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 			</div>
-			<div className="flex justify-center relative my-20 z-10">
-				<div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-					<header>
-						<h1 className="sr-only">
-							Osifemi Osibemekun - Full-Stack Web Developer
-						</h1>
-						<TextGenerateEffect
-							className="text-center text-[40px] md:text-5xl lg:text-6xl"
-							words="Hi, I'm Femi, a Full-Stack Developer"
-						/>
-					</header>
+			<div className="hero-stage relative z-10 my-20 flex justify-center">
+				<div className="flex max-w-[94vw] flex-col items-center justify-center md:max-w-4xl lg:max-w-5xl">
+					<div className="hero-system-shell">
+						<RequestReleaseLoop />
+						<header className="hero-copy relative z-10 mx-auto max-w-3xl text-center">
+							<p className="hero-kicker">
+								Interfaces, APIs, data and deployment—built as one system
+							</p>
+							<h1 className="text-center text-[40px] font-bold leading-snug tracking-wide text-black dark:text-white md:text-5xl lg:text-6xl">
+								<TextGenerateEffect words="Hi, I'm Femi, a Full-Stack Developer" />
+							</h1>
+						</header>
+					</div>
 					<p className="text-center text-white-200 mt-4 text-lg max-w-2xl sr-only">
 						Professional full-stack web developer specializing in Next.js,
 						React, TypeScript, and modern web technologies. Creating exceptional
 						digital experiences.
 					</p>
-					<div className="flex flex-col sm:flex-row gap-4 mt-6 items-center">
+					<div className="hero-actions mt-6 flex flex-col items-center gap-4 sm:flex-row">
 						<a href="#projects" aria-label="View my work and projects">
 							<MagicButton
 								as="span"

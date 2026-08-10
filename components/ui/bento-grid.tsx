@@ -2,15 +2,11 @@
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
-// Also install this npm i --save-dev @types/react-lottie
-import Lottie from "react-lottie";
-
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/imageUtils";
 import { cn } from "@/lib/utils";
+import { CONTACT_EMAIL } from "@/data";
 
-import animationData from "@/data/confetti.json";
 import Image from "next/image";
-import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "./MagicButton";
 
@@ -59,30 +55,27 @@ export const BentoGridItem = ({
 	width: number;
 	height: number;
 }) => {
-	const leftLists = ["ReactJS", "Express", "Typescript"];
-	const rightLists = ["Django", "MongoDb", "Firebase"];
+	const leftLists = ["React", "Express", "TypeScript"];
+	const rightLists = ["Django", "MongoDB", "Firebase"];
 
-	const [copied, setCopied] = useState(false);
+	const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(
+		"idle"
+	);
 
-	const defaultOptions = {
-		loop: copied,
-		autoplay: copied,
-		animationData: animationData,
-		rendererSettings: {
-			preserveAspectRatio: "xMidYMid slice",
-		},
-	};
-
-	const handleCopy = () => {
-		const text = "osibemekunfemi@gmail.com";
-		navigator.clipboard.writeText(text);
-		setCopied(true);
+	const handleCopy = async () => {
+		try {
+			await navigator.clipboard.writeText(CONTACT_EMAIL);
+			setCopyStatus("copied");
+		} catch {
+			setCopyStatus("error");
+		}
 	};
 
 	return (
-		<div
+		<article
+			aria-labelledby={`about-card-${id}-title`}
 			className={cn(
-				"row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+				"system-surface system-surface--lift row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
 				className
 			)}
 			style={{
@@ -120,7 +113,7 @@ export const BentoGridItem = ({
 					{spareImg && (
 						<Image
 							src={spareImg}
-							alt={spareImg}
+							alt=""
 							width={width}
 							height={height}
 							className="object-cover object-center w-full h-full"
@@ -128,10 +121,10 @@ export const BentoGridItem = ({
 					)}
 				</div>
 				{id === 6 && (
-					// add background animation , remove the p tag
-					<BackgroundGradientAnimation>
-						{/* <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div> */}
-					</BackgroundGradientAnimation>
+					<div
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(18,113,255,0.45),transparent_42%),radial-gradient(circle_at_80%_70%,rgba(203,172,249,0.4),transparent_45%),linear-gradient(135deg,#6c00a2,#001152)]"
+					/>
 				)}
 
 				<div
@@ -146,11 +139,12 @@ export const BentoGridItem = ({
 					</div>
 					{/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
 					{/* remove mb-2 mt-2 */}
-					<div
+					<h3
+						id={`about-card-${id}-title`}
 						className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
 					>
 						{title}
-					</div>
+					</h3>
 
 					{/* for the github 3d globe */}
 					{id === 2 && <GridGlobe />}
@@ -187,25 +181,30 @@ export const BentoGridItem = ({
 					)}
 					{id === 6 && (
 						<div className="mt-5 relative">
-							<div
-								className={`absolute -bottom-5 right-0 ${
-									copied ? "block" : "block"
-								}`}
-							>
-								<Lottie options={defaultOptions} height={200} width={400} />
-							</div>
-
 							<MagicButton
-								title={copied ? "Email is Copied!" : "Copy my email address"}
+								title={
+									copyStatus === "copied"
+										? "Email copied!"
+										: copyStatus === "error"
+											? "Copy failed — try again"
+											: "Copy my email address"
+								}
 								icon={<IoCopyOutline />}
 								position="left"
 								handleClick={handleCopy}
 								otherClasses="!bg-[#161A31]"
 							/>
+							<p className="sr-only" aria-live="polite">
+								{copyStatus === "copied"
+									? "Email address copied to the clipboard."
+									: copyStatus === "error"
+										? "Unable to copy the email address."
+										: ""}
+							</p>
 						</div>
 					)}
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 };

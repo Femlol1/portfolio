@@ -1,6 +1,5 @@
-import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import { CONTACT_EMAIL } from "@/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,6 +20,21 @@ export const metadata: Metadata = {
 			"Privacy Policy outlining how we handle and protect your personal information and data.",
 		type: "website",
 		url: "https://www.osifemi.dev/privacy",
+		images: [
+			{
+				url: "/social-preview.png",
+				width: 1200,
+				height: 630,
+				alt: "Privacy Policy | Osifemi Osibemekun",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Privacy Policy | Osifemi Osibemekun",
+		description:
+			"How this portfolio and its contact form handle personal information.",
+		images: ["/social-preview.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/privacy",
@@ -30,8 +44,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
 	return (
 		<>
-			<StructuredData type="service" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-4xl w-full">
 					<Breadcrumb />
 
@@ -45,12 +58,7 @@ export default function PrivacyPage() {
 								collect, use, and protect your information.
 							</p>
 							<p className="text-white-200 text-sm mt-4">
-								Last updated:{" "}
-								{new Date().toLocaleDateString("en-US", {
-									year: "numeric",
-									month: "long",
-									day: "numeric",
-								})}
+								Last updated: June 21, 2025
 							</p>
 						</div>
 
@@ -239,7 +247,7 @@ export default function PrivacyPage() {
 								</p>
 								<ul className="text-white-200 leading-relaxed mb-4 list-disc pl-6">
 									<li>
-										<strong>Analytics:</strong> Google Analytics for website
+										<strong>Analytics:</strong> Vercel Web Analytics for website
 										usage analysis
 									</li>
 									<li>
@@ -302,7 +310,7 @@ export default function PrivacyPage() {
 								<div className="bg-black-200 border border-white/[0.1] rounded-lg p-6">
 									<p className="text-white-200">
 										<strong className="text-white">Email:</strong>{" "}
-										osibemekunosifemi@gmail.com
+										{CONTACT_EMAIL}
 									</p>
 									<p className="text-white-200 mt-2">
 										<strong className="text-white">Website:</strong>{" "}
@@ -318,7 +326,6 @@ export default function PrivacyPage() {
 						</div>
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

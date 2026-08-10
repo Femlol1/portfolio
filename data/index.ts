@@ -1,11 +1,13 @@
 export const navItems = [
-	{ name: "About", link: "#about" },
+	{ name: "About", link: "/#about" },
 	{ name: "Projects", link: "/projects" },
 	{ name: "Services", link: "/services" },
 	// { name: "Testimonials", link: "#testimonials" },
 	{ name: "Contact", link: "/contact-me" },
 	{ name: "CV", link: "/Osifemi-Osibemekun-CV.pdf", external: true },
 ];
+
+export const CONTACT_EMAIL = "osibemekunosifemi@gmail.com";
 
 export const gridItems = [
 	{
@@ -63,7 +65,7 @@ export const gridItems = [
 
 	{
 		id: 5,
-		title: "Currently building a Ticketing website",
+		title: "Currently building a ticketing platform",
 		description: "The Inside Scoop",
 		className: "md:col-span-3 md:row-span-2",
 		imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -92,7 +94,7 @@ export const gridItems = [
 export const projects = [
 	{
 		id: 1,
-		title: "Wedding Rsvp website",
+		title: "Wedding RSVP Website",
 		des: "Created a dynamic wedding website with RSVP management, guest tracking, and beautiful responsive design for seamless user experience.",
 		img: "/to.png",
 		alt: "Wedding RSVP website homepage showing elegant design and RSVP functionality",
@@ -116,7 +118,7 @@ export const projects = [
 	},
 	{
 		id: 3,
-		title: "E-commerce website with an AI chatbot",
+		title: "E-commerce Website with an AI Chatbot",
 		des: "Built a comprehensive e-commerce platform with integrated AI chatbot for customer support, enhancing user experience and boosting sales conversion.",
 		img: "/gad.png",
 		alt: "E-commerce website with AI chatbot showing product catalog and customer support interface",
@@ -134,88 +136,12 @@ export const projects = [
 		alt: "Zentry website clone showcasing advanced animations and 3D effects",
 		video: "/zenrty.mp4",
 		videoTitle: "Zentry Clone - Animation Demo",
-		videoDuration: "PT2M",
+		videoDuration: "PT12S",
 		width: 500,
 		height: 500,
 		iconLists: ["/gsap.svg", "/three.svg", "/re.svg", "/ts.svg"],
 		link: "https://animated-xi.vercel.app/",
 		slug: "zentry-website-clone",
-	},
-];
-
-export const testimonials = [
-	{
-		quote:
-			"Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout my project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-		name: "Michael Johnson",
-		title: "Director of AlphaStream Technologies",
-	},
-	{
-		quote:
-			"Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout my project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-		name: "Michael Johnson",
-		title: "Director of AlphaStream Technologies",
-	},
-	{
-		quote:
-			"Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout my project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-		name: "Michael Johnson",
-		title: "Director of AlphaStream Technologies",
-	},
-	{
-		quote:
-			"Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout my project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-		name: "Michael Johnson",
-		title: "Director of AlphaStream Technologies",
-	},
-	{
-		quote:
-			"Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout my project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-		name: "Michael Johnson",
-		title: "Director of AlphaStream Technologies",
-	},
-];
-
-export const companies = [
-	{
-		id: 1,
-		name: "cloudinary",
-		img: "/cloud.svg",
-		nameImg: "/cloudName.svg",
-		width: 500,
-		height: 500,
-	},
-	{
-		id: 2,
-		name: "appwrite",
-		img: "/app.svg",
-		nameImg: "/appName.svg",
-		width: 500,
-		height: 500,
-	},
-	{
-		id: 3,
-		name: "HOSTINGER",
-		img: "/host.svg",
-		nameImg: "/hostName.svg",
-		width: 500,
-		height: 500,
-	},
-	{
-		id: 4,
-		name: "stream",
-		img: "/s.svg",
-		nameImg: "/streamName.svg",
-		width: 500,
-		height: 500,
-	},
-	{
-		id: 5,
-		name: "docker.",
-		img: "/dock.svg",
-		nameImg: "/dockerName.svg",
-		width: 500,
-		height: 500,
 	},
 ];
 

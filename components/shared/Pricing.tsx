@@ -1,12 +1,14 @@
-"use client";
 import { pricingPlans } from "@/data";
 import { Button } from "../ui/moving-border";
 
 const PricingSection = () => {
 	return (
-		<section className="py-20" id="pricing">
-			<div className="text-center mb-16">
-				<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+		<section aria-labelledby="pricing-heading" className="py-20" id="pricing">
+			<div className="system-reveal text-center mb-16">
+				<h2
+					id="pricing-heading"
+					className="text-3xl md:text-4xl font-bold text-white mb-4"
+				>
 					Transparent <span className="text-purple">Pricing</span>
 				</h2>
 				<p className="text-white-100 max-w-2xl mx-auto">
@@ -25,10 +27,11 @@ const PricingSection = () => {
 				<p className="text-white-100 mb-4">
 					Need something custom? Let&apos;s discuss your specific requirements.
 				</p>
-				<a href="#contact" className="inline-block">
-					<button className="px-8 py-3 border border-purple-500 text-purple-500 font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300">
-						Get Custom Quote
-					</button>
+				<a
+					href="#contact"
+					className="inline-flex min-h-11 items-center justify-center rounded-full border border-purple px-8 py-3 font-semibold text-purple transition-all duration-300 hover:bg-purple hover:text-black-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+				>
+					Get Custom Quote
 				</a>
 			</div>
 		</section>
@@ -42,21 +45,29 @@ const PricingCard = ({ plan }: { plan: any }) => {
 		<div className={`relative ${plan.popular ? "transform scale-105" : ""}`}>
 			{plan.popular && (
 				<div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-					<span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+					<span className="rounded-full bg-purple px-4 py-1 text-sm font-semibold text-black-100">
 						Most Popular
 					</span>
 				</div>
 			)}
 
 			<Button
+				as="article"
+				aria-labelledby={`pricing-plan-${plan.id}`}
 				duration={duration}
 				borderRadius="1.75rem"
+				containerClassName="system-surface--lift"
 				className="flex-1 text-white border-neutral-200 dark:border-slate-800 h-full"
 			>
 				<div className="flex flex-col p-8 gap-6 h-full">
 					{/* Header */}
 					<div className="text-center">
-						<h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+						<h3
+							id={`pricing-plan-${plan.id}`}
+							className="text-2xl font-bold text-white mb-2"
+						>
+							{plan.name}
+						</h3>
 						<div className="mb-4">
 							<span className="text-4xl font-bold text-purple">
 								{plan.price}
@@ -74,7 +85,9 @@ const PricingCard = ({ plan }: { plan: any }) => {
 									key={index}
 									className="flex items-start gap-3 text-white-100 text-sm"
 								>
-									<span className="text-purple mt-1 text-xs">✓</span>
+									<span aria-hidden="true" className="text-purple mt-1 text-xs">
+										✓
+									</span>
 									{feature}
 								</li>
 							))}
@@ -83,16 +96,15 @@ const PricingCard = ({ plan }: { plan: any }) => {
 
 					{/* CTA */}
 					<div className="text-center">
-						<a href="#contact" className="inline-block w-full">
-							<div
-								className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-300 cursor-pointer ${
-									plan.popular
-										? "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
-										: "border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white"
-								}`}
-							>
-								Get Started
-							</div>
+						<a
+							href="#contact"
+							className={`inline-flex min-h-11 w-full items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none ${
+								plan.popular
+									? "bg-gradient-to-r from-purple-500 to-pink-500 text-slate-950 hover:from-purple-600 hover:to-pink-600"
+									: "border border-purple text-purple hover:bg-purple hover:text-black-100"
+							}`}
+						>
+							Get Started
 						</a>
 					</div>
 				</div>

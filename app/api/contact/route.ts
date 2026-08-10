@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { services } from "@/data";
+import { CONTACT_EMAIL, services } from "@/data";
 
 // Ensure the route is dynamically generated
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
+const MAX_RATE_LIMIT_ENTRIES = 10_000;
+const RATE_LIMIT_CLEANUP_INTERVAL_MS = 60_000;
 const MAX_REQUEST_BYTES = 16_384;
 const INPUT_LIMITS = {
 	name: 80,
@@ -16,7 +19,12 @@ const INPUT_LIMITS = {
 } as const;
 
 type RateLimitEntry = { count: number; resetAt: number };
+
+// This is a bounded, best-effort safeguard for a single runtime instance. A
+// shared TTL store is still required for strict rate limiting across multiple
+// serverless instances.
 const rateLimitStore = new Map<string, RateLimitEntry>();
+let lastRateLimitCleanup = 0;
 
 const getClientIp = (req: NextRequest) =>
 	req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
@@ -25,9 +33,29 @@ const getClientIp = (req: NextRequest) =>
 
 const checkRateLimit = (key: string) => {
 	const now = Date.now();
+
+	if (
+		now - lastRateLimitCleanup >= RATE_LIMIT_CLEANUP_INTERVAL_MS ||
+		rateLimitStore.size >= MAX_RATE_LIMIT_ENTRIES
+	) {
+		rateLimitStore.forEach((entry, storedKey) => {
+			if (entry.resetAt <= now) {
+				rateLimitStore.delete(storedKey);
+			}
+		});
+		lastRateLimitCleanup = now;
+	}
+
 	const current = rateLimitStore.get(key);
 
 	if (!current || current.resetAt <= now) {
+		if (rateLimitStore.size >= MAX_RATE_LIMIT_ENTRIES) {
+			const oldestKey = rateLimitStore.keys().next().value;
+			if (oldestKey) {
+				rateLimitStore.delete(oldestKey);
+			}
+		}
+
 		const resetAt = now + RATE_LIMIT_WINDOW_MS;
 		rateLimitStore.set(key, { count: 1, resetAt });
 		return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt };
@@ -56,10 +84,14 @@ const escapeHtml = (value: string) =>
 const isValidEmail = (email: string) =>
 	/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+const containsUnsafeHeaderCharacters = (value: string) =>
+	/[\u0000-\u001f\u007f]/.test(value);
+
 // Named export for the POST method
 export async function POST(req: NextRequest) {
 	const rateLimit = checkRateLimit(getClientIp(req));
 	const rateLimitHeaders = {
+		"Cache-Control": "no-store",
 		"X-RateLimit-Limit": String(RATE_LIMIT_MAX_REQUESTS),
 		"X-RateLimit-Remaining": String(rateLimit.remaining),
 		"X-RateLimit-Reset": String(Math.ceil(rateLimit.resetAt / 1000)),
@@ -80,8 +112,27 @@ export async function POST(req: NextRequest) {
 		);
 	}
 
-	const declaredLength = Number(req.headers.get("content-length") ?? 0);
-	if (declaredLength > MAX_REQUEST_BYTES) {
+	const contentType = req.headers.get("content-type")?.split(";", 1)[0].trim();
+	if (contentType?.toLowerCase() !== "application/json") {
+		return NextResponse.json(
+			{ message: "Content-Type must be application/json." },
+			{ status: 415, headers: rateLimitHeaders }
+		);
+	}
+
+	const contentLengthHeader = req.headers.get("content-length");
+	const declaredLength = Number(contentLengthHeader);
+	if (
+		contentLengthHeader !== null &&
+		(!Number.isSafeInteger(declaredLength) || declaredLength < 0)
+	) {
+		return NextResponse.json(
+			{ message: "Invalid Content-Length header." },
+			{ status: 400, headers: rateLimitHeaders }
+		);
+	}
+
+	if (contentLengthHeader !== null && declaredLength > MAX_REQUEST_BYTES) {
 		return NextResponse.json(
 			{ message: "Request body is too large." },
 			{ status: 413, headers: rateLimitHeaders }
@@ -138,6 +189,17 @@ export async function POST(req: NextRequest) {
 		);
 	}
 
+	if (
+		containsUnsafeHeaderCharacters(name) ||
+		containsUnsafeHeaderCharacters(email) ||
+		containsUnsafeHeaderCharacters(service)
+	) {
+		return NextResponse.json(
+			{ message: "One or more fields contain invalid characters." },
+			{ status: 400, headers: rateLimitHeaders }
+		);
+	}
+
 	if (service && !services.some((item) => item.title === service)) {
 		return NextResponse.json(
 			{ message: "Please select a valid service." },
@@ -152,7 +214,13 @@ export async function POST(req: NextRequest) {
 		);
 	}
 
-	const smtpPort = Number(process.env.SMTP_PORT ?? 587);
+	const configuredSmtpPort = Number(process.env.SMTP_PORT ?? 587);
+	const smtpPort =
+		Number.isInteger(configuredSmtpPort) &&
+		configuredSmtpPort > 0 &&
+		configuredSmtpPort <= 65_535
+			? configuredSmtpPort
+			: 587;
 	const safeName = escapeHtml(name);
 	const safeEmail = escapeHtml(email);
 	const safeMessage = escapeHtml(message);
@@ -160,9 +228,12 @@ export async function POST(req: NextRequest) {
 
 	// Nodemailer transporter configuration
 	const transporter = nodemailer.createTransport({
-		service: "Gmail",
+		host: process.env.SMTP_HOST ?? "smtp.gmail.com",
 		port: smtpPort,
 		secure: smtpPort === 465,
+		connectionTimeout: 10_000,
+		greetingTimeout: 10_000,
+		socketTimeout: 20_000,
 		auth: {
 			user: process.env.SMTP_USER,
 			pass: process.env.SMTP_PASS,
@@ -174,7 +245,7 @@ export async function POST(req: NextRequest) {
 		await transporter.sendMail({
 			from: process.env.SMTP_USER,
 			replyTo: email,
-			to: "osibemekunosifemi@gmail.com",
+			to: CONTACT_EMAIL,
 			subject: `New Portfolio message from ${name}${
 				service ? ` - ${service}` : ""
 			}`,
@@ -215,7 +286,10 @@ export async function POST(req: NextRequest) {
 			{ status: 200, headers: rateLimitHeaders }
 		);
 	} catch (error) {
-		console.error("Error sending email:", error);
+		console.error(
+			"Error sending contact email:",
+			error instanceof Error ? error.message : "Unknown SMTP error"
+		);
 		return NextResponse.json(
 			{ message: "Error sending email." },
 			{ status: 500, headers: rateLimitHeaders }

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -58,11 +56,16 @@ interface RelatedContentProps {
 
 export const RelatedContent = ({ title, links }: RelatedContentProps) => {
 	return (
-		<section className="mt-12 p-6 bg-black-200 border border-white/[0.1] rounded-lg">
-			<h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+		<section
+			aria-labelledby="related-content-heading"
+			className="mt-12 p-6 bg-black-200 border border-white/[0.1] rounded-lg"
+		>
+			<h2 id="related-content-heading" className="text-xl font-semibold text-white mb-4">
+				{title}
+			</h2>
 			<div className="space-y-3">
-				{links.map((link, index) => (
-					<div key={index} className="border-l-2 border-purple pl-4">
+				{links.map((link) => (
+					<div key={link.href} className="border-l-2 border-purple pl-4">
 						<InternalLink
 							href={link.href}
 							external={link.external}

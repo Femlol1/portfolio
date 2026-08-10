@@ -1,5 +1,4 @@
 import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
@@ -33,11 +32,18 @@ export const metadata: Metadata = {
 		images: [
 			{
 				url: "/gad.png",
-				width: 1200,
-				height: 630,
+				width: 1782,
+				height: 881,
 				alt: "E-commerce website with AI chatbot interface",
 			},
 		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "E-commerce AI Chatbot Platform | Osifemi Osibemekun",
+		description:
+			"An e-commerce platform with an integrated AI chatbot, built with React, Firebase, and TypeScript.",
+		images: ["/gad.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/ecommerce-ai-chatbot",
@@ -47,8 +53,18 @@ export const metadata: Metadata = {
 export default function EcommerceAIChatbotProjectPage() {
 	return (
 		<>
-			<StructuredData type="project" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<StructuredData
+				type="project"
+				data={{
+					name: project.title,
+					description: project.des,
+					url: "https://www.osifemi.dev/projects/ecommerce-ai-chatbot",
+					image: "https://www.osifemi.dev/gad.png",
+					sameAs: project.link,
+					keywords: ["e-commerce", "AI chatbot", "React", "Firebase"],
+				}}
+			/>
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-7xl w-full">
 					<Breadcrumb />
 
@@ -68,7 +84,7 @@ export default function EcommerceAIChatbotProjectPage() {
 									href={project.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-6 py-3 rounded-lg transition-colors duration-200"
+									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
 								>
 									<FaExternalLinkAlt className="w-4 h-4" />
 									View Live Store
@@ -163,36 +179,36 @@ export default function EcommerceAIChatbotProjectPage() {
 									</p>
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Product Recommendations
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Suggests relevant products based on user preferences and
 												browsing history.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Order Assistance
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Helps customers track orders, process returns, and
 												resolve issues.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												FAQ Automation
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Provides instant answers to common questions about
 												products and policies.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												24/7 Availability
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Offers round-the-clock customer support without human
 												intervention.
@@ -332,7 +348,6 @@ export default function EcommerceAIChatbotProjectPage() {
 						<QuickLinks currentPage="projects/ecommerce-ai-chatbot" />
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

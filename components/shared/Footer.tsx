@@ -1,4 +1,4 @@
-import { socialMedia } from "@/data";
+import { CONTACT_EMAIL, socialMedia } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegCopyright } from "react-icons/fa6";
@@ -56,7 +56,7 @@ const Footer = () => {
 				},
 				{
 					name: "Email",
-					href: "mailto:osibemekunosifemi@gmail.com",
+					href: `mailto:${CONTACT_EMAIL}`,
 					external: true,
 				},
 			],
@@ -65,7 +65,7 @@ const Footer = () => {
 
 	return (
 		<footer
-			className="w-full pb-10 mb-[100px] md:mb-5 border-t border-white/[0.1]"
+			className="w-full border-t border-white/[0.1] bg-black-100 pb-10"
 			id="footer"
 		>
 			{/* Main Footer Content */}
@@ -73,9 +73,9 @@ const Footer = () => {
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
 					{/* Brand Section */}
 					<div className="md:col-span-1">
-						<h3 className="text-xl font-bold text-white mb-4">
+						<h2 className="text-xl font-bold text-white mb-4">
 							Osifemi <span className="text-purple">Osibemekun</span>
-						</h3>
+						</h2>
 						<p className="text-white-200 text-sm leading-relaxed mb-4">
 							Full-Stack Web Developer specializing in modern technologies.
 							Creating exceptional digital experiences for businesses worldwide.
@@ -87,12 +87,13 @@ const Footer = () => {
 									href={profile.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="w-10 h-10 flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300 hover:border-purple/50 transition-colors duration-300"
-									aria-label={profile.title}
+									className="flex h-11 w-11 items-center justify-center rounded-lg border border-black-300 bg-black-200 bg-opacity-75 backdrop-blur-lg backdrop-filter saturate-180 transition-colors duration-300 hover:border-purple/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+									aria-label={`${profile.title} (opens in a new tab)`}
 								>
 									<Image
 										src={profile.img}
-										alt={profile.alt}
+										alt=""
+										aria-hidden="true"
 										width={20}
 										height={20}
 										title={profile.title}
@@ -103,25 +104,41 @@ const Footer = () => {
 					</div>
 
 					{/* Footer Links */}
-					{footerLinks.map((section, index) => (
-						<div key={index} className="md:col-span-1">
-							<h4 className="text-white font-semibold mb-4">{section.title}</h4>
+					{footerLinks.map((section) => (
+						<nav
+							key={section.title}
+							aria-labelledby={`footer-${section.title.toLowerCase()}-heading`}
+							className="md:col-span-1"
+						>
+							<h2
+								id={`footer-${section.title.toLowerCase()}-heading`}
+								className="text-white font-semibold mb-4"
+							>
+								{section.title}
+							</h2>
 							<ul className="space-y-3">
-								{section.links.map((link, linkIndex) => (
-									<li key={linkIndex}>
+								{section.links.map((link) => (
+									<li key={link.href}>
 										{link.external ? (
 											<a
 												href={link.href}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-white-200 hover:text-purple transition-colors duration-200 text-sm"
+												target={link.href.startsWith("http") ? "_blank" : undefined}
+												rel={
+													link.href.startsWith("http")
+														? "noopener noreferrer"
+														: undefined
+												}
+												className="inline-flex min-h-6 items-center rounded-sm text-sm text-white-200 transition-colors duration-200 hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 											>
 												{link.name}
+												{link.href.startsWith("http") && (
+													<span className="sr-only"> (opens in a new tab)</span>
+												)}
 											</a>
 										) : (
 											<Link
 												href={link.href}
-												className="text-white-200 hover:text-purple transition-colors duration-200 text-sm"
+												className="inline-flex min-h-6 items-center rounded-sm text-sm text-white-200 transition-colors duration-200 hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 											>
 												{link.name}
 											</Link>
@@ -129,29 +146,32 @@ const Footer = () => {
 									</li>
 								))}
 							</ul>
-						</div>
+						</nav>
 					))}
 				</div>
 
 				{/* Bottom Footer */}
 				<div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/[0.1]">
 					<p className="text-white-200 text-sm mb-4 md:mb-0">
-						Copyright <FaRegCopyright className="inline mx-1" /> 2026 Osifemi
+						Copyright <FaRegCopyright aria-hidden="true" className="inline mx-1" /> 2026 Osifemi
 						Osibemekun. All rights reserved.
 					</p>
 					<div className="flex gap-6 text-xs text-white-200">
 						<Link
 							href="/privacy"
-							className="hover:text-purple transition-colors"
+							className="inline-flex min-h-6 items-center rounded-sm transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 						>
 							Privacy Policy
 						</Link>
-						<Link href="/terms" className="hover:text-purple transition-colors">
+						<Link
+							href="/terms"
+							className="inline-flex min-h-6 items-center rounded-sm transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+						>
 							Terms of Service
 						</Link>
 						<Link
 							href="/sitemap.xml"
-							className="hover:text-purple transition-colors"
+							className="inline-flex min-h-6 items-center rounded-sm transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 						>
 							Sitemap
 						</Link>

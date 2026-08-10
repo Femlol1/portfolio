@@ -1,9 +1,6 @@
 import StructuredData from "@/components/seo/StructuredData";
 import ContactMe from "@/components/shared/ContactMe";
-import Footer from "@/components/shared/Footer";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { FloatingNav } from "@/components/ui/floating-navbar";
-import { navItems } from "@/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -50,9 +47,12 @@ export default function ContactPage() {
 	return (
 		<>
 			<StructuredData type="organization" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
+			<main
+				id="main-content"
+				tabIndex={-1}
+				className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip"
+			>
 				<div className="max-w-7xl w-full">
-					<FloatingNav navItems={navItems} />
 					<Breadcrumb />
 					<div className="pt-36">
 						<div className="flex justify-center">
@@ -69,7 +69,6 @@ export default function ContactPage() {
 						</div>
 					</div>
 					<ContactMe />
-					<Footer />
 				</div>
 			</main>
 		</>

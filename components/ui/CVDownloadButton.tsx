@@ -1,8 +1,5 @@
-"use client";
-
-import React from "react";
 import { FaDownload } from "react-icons/fa6";
-import MagicButton from "../ui/MagicButton";
+import MagicButton from "./MagicButton";
 
 interface CVDownloadButtonProps {
 	className?: string;
@@ -10,46 +7,39 @@ interface CVDownloadButtonProps {
 	size?: "sm" | "md" | "lg";
 }
 
-const CVDownloadButton: React.FC<CVDownloadButtonProps> = ({
+const CVDownloadButton = ({
 	className = "",
 	showText = true,
 	size = "md",
-}) => {
-	const handleDownload = () => {
-		// Create a temporary link element
-		const link = document.createElement("a");
-		link.href = "/Osifemi-Osibemekun-CV.pdf";
-		link.download = "Osifemi-Osibemekun-CV.pdf";
-		link.target = "_blank";
-
-		// Append to body, click, and remove
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-	};
-
+}: CVDownloadButtonProps) => {
 	if (size === "sm" && !showText) {
 		return (
-			<button
-				onClick={handleDownload}
-				className={`inline-flex items-center justify-center p-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300 ${className}`}
-				title="Download CV"
+			<a
+				href="/Osifemi-Osibemekun-CV.pdf"
+				download
+				className={`inline-flex h-11 w-11 items-center justify-center rounded-full bg-purple-600 text-white transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple ${className}`}
+				aria-label="Download CV"
 			>
-				<FaDownload className="w-4 h-4" />
-			</button>
+				<FaDownload aria-hidden="true" className="h-4 w-4" />
+			</a>
 		);
 	}
 
 	return (
-		<div className={className}>
+		<a
+			href="/Osifemi-Osibemekun-CV.pdf"
+			download
+			className={className}
+			aria-label="Download CV as a PDF"
+		>
 			<MagicButton
+				as="span"
 				title={showText ? "Download CV" : ""}
 				icon={<FaDownload />}
 				position="right"
-				handleClick={handleDownload}
-				otherClasses="hover:scale-105 transition-transform duration-300"
+				otherClasses="transition-colors duration-300 hover:bg-slate-900"
 			/>
-		</div>
+		</a>
 	);
 };
 

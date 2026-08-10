@@ -1,4 +1,3 @@
-import Footer from "@/components/shared/Footer";
 import { projects } from "@/data";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -7,9 +6,9 @@ import { notFound } from "next/navigation";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 
 interface VideoPageProps {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
 // Generate static params for all video projects
@@ -22,17 +21,30 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export function generateMetadata({ params }: VideoPageProps): Metadata {
-	const project = projects.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+	params,
+}: VideoPageProps): Promise<Metadata> {
+	const { slug } = await params;
+	const project = projects.find((p) => p.slug === slug);
 
 	if (!project || !project.video) {
 		return {
 			title: "Video Not Found",
+			robots: {
+				index: false,
+				follow: false,
+			},
+			openGraph: null,
+			twitter: null,
 		};
 	}
 
+	const pageUrl = `https://www.osifemi.dev/videos/${project.slug}`;
+	const videoUrl = `https://www.osifemi.dev${project.video}`;
+	const thumbnailUrl = "https://www.osifemi.dev/social-preview.png";
+
 	return {
-		title: `${project.title} - Project Demo Video | Osifemi Osibemekun`,
+		title: `${project.title} - Project Demo Video`,
 		description: `Watch the demo video of ${project.title}. ${project.des}`,
 		keywords: [
 			"project demo",
@@ -46,18 +58,18 @@ export function generateMetadata({ params }: VideoPageProps): Metadata {
 			title: `${project.title} - Demo Video`,
 			description: `Watch the demo video of ${project.title}`,
 			type: "video.other",
-			url: `https://www.osifemi.dev/videos/${project.slug}`,
+			url: pageUrl,
 			videos: [
 				{
-					url: `https://www.osifemi.dev${project.video}`,
-					width: 1280,
-					height: 720,
+					url: videoUrl,
+					width: 1900,
+					height: 872,
 					type: "video/mp4",
 				},
 			],
 			images: [
 				{
-					url: project.img,
+					url: thumbnailUrl,
 					width: 1200,
 					height: 630,
 					alt: `${project.title} video thumbnail`,
@@ -65,26 +77,20 @@ export function generateMetadata({ params }: VideoPageProps): Metadata {
 			],
 		},
 		twitter: {
-			card: "player",
+			card: "summary_large_image",
 			title: `${project.title} - Demo Video`,
 			description: `Watch the demo video of ${project.title}`,
-			players: [
-				{
-					playerUrl: `https://www.osifemi.dev/videos/${project.slug}`,
-					streamUrl: `https://www.osifemi.dev${project.video}`,
-					width: 1280,
-					height: 720,
-				},
-			],
+			images: [thumbnailUrl],
 		},
 		alternates: {
-			canonical: `https://www.osifemi.dev/videos/${project.slug}`,
+			canonical: pageUrl,
 		},
 	};
 }
 
-export default function VideoWatchPage({ params }: VideoPageProps) {
-	const project = projects.find((p) => p.slug === params.slug);
+export default async function VideoWatchPage({ params }: VideoPageProps) {
+	const { slug } = await params;
+	const project = projects.find((p) => p.slug === slug);
 
 	if (!project || !project.video) {
 		notFound();
@@ -94,13 +100,13 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 	const videoStructuredData = {
 		"@context": "https://schema.org",
 		"@type": "VideoObject",
-		name: `${project.title} - Demo Video`,
+		name: project.videoTitle,
 		description: project.des,
-		thumbnailUrl: `https://www.osifemi.dev${project.img}`,
-		uploadDate: "2024-01-01",
+		thumbnailUrl: "https://www.osifemi.dev/social-preview.png",
+		uploadDate: "2024-12-10T20:18:28Z",
 		contentUrl: `https://www.osifemi.dev${project.video}`,
 		embedUrl: `https://www.osifemi.dev/videos/${project.slug}`,
-		duration: "PT2M",
+		duration: project.videoDuration,
 		publisher: {
 			"@type": "Person",
 			name: "Osifemi Osibemekun",
@@ -112,19 +118,24 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 		},
 	};
 
+	const serializedVideoData = JSON.stringify(videoStructuredData).replace(
+		/</g,
+		"\\u003c"
+	);
+
 	return (
 		<>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(videoStructuredData),
+					__html: serializedVideoData,
 				}}
 			/>
 
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-7xl w-full">
 					{/* Navigation */}
-					<div className="py-8">
+					<div className="pb-8 pt-24">
 						<Link
 							href={`/projects/${project.slug}`}
 							className="flex items-center gap-2 text-white-200 hover:text-purple transition-colors w-fit"
@@ -153,7 +164,7 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 										src={project.video}
 										className="absolute top-0 left-0 w-full h-full object-contain"
 										controls
-										preload="metadata"
+										preload="none"
 										poster={project.img}
 									>
 										<source src={project.video} type="video/mp4" />
@@ -220,7 +231,7 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 											href={project.link}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm"
+											className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-4 py-2 rounded-lg transition-colors duration-200 text-sm"
 										>
 											<FaExternalLinkAlt className="w-3 h-3" />
 											View Live Site
@@ -238,7 +249,7 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 									<h3 className="text-white font-semibold mb-4">Video Info</h3>
 									<div className="space-y-2 text-sm text-white-200">
 										<p>
-											<strong>Duration:</strong> ~2 minutes
+											<strong>Duration:</strong> 12 seconds
 										</p>
 										<p>
 											<strong>Quality:</strong> HD
@@ -255,7 +266,6 @@ export default function VideoWatchPage({ params }: VideoPageProps) {
 						</div>
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

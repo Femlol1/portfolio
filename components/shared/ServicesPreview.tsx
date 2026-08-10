@@ -1,4 +1,3 @@
-"use client";
 import { services } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,20 +7,20 @@ const ServicesPreview = () => {
 	const previewServices = services.slice(0, 3);
 
 	return (
-		<div className="py-20" id="services">
-			<h1 className="heading mb-16">
+		<section aria-labelledby="services-heading" className="py-20" id="services">
+			<h2 className="heading system-reveal mb-16" id="services-heading">
 				My <span className="text-purple">Services</span>
-			</h1>
+			</h2>
 
 			<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mb-12">
 				{previewServices.map((service) => (
-					<div
+					<article
 						key={service.id}
-						className="relative p-6 rounded-2xl border border-white/[0.1] bg-black-100 hover:bg-black-200 transition-all duration-300 group"
+						className="system-surface system-surface--lift group relative rounded-2xl border border-white/[0.1] bg-black-100 p-6 transition-all duration-300 hover:bg-black-200 motion-reduce:transition-none"
 					>
 						{/* Gradient border effect */}
 						<div
-							className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+							className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${service.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-20 group-focus-within:opacity-20 motion-reduce:transition-none`}
 						/>
 
 						<div className="relative z-10">
@@ -31,7 +30,7 @@ const ServicesPreview = () => {
 							>
 								<Image
 									src={service.icon}
-									alt={service.title}
+									alt=""
 									width={24}
 									height={24}
 									className="w-6 h-6"
@@ -57,7 +56,9 @@ const ServicesPreview = () => {
 											key={index}
 											className="flex items-start gap-2 text-white-100 text-sm"
 										>
-											<span className="text-purple mt-1 text-xs">✦</span>
+											<span aria-hidden="true" className="text-purple mt-1 text-xs">
+												✦
+											</span>
 											{feature}
 										</li>
 									))}
@@ -66,24 +67,25 @@ const ServicesPreview = () => {
 							{/* Learn more link */}
 							<Link
 								href="/services"
-								className="inline-flex items-center text-purple hover:text-white transition-colors text-sm font-medium"
+								className="inline-flex min-h-11 items-center rounded-md text-sm font-medium text-purple transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
 							>
 								Learn More →
 							</Link>
 						</div>
-					</div>
+					</article>
 				))}
 			</div>
 
 			{/* View all services CTA */}
 			<div className="text-center">
-				<Link href="/services">
-					<button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
-						View All Services
-					</button>
+				<Link
+					href="/services"
+					className="inline-flex min-h-11 items-center justify-center rounded-full bg-purple px-8 py-3 font-semibold text-black-100 transition-colors duration-300 hover:bg-purple/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-black-100 motion-reduce:transition-none"
+				>
+					View All Services
 				</Link>
 			</div>
-		</div>
+		</section>
 	);
 };
 

@@ -1,50 +1,37 @@
-"use client";
-
-import Script from "next/script";
-import { useState } from "react";
+const faqs = [
+	{
+		question: "What technologies do you specialize in?",
+		answer:
+			"I specialize in modern web technologies including Next.js, React, TypeScript, Node.js, MongoDB, and cloud platforms. I focus on full-stack development with a strong emphasis on performance and user experience.",
+	},
+	{
+		question: "How long does a typical web development project take?",
+		answer:
+			"Project timelines vary based on complexity. A simple website often takes 1–2 weeks, while a complex full-stack application can take 4–8 weeks. I provide a detailed timeline during the initial consultation.",
+	},
+	{
+		question: "Do you provide ongoing maintenance and support?",
+		answer:
+			"Yes. I offer maintenance packages covering updates, security patches, performance monitoring, and technical support. Every project also includes an initial support period.",
+	},
+	{
+		question: "Can you improve an existing website?",
+		answer:
+			"Yes. I can add features, improve performance, fix defects, modernize an older codebase, or build a new site from the ground up.",
+	},
+	{
+		question: "What is your development process?",
+		answer:
+			"The process covers discovery, design and architecture, development with regular updates, quality assurance, deployment, and post-launch support.",
+	},
+	{
+		question: "Do you offer e-commerce development?",
+		answer:
+			"Yes. I build e-commerce experiences with product catalogues, baskets, payment integrations, inventory workflows, administration tools, and customer-support features.",
+	},
+];
 
 const FAQ = () => {
-	const [openItems, setOpenItems] = useState<number[]>([]);
-
-	const toggleItem = (index: number) => {
-		setOpenItems((prev) =>
-			prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-		);
-	};
-
-	const faqs = [
-		{
-			question: "What technologies do you specialize in?",
-			answer:
-				"I specialize in modern web technologies including Next.js, React, TypeScript, Node.js, MongoDB, and various cloud platforms. I focus on full-stack development with a strong emphasis on performance and user experience.",
-		},
-		{
-			question: "How long does a typical web development project take?",
-			answer:
-				"Project timelines vary based on complexity. A simple website takes 1-2 weeks, while complex full-stack applications can take 4-8 weeks. I provide detailed timelines during the initial consultation.",
-		},
-		{
-			question: "Do you provide ongoing maintenance and support?",
-			answer:
-				"Yes, I offer ongoing maintenance packages including regular updates, security patches, performance monitoring, and technical support. All projects include initial support periods.",
-		},
-		{
-			question: "Can you work with existing websites or only build new ones?",
-			answer:
-				"I can both build new websites from scratch and improve existing ones. This includes adding new features, optimizing performance, fixing bugs, and modernizing outdated code.",
-		},
-		{
-			question: "What is your development process?",
-			answer:
-				"My process includes: 1) Initial consultation and requirements gathering, 2) Design and architecture planning, 3) Development with regular updates, 4) Testing and quality assurance, 5) Deployment and launch, 6) Post-launch support and maintenance.",
-		},
-		{
-			question: "Do you offer e-commerce development?",
-			answer:
-				"Yes, I develop custom e-commerce solutions with features like shopping cart functionality, payment gateway integration, inventory management, admin dashboards, and AI-powered customer support chatbots.",
-		},
-	];
-
 	const faqStructuredData = {
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
@@ -60,53 +47,39 @@ const FAQ = () => {
 
 	return (
 		<>
-			<Script
+			<script
 				id="faq-structured-data"
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(faqStructuredData),
+					__html: JSON.stringify(faqStructuredData).replace(/</g, "\\u003c"),
 				}}
 			/>
-			<section className="py-20" id="faq">
-				<div className="max-w-4xl mx-auto px-4">
-					<div className="text-center mb-12">
-						<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+			<section aria-labelledby="faq-heading" className="py-20" id="faq">
+				<div className="mx-auto max-w-4xl px-4">
+					<div className="system-reveal mb-12 text-center">
+						<h2
+							id="faq-heading"
+							className="mb-4 text-3xl font-bold text-white md:text-4xl"
+						>
 							Frequently Asked <span className="text-purple">Questions</span>
 						</h2>
-						<p className="text-white-200 text-lg">
+						<p className="text-lg text-white-200">
 							Common questions about my web development services
 						</p>
 					</div>
 
-					<div className="space-y-6">
-						{faqs.map((faq, index) => {
-							const isOpen = openItems.includes(index);
-							return (
-								<div
-									key={index}
-									className="bg-black-200 border border-white/[0.1] rounded-lg p-6 hover:bg-black-100 transition-colors duration-300"
-								>
-									<button
-										onClick={() => toggleItem(index)}
-										className="flex justify-between items-center cursor-pointer text-white font-semibold text-lg w-full text-left"
-									>
-										<span>{faq.question}</span>
-										<span
-											className={`ml-4 text-purple transition-transform duration-300 ${
-												isOpen ? "rotate-45" : ""
-											}`}
-										>
-											+
-										</span>
-									</button>
-									{isOpen && (
-										<div className="mt-4 text-white-200 leading-relaxed">
-											{faq.answer}
-										</div>
-									)}
-								</div>
-							);
-						})}
+					<div className="space-y-4">
+						{faqs.map((faq) => (
+							<details
+								key={faq.question}
+								className="system-surface group rounded-lg border border-white/15 bg-black-200 p-6 open:bg-black-100"
+							>
+								<summary className="min-h-11 cursor-pointer rounded-md py-2 text-left text-lg font-semibold text-white marker:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple">
+									{faq.question}
+								</summary>
+								<p className="mt-4 leading-relaxed text-white-200">{faq.answer}</p>
+							</details>
+						))}
 					</div>
 				</div>
 			</section>

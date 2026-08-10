@@ -1,5 +1,4 @@
 import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
@@ -33,11 +32,18 @@ export const metadata: Metadata = {
 		images: [
 			{
 				url: "/kgn.png",
-				width: 1200,
-				height: 630,
+				width: 1791,
+				height: 876,
 				alt: "Events management platform dashboard",
 			},
 		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Events Management Platform | Osifemi Osibemekun",
+		description:
+			"A responsive event creation and management platform built with Next.js, TypeScript, and MongoDB.",
+		images: ["/kgn.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/events-management-platform",
@@ -47,8 +53,23 @@ export const metadata: Metadata = {
 export default function EventsManagementProjectPage() {
 	return (
 		<>
-			<StructuredData type="project" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<StructuredData
+				type="project"
+				data={{
+					name: project.title,
+					description: project.des,
+					url: "https://www.osifemi.dev/projects/events-management-platform",
+					image: "https://www.osifemi.dev/kgn.png",
+					sameAs: project.link,
+					keywords: [
+						"event management",
+						"Next.js",
+						"TypeScript",
+						"MongoDB",
+					],
+				}}
+			/>
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-7xl w-full">
 					<Breadcrumb />
 
@@ -68,7 +89,7 @@ export default function EventsManagementProjectPage() {
 									href={project.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-6 py-3 rounded-lg transition-colors duration-200"
+									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
 								>
 									<FaExternalLinkAlt className="w-4 h-4" />
 									View Live Platform
@@ -280,7 +301,6 @@ export default function EventsManagementProjectPage() {
 						<QuickLinks currentPage="projects/events-management-platform" />
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

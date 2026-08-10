@@ -1,5 +1,4 @@
 import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
@@ -33,11 +32,18 @@ export const metadata: Metadata = {
 		images: [
 			{
 				url: "/to.png",
-				width: 1200,
-				height: 630,
+				width: 1767,
+				height: 870,
 				alt: "Wedding RSVP website homepage showing elegant design",
 			},
 		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Wedding RSVP Website | Osifemi Osibemekun",
+		description:
+			"A wedding website with RSVP management, guest tracking, and a responsive interface.",
+		images: ["/to.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/wedding-rsvp-website",
@@ -47,8 +53,18 @@ export const metadata: Metadata = {
 export default function WeddingRSVPProjectPage() {
 	return (
 		<>
-			<StructuredData type="project" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<StructuredData
+				type="project"
+				data={{
+					name: project.title,
+					description: project.des,
+					url: "https://www.osifemi.dev/projects/wedding-rsvp-website",
+					image: "https://www.osifemi.dev/to.png",
+					sameAs: project.link,
+					keywords: ["wedding website", "RSVP management", "React", "Firebase"],
+				}}
+			/>
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-7xl w-full">
 					<Breadcrumb />
 
@@ -68,7 +84,7 @@ export default function WeddingRSVPProjectPage() {
 									href={project.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-6 py-3 rounded-lg transition-colors duration-200"
+									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
 								>
 									<FaExternalLinkAlt className="w-4 h-4" />
 									View Live Site
@@ -253,7 +269,6 @@ export default function WeddingRSVPProjectPage() {
 						<QuickLinks currentPage="projects/wedding-rsvp-website" />
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

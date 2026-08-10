@@ -1,5 +1,4 @@
 import StructuredData from "@/components/seo/StructuredData";
-import Footer from "@/components/shared/Footer";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
@@ -32,12 +31,19 @@ export const metadata: Metadata = {
 		url: "https://www.osifemi.dev/projects/zentry-website-clone",
 		images: [
 			{
-				url: "/zentry.mp4",
+				url: "/social-preview.png",
 				width: 1200,
 				height: 630,
-				alt: "Zentry website clone showcasing advanced animations",
+				alt: "Osifemi Osibemekun full-stack web developer portfolio",
 			},
 		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Zentry Website Clone | Osifemi Osibemekun",
+		description:
+			"A Zentry website recreation featuring advanced GSAP animations and Three.js effects.",
+		images: ["/social-preview.png"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/zentry-website-clone",
@@ -47,8 +53,18 @@ export const metadata: Metadata = {
 export default function ZentryCloneProjectPage() {
 	return (
 		<>
-			<StructuredData type="project" />
-			<main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
+			<StructuredData
+				type="project"
+				data={{
+					name: project.title,
+					description: project.des,
+					url: "https://www.osifemi.dev/projects/zentry-website-clone",
+					image: "https://www.osifemi.dev/social-preview.png",
+					sameAs: project.link,
+					keywords: ["GSAP", "Three.js", "web animation", "frontend development"],
+				}}
+			/>
+			<main id="main-content" tabIndex={-1} className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5">
 				<div className="max-w-7xl w-full">
 					<Breadcrumb />
 
@@ -68,7 +84,7 @@ export default function ZentryCloneProjectPage() {
 									href={project.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-6 py-3 rounded-lg transition-colors duration-200"
+									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
 								>
 									<FaExternalLinkAlt className="w-4 h-4" />
 									View Live Demo
@@ -84,6 +100,7 @@ export default function ZentryCloneProjectPage() {
 									muted
 									loop
 									playsInline
+									poster={project.img}
 								>
 									<source src={project.video} type="video/mp4" />
 									Your browser does not support the video tag.
@@ -207,36 +224,36 @@ export default function ZentryCloneProjectPage() {
 									</p>
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Phase 1: Analysis
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Studied original animations, identified key
 												interactions, and planned technical approach.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Phase 2: Foundation
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Set up project structure, configured animation
 												libraries, and created base components.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Phase 3: Implementation
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Built animations section by section, testing performance
 												and refining timing.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">
-											<h4 className="text-white font-semibold mb-2">
+											<h3 className="text-white font-semibold mb-2">
 												Phase 4: Polish
-											</h4>
+											</h3>
 											<p className="text-white-200 text-sm">
 												Fine-tuned animations, optimized performance, and
 												ensured cross-device compatibility.
@@ -354,7 +371,6 @@ export default function ZentryCloneProjectPage() {
 						<QuickLinks currentPage="projects/zentry-website-clone" />
 					</div>
 
-					<Footer />
 				</div>
 			</main>
 		</>

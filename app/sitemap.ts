@@ -50,17 +50,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 	];
 
-	// Add project pages if they exist as individual routes
-	const projectSlugs = [
-		"wedding-rsvp-website",
-		"events-management-platform",
-		"ecommerce-ai-chatbot",
-		"zentry-website-clone",
-	];
-
-	const projectPages = projectSlugs.map((slug) => ({
-		url: `${baseUrl}/projects/${slug}`,
-		lastModified: projectModifiedDates[slug],
+	const projectPages = projects.map((project) => ({
+		url: `${baseUrl}/projects/${project.slug}`,
+		lastModified: projectModifiedDates[project.slug] ?? "2025-06-22",
 		changeFrequency: "yearly" as const,
 		priority: 0.6,
 	}));

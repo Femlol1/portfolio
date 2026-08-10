@@ -1,28 +1,31 @@
 "use client";
 
-import { projects } from "@/data"; // Assuming your array is in a file named `projects.ts`
+import { projects } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 
 export function ProjectsShowcase() {
 	return (
-		<div className="py-20" id="projects">
-			<h1 className="heading">
+		<section className="py-20" id="projects" aria-labelledby="projects-title">
+			<h2 className="heading system-reveal" id="projects-title">
 				<span className="text-purple uppercase"> recent PROJECTS</span>
-			</h1>
+			</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr min-h-full">
 				{projects.map((project) => (
-					<CardContainer key={project.id} className="inter-var">
+					<article key={project.id}>
+					<CardContainer className="inter-var">
 						<CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full max-w-sm mx-auto rounded-xl p-6 border min-h-[500px] items-stretch flex flex-col">
-							<CardItem
-								as={Link}
-								href={`/projects/${project.slug}`}
-								translateZ="50"
-								className="text-lg font-bold text-neutral-600 dark:text-white line-clamp-2 leading-tight hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
-							>
-								{project.title}
-							</CardItem>
+							<h3>
+								<CardItem
+									as={Link}
+									href={`/projects/${project.slug}`}
+									translateZ="50"
+									className="text-lg font-bold text-neutral-700 dark:text-white line-clamp-2 leading-tight hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
+								>
+									{project.title}
+								</CardItem>
+							</h3>
 							<CardItem
 								as="p"
 								translateZ="60"
@@ -40,12 +43,14 @@ export function ProjectsShowcase() {
 										<div className="relative w-full h-48 rounded-xl overflow-hidden border border-white/[0.1]">
 											<video
 												src={project.video}
+												poster={project.img}
 												width={project.width}
 												height={project.height}
 												loop
 												muted
 												playsInline
 												preload="none"
+												aria-hidden="true"
 												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 											/>
 
@@ -55,11 +60,12 @@ export function ProjectsShowcase() {
 										</div>
 									) : (
 										<Image
-										src={project.img}
-										height={project.height}
-										width={project.width}
-										className="h-auto w-auto object-cover rounded-xl group-hover/card:shadow-xl"
-										alt={project.title}
+											src={project.img}
+											height={project.height}
+											width={project.width}
+											sizes="(max-width: 640px) calc(100vw - 5.5rem), (max-width: 1024px) 45vw, 24rem"
+											className="h-auto w-full object-cover rounded-xl group-hover/card:shadow-xl"
+											alt={project.title}
 										/>
 									)}
 								</Link>
@@ -120,8 +126,9 @@ export function ProjectsShowcase() {
 							</div>
 						</CardBody>
 					</CardContainer>
+					</article>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }
