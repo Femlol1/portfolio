@@ -33,7 +33,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					name: "Osifemi Osibemekun",
 					jobTitle: "Full-Stack Web Developer",
 					description:
-						"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies.",
+						"Full-stack web developer building accessible websites, booking systems, e-commerce experiences, and workflow automations.",
 					url: baseUrl,
 					image: `${baseUrl}/assets/myface.jpeg`,
 					sameAs: [
@@ -52,6 +52,11 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 						"Database Design",
 						"UI/UX Design",
 						"E-commerce Development",
+						"Booking Systems",
+						"Technical SEO",
+						"Website Migration",
+						"Web Accessibility",
+						"Workflow Automation",
 					],
 					address: {
 						"@type": "PostalAddress",
@@ -63,20 +68,20 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 				return {
 					"@context": "https://schema.org",
 					"@type": "Service",
-					name: "Web Development Products and SEO Services",
+					name: "Web Development, SEO and Automation Packages",
 					description:
-						"Clearly scoped website, e-commerce, event platform, SEO improvement, AI chatbot, and custom web application packages.",
+						"Clearly scoped website, booking, e-commerce, event, SEO, migration, accessibility, AI, automation, and custom web application packages.",
 					url: `${baseUrl}/services`,
 					provider: {
 						"@type": "Person",
 						name: "Osifemi Osibemekun",
 						url: baseUrl,
 					},
-					serviceType: "Web Development",
+					serviceType: "Web Development, SEO and Automation",
 					areaServed: "Worldwide",
 					hasOfferCatalog: {
 						"@type": "OfferCatalog",
-						name: "Website products and SEO packages",
+						name: "Web development, SEO and automation packages",
 						itemListElement: serviceProducts.map((product) => ({
 							"@type": "Offer",
 							name: product.title,
@@ -85,7 +90,9 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 							priceCurrency: product.price.currency,
 							priceSpecification: {
 								"@type": "UnitPriceSpecification",
-								minPrice: product.price.amount,
+								...(product.price.qualifier === "from"
+									? { minPrice: product.price.amount }
+									: { price: product.price.amount }),
 								priceCurrency: product.price.currency,
 								unitText:
 									product.price.unit === "month" ? "MONTH" : "PROJECT",
@@ -111,7 +118,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 					"@type": "ProfessionalService",
 					name: "Osifemi Osibemekun Web Development",
 					description:
-						"Professional web development services specializing in modern web technologies",
+						"Professional web development, SEO, accessibility, and automation services.",
 					founder: {
 						"@type": "Person",
 						name: "Osifemi Osibemekun",

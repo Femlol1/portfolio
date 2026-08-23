@@ -8,10 +8,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: {
-		absolute: "Website Packages & SEO Services | Osifemi",
+		absolute: "Website, SEO & Automation Packages | Osifemi",
 	},
 	description:
-		"Compare website, e-commerce, event, SEO, chatbot, and web-app packages with clear UK prices, starting from £150.",
+		"Compare UK-priced website, booking, SEO, migration, accessibility, and automation packages with clear scopes and prices from £150.",
 	keywords: [
 		"web development services",
 		"website packages UK",
@@ -28,6 +28,10 @@ export const metadata: Metadata = {
 		"API development",
 		"responsive web design",
 		"SEO improvement service",
+		"online booking system UK",
+		"website migration service",
+		"website accessibility audit",
+		"workflow automation services",
 		"technical SEO audit",
 		"on-page SEO service",
 		"Search Console setup",
@@ -35,9 +39,9 @@ export const metadata: Metadata = {
 		"freelance web developer UK",
 	],
 	openGraph: {
-		title: "Website Packages & SEO Services | Osifemi",
+		title: "Website, SEO & Automation Packages | Osifemi",
 		description:
-			"Compare clear starting prices for websites, e-commerce, event platforms, SEO improvements, AI chatbots, and custom web apps.",
+			"Compare clear starting prices for websites, booking systems, SEO, migrations, accessibility, e-commerce, and automation.",
 		url: "https://www.osifemi.dev/services",
 		images: [
 			{
@@ -50,9 +54,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Website Packages & SEO Services | Osifemi",
+		title: "Website, SEO & Automation Packages | Osifemi",
 		description:
-			"Clear starting prices for websites, e-commerce, SEO improvements, AI chatbots, and custom web apps.",
+			"Clear starting prices for websites, bookings, SEO, migrations, accessibility, and automation.",
 		images: ["/social-preview.png"],
 	},
 	alternates: {
@@ -78,9 +82,9 @@ export default function ServicesPage() {
 									Products <span className="text-purple">& Services</span>
 								</h1>
 								<p className="text-center text-white-200 mt-4 text-lg md:text-xl max-w-3xl">
-									Start with a clearly priced digital product, or combine my
-									development capabilities into a custom solution for your
-									business.
+									Choose a clearly scoped package for websites, bookings, SEO,
+									migrations, accessibility, or automation—or combine capabilities
+									for a custom solution.
 								</p>
 							</div>
 						</div>

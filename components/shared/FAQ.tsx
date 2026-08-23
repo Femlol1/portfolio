@@ -17,7 +17,12 @@ const faqs = [
 	{
 		question: "Can you improve an existing website?",
 		answer:
-			"Yes. I can add features, improve performance and accessibility, fix defects, strengthen technical SEO, modernize an older codebase, or build a new site from the ground up.",
+			"Yes. I can redesign key pages, improve technical SEO, repair accessibility barriers, migrate a site with redirects, add booking or automation features, or quote a larger rebuild. I assess the current site first and recommend the smallest suitable scope.",
+	},
+	{
+		question: "Can you connect bookings, payments, and customer follow-up?",
+		answer:
+			"Yes. I can add a booking and deposit flow, connect a scheduling or payment platform, and automate confirmations or lead follow-up through a CRM. Third-party subscriptions and processing fees are separate, and complex workflows are quoted separately.",
 	},
 	{
 		question: "Is SEO included with every website product?",

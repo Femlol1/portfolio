@@ -21,8 +21,8 @@ const Footer = () => {
 			],
 		},
 		{
-			id: "popular-products",
-			title: "Popular products",
+			id: "featured-products",
+			title: "Featured products",
 			links: [
 				{
 					name: "Business Website",
@@ -35,13 +35,23 @@ const Footer = () => {
 					external: false,
 				},
 				{
-					name: "E-commerce Store",
-					href: "/services#ecommerce-store",
+					name: "Booking & Deposit System",
+					href: "/services#booking-deposit-system",
 					external: false,
 				},
 				{
-					name: "Custom Web App MVP",
-					href: "/services#web-app-mvp",
+					name: "SEO-Conscious Website Migration",
+					href: "/services#seo-conscious-website-migration",
+					external: false,
+				},
+				{
+					name: "Accessibility Audit & Fix",
+					href: "/services#accessibility-audit-fix",
+					external: false,
+				},
+				{
+					name: "CRM & Workflow Automation",
+					href: "/services#crm-workflow-automation",
 					external: false,
 				},
 			],

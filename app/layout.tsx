@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 		template: "%s | Osifemi Osibemekun - Web Developer",
 	},
 	description:
-		"UK full-stack web developer creating responsive websites, e-commerce stores, event platforms, custom web apps, and technical SEO improvements with clear starting prices.",
+		"UK full-stack web developer building websites, booking systems, e-commerce and automations, with technical SEO, accessibility and clear starting prices.",
 	keywords: [
 		"full-stack developer",
 		"web developer",
@@ -28,6 +28,10 @@ export const metadata: Metadata = {
 		"e-commerce development",
 		"SEO services UK",
 		"technical SEO improvements",
+		"booking system developer",
+		"website migration service",
+		"website accessibility audit",
+		"workflow automation services",
 		"website packages and pricing",
 		"custom web applications",
 		"frontend developer",
@@ -59,7 +63,7 @@ export const metadata: Metadata = {
 		title:
 			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React",
 		description:
-			"Responsive websites, e-commerce stores, event platforms, custom web apps, and technical SEO improvements with clear starting prices.",
+			"Websites, booking systems, e-commerce and automations, with technical SEO, accessibility and clear starting prices.",
 		siteName: "Osifemi Osibemekun Portfolio",
 		images: [
 			{
@@ -74,7 +78,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Osifemi Osibemekun - Full-Stack Web Developer",
 		description:
-			"Responsive websites, e-commerce stores, custom web apps, and technical SEO improvements with clear starting prices.",
+			"Websites, booking systems, e-commerce and automations, with technical SEO, accessibility and clear starting prices.",
 		images: ["/social-preview.png"],
 	},
 	icons: {
@@ -101,7 +105,7 @@ export default function RootLayout({
 							name: "Osifemi Osibemekun Portfolio",
 							url: "https://www.osifemi.dev",
 							description:
-								"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies.",
+								"UK full-stack web developer building websites, booking systems, e-commerce, automations, and search-ready digital products.",
 							author: {
 								"@type": "Person",
 								name: "Osifemi Osibemekun",

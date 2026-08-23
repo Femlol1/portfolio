@@ -92,7 +92,7 @@ export const serviceProducts: ServiceProduct[] = [
 		seoCoverage:
 			"Crawlable service pages, relevant Service or LocalBusiness schema, mobile performance, and organic booking-conversion tracking.",
 		scopeNote:
-			"Scheduling subscriptions, payment-processing fees, and a fully custom booking engine are quoted separately.",
+			"The client supplies cancellation and refund terms. Scheduling subscriptions, payment-processing fees, and a fully custom booking engine are quoted separately.",
 		delivery: "2–3 weeks",
 		price: {
 			amount: 600,
@@ -147,6 +147,8 @@ export const serviceProducts: ServiceProduct[] = [
 		],
 		seoCoverage:
 			"Redirect and canonical review, heading cleanup, metadata refresh, image optimisation, and Core Web Vitals improvements.",
+		scopeNote:
+			"This includes practical accessibility foundations. Choose the dedicated Accessibility Audit & Fix for deeper WCAG 2.2 testing and remediation.",
 		delivery: "1–3 weeks",
 		price: {
 			amount: 350,
@@ -157,8 +159,8 @@ export const serviceProducts: ServiceProduct[] = [
 		accent: "violet",
 	},
 	{
-		slug: "seo-safe-website-migration",
-		title: "SEO-Safe Website Migration",
+		slug: "seo-conscious-website-migration",
+		title: "SEO-Conscious Website Migration",
 		category: "Migration",
 		group: "improve",
 		tier: "product",
@@ -305,7 +307,7 @@ export const serviceProducts: ServiceProduct[] = [
 		seoCoverage:
 			"Tracks organic lead sources and conversions, keeps form embeds lightweight, and prevents private or thank-you pages from being indexed where appropriate.",
 		scopeNote:
-			"Third-party subscriptions, complex data cleanup, and more than two workflows are quoted separately.",
+			"The client remains responsible for lawful data collection, consent, and approved customer messaging. Third-party subscriptions, complex data cleanup, and more than two workflows are quoted separately.",
 		delivery: "1–3 weeks",
 		price: {
 			amount: 600,
@@ -357,6 +359,8 @@ export const serviceProducts: ServiceProduct[] = [
 		],
 		seoCoverage:
 			"Monthly crawl, indexing, metadata, and performance checks. Content campaigns and link outreach are quoted separately.",
+		scopeNote:
+			"This is ongoing monitoring and maintenance. Choose Security & Recovery Setup for a one-off hardening, backup, and restore baseline.",
 		delivery: "Ongoing",
 		price: {
 			amount: 75,
@@ -373,11 +377,12 @@ export const serviceProducts: ServiceProduct[] = [
 		group: "operate",
 		tier: "add-on",
 		shortDescription:
-			"Measure meaningful actions while giving visitors a clear choice over non-essential tracking.",
+			"Go beyond basic traffic analytics to measure meaningful actions while giving visitors a clear choice over non-essential tracking.",
 		features: [
 			"Cookie and tracking-tag inventory",
 			"Consent-platform configuration",
 			"GA4 or Tag Manager key-event setup",
+			"Search Console connection and organic-search reporting",
 			"Simple conversion dashboard and handover",
 		],
 		seoCoverage:

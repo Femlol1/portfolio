@@ -9,26 +9,27 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 - **Services Showcase**: Dedicated services page with detailed offerings
 - **Project Portfolio**: Interactive project gallery with live demos
 - **Contact Form**: Product and service enquiries with package selection
-- **Product Catalogue**: Nine clearly scoped products with GBP starting prices
-- **SEO Offering**: Dedicated SEO improvement sprint plus SEO foundations across public website builds
+- **Product Catalogue**: 13 core products plus 2 practical add-ons with GBP starting prices
+- **SEO Offering**: Technical SEO, SEO-conscious migrations, and search foundations across public website builds
 - **3D Animations**: Engaging visual effects using Three.js and GSAP
 - **Email Integration**: Nodemailer integration for contact form submissions
 
 ## Pages
 
 - **Home (`/`)**: Main landing page with hero section, services preview, projects, and contact
-- **Services (`/services`)**: Product catalogue, transparent starting prices, SEO package, and custom capabilities
+- **Services (`/services`)**: Product catalogue, transparent starting prices, booking, SEO, migration, accessibility, automation, and custom capabilities
 - **Contact Me (`/contact-me`)**: Dedicated contact page
 
 ## Services Offered
 
-1. **Full-Stack Web Development**: End-to-end web applications using Next.js, React, TypeScript
-2. **E-commerce Solutions**: Complete shopping platforms with payment integration
-3. **Events Management Systems**: Custom event platforms with RSVP functionality
-4. **UI/UX Design & Animation**: Modern interfaces with 3D animations
-5. **Database & Backend Solutions**: Robust backend systems with API development
-6. **Maintenance & Support**: Ongoing support and optimization services
-7. **SEO Improvements**: Technical audits, on-page fixes, structured data, indexability, and performance improvements
+1. **Websites & Web Apps**: Landing pages, business websites, redesigns, and custom application MVPs
+2. **Bookings & Payments**: Appointment flows, calendar integrations, deposits, confirmations, and reminders
+3. **E-commerce & Events**: Online stores, event sites, registrations, and guest-management workflows
+4. **SEO & Migrations**: Technical audits, on-page fixes, redirects, structured data, and indexing support
+5. **Accessibility**: WCAG-informed audits and high-impact usability fixes
+6. **AI & Workflow Automation**: Chatbots, CRM connections, lead routing, and customer follow-up
+7. **Backend Development**: Databases, APIs, authentication, and administration tools
+8. **Care & Resilience**: Maintenance, analytics and cookie setup, security baselines, backups, and recovery checks
 
 ## Getting Started
 
@@ -57,12 +58,12 @@ SMTP_PASS=your_email_password
 
 ## Tech Stack
 
-- **Framework**: Next.js 14
+- **Framework**: Next.js 16.3
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion, GSAP, Three.js
 - **Email**: Nodemailer
-- **Forms**: React Hook Form with Zod validation
+- **Forms**: Accessible React forms with client- and server-side validation
 - **Icons**: React Icons, Lucide React
 
 ## Project Structure

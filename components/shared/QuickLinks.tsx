@@ -17,7 +17,7 @@ const QuickLinks = ({ currentPage = "" }: QuickLinksProps) => {
 		{
 			title: "Products & Pricing",
 			description:
-				"Compare website, e-commerce, SEO, and web-app packages",
+				"Compare website, booking, SEO, migration, accessibility, and automation packages",
 			href: "/services#products",
 			icon: "💼",
 			internal: true,

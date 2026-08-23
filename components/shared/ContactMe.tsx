@@ -6,6 +6,7 @@ import {
 	formatServiceProductPrice,
 	serviceProducts,
 	services,
+	type ServiceProduct,
 } from "@/data";
 import React, { useRef, useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
@@ -19,6 +20,45 @@ type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
 type ContactMeProps = {
 	defaultInterest?: string;
+};
+
+const productOptionGroups: Array<{
+	label: string;
+	products: ServiceProduct[];
+}> = [
+	{
+		label: "Build & launch",
+		products: serviceProducts.filter(
+			(product) => product.tier === "product" && product.group === "build"
+		),
+	},
+	{
+		label: "Improve & protect",
+		products: serviceProducts.filter(
+			(product) => product.tier === "product" && product.group === "improve"
+		),
+	},
+	{
+		label: "Automate & maintain",
+		products: serviceProducts.filter(
+			(product) => product.tier === "product" && product.group === "operate"
+		),
+	},
+	{
+		label: "Specialist add-ons",
+		products: serviceProducts.filter((product) => product.tier === "add-on"),
+	},
+];
+
+const formatProductOptionLabel = (product: ServiceProduct) => {
+	const formattedPrice = formatServiceProductPrice(product);
+	const priceLabel =
+		product.price.qualifier === "from"
+			? `from ${formattedPrice}`
+			: `${formattedPrice} fixed`;
+	const unitLabel = product.price.unit === "month" ? "/month" : "";
+
+	return `${product.title} — ${priceLabel}${unitLabel}`;
 };
 
 const ContactMe: React.FC<ContactMeProps> = ({ defaultInterest = "" }) => {
@@ -208,15 +248,15 @@ const ContactMe: React.FC<ContactMeProps> = ({ defaultInterest = "" }) => {
 								className="mt-1 min-h-11 w-full rounded-md border border-gray-400 bg-[#2A2A40] px-3 py-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E1E2F]"
 							>
 								<option value="">Select a product or service...</option>
-								<optgroup label="Product packages">
-									{serviceProducts.map((product) => (
-										<option key={product.slug} value={product.slug}>
-											{`${product.title} — from ${formatServiceProductPrice(
-												product
-											)}/${product.price.unit}`}
-										</option>
-									))}
-								</optgroup>
+								{productOptionGroups.map((group) => (
+									<optgroup key={group.label} label={group.label}>
+										{group.products.map((product) => (
+											<option key={product.slug} value={product.slug}>
+												{formatProductOptionLabel(product)}
+											</option>
+										))}
+									</optgroup>
+								))}
 								<optgroup label="Custom services">
 									{services.map((serviceOption) => (
 										<option key={serviceOption.id} value={serviceOption.title}>
