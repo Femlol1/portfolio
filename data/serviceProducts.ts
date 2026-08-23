@@ -366,6 +366,60 @@ export const serviceProducts: ServiceProduct[] = [
 		},
 		accent: "cyan",
 	},
+	{
+		slug: "analytics-cookie-setup",
+		title: "Analytics & Cookie Setup",
+		category: "Measurement",
+		group: "operate",
+		tier: "add-on",
+		shortDescription:
+			"Measure meaningful actions while giving visitors a clear choice over non-essential tracking.",
+		features: [
+			"Cookie and tracking-tag inventory",
+			"Consent-platform configuration",
+			"GA4 or Tag Manager key-event setup",
+			"Simple conversion dashboard and handover",
+		],
+		seoCoverage:
+			"Adds Search Console and organic-conversion reporting with performance-conscious tag loading and a layout-stable consent interface.",
+		scopeNote:
+			"This is technical implementation, not legal advice or a compliance guarantee. Paid platform fees and policy drafting are separate.",
+		delivery: "3–5 working days",
+		price: {
+			amount: 300,
+			currency: "GBP",
+			qualifier: "from",
+			unit: "project",
+		},
+		accent: "violet",
+	},
+	{
+		slug: "security-recovery-setup",
+		title: "Security & Recovery Setup",
+		category: "Resilience",
+		group: "operate",
+		tier: "add-on",
+		shortDescription:
+			"Establish a practical security and recovery baseline before ongoing maintenance begins.",
+		features: [
+			"Dependency or CMS update and administrator review",
+			"Two-step verification and security-header setup",
+			"Automated backup configuration and one restore test",
+			"Uptime monitoring and recovery checklist",
+		],
+		seoCoverage:
+			"Checks HTTPS, crawl access, error responses, and sitemap health so recovery does not leave broken or unwanted pages in search.",
+		scopeNote:
+			"This baseline setup is not a penetration test, incident-response retainer, or guarantee against every security threat.",
+		delivery: "3–5 working days",
+		price: {
+			amount: 350,
+			currency: "GBP",
+			qualifier: "from",
+			unit: "project",
+		},
+		accent: "cyan",
+	},
 ];
 
 export const formatServiceProductPrice = (product: ServiceProduct) =>
