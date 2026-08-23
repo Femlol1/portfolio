@@ -13,7 +13,7 @@ const HomeInteractiveSections = () => {
 			<Grid />
 			<ProjectsShowcase />
 			<ServicesPreview />
-			<PricingSection />
+			<PricingSection preview />
 			<Experience />
 			<Approach />
 			<FAQ />

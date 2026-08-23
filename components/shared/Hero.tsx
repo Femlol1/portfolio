@@ -37,9 +37,9 @@ const Hero = () => {
 						</header>
 					</div>
 					<p className="text-center text-white-200 mt-4 text-lg max-w-2xl sr-only">
-						Professional full-stack web developer specializing in Next.js,
-						React, TypeScript, and modern web technologies. Creating exceptional
-						digital experiences.
+						UK full-stack web developer creating responsive websites,
+						e-commerce stores, event platforms, custom web applications, and
+						technical SEO improvements.
 					</p>
 					<div className="hero-actions mt-6 flex flex-col items-center gap-4 sm:flex-row">
 						<a href="#projects" aria-label="View my work and projects">

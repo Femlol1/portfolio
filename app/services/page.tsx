@@ -7,11 +7,15 @@ import { RelatedContent } from "@/components/ui/InternalLink";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Web Development Services & Pricing",
+	title: {
+		absolute: "Website Packages & SEO Services | Osifemi",
+	},
 	description:
-		"Professional web development services including full-stack development, e-commerce solutions, events management systems, and UI/UX design. Transparent project pricing from £150 to £1,000+.",
+		"Compare website, e-commerce, event, SEO, chatbot, and web-app packages with clear UK prices, starting from £150.",
 	keywords: [
 		"web development services",
+		"website packages UK",
+		"website design prices UK",
 		"full-stack development",
 		"e-commerce development",
 		"Next.js development services",
@@ -23,13 +27,17 @@ export const metadata: Metadata = {
 		"database solutions",
 		"API development",
 		"responsive web design",
+		"SEO improvement service",
+		"technical SEO audit",
+		"on-page SEO service",
+		"Search Console setup",
 		"web development packages",
 		"freelance web developer UK",
 	],
 	openGraph: {
-		title: "Web Development Services & Pricing | Osifemi Osibemekun",
+		title: "Website Packages & SEO Services | Osifemi",
 		description:
-			"Professional web development services including full-stack development, e-commerce solutions, and UI/UX design. Transparent project pricing from £150 to £1,000+.",
+			"Compare clear starting prices for websites, e-commerce, event platforms, SEO improvements, AI chatbots, and custom web apps.",
 		url: "https://www.osifemi.dev/services",
 		images: [
 			{
@@ -42,9 +50,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Web Development Services & Pricing | Osifemi Osibemekun",
+		title: "Website Packages & SEO Services | Osifemi",
 		description:
-			"Professional web development services including full-stack development, e-commerce solutions, and UI/UX design.",
+			"Clear starting prices for websites, e-commerce, SEO improvements, AI chatbots, and custom web apps.",
 		images: ["/social-preview.png"],
 	},
 	alternates: {
@@ -67,19 +75,18 @@ export default function ServicesPage() {
 						<div className="flex justify-center">
 							<div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
 								<h1 className="text-center text-[40px] md:text-5xl lg:text-6xl font-bold">
-									My <span className="text-purple">Services</span>
+									Products <span className="text-purple">& Services</span>
 								</h1>
 								<p className="text-center text-white-200 mt-4 text-lg md:text-xl max-w-3xl">
-									I offer comprehensive web development solutions tailored to
-									your business needs. From full-stack development to
-									specialized consulting, I&apos;m here to bring your vision to
-									life.
+									Start with a clearly priced digital product, or combine my
+									development capabilities into a custom solution for your
+									business.
 								</p>
 							</div>
 						</div>
 					</div>
-					<ServicesSection />
 					<PricingSection />
+					<ServicesSection />
 					<RelatedContent
 						title="Explore More"
 						links={[

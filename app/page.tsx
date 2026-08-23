@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 		title:
 			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React",
 		description:
-			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies. Creating exceptional digital experiences.",
+			"UK full-stack developer building responsive websites, e-commerce stores, event platforms, custom web apps, and technical SEO improvements.",
 		siteName: "Osifemi Osibemekun Portfolio",
 		images: [
 			{

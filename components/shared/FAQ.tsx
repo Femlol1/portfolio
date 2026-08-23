@@ -17,7 +17,12 @@ const faqs = [
 	{
 		question: "Can you improve an existing website?",
 		answer:
-			"Yes. I can add features, improve performance, fix defects, modernize an older codebase, or build a new site from the ground up.",
+			"Yes. I can add features, improve performance and accessibility, fix defects, strengthen technical SEO, modernize an older codebase, or build a new site from the ground up.",
+	},
+	{
+		question: "Is SEO included with every website product?",
+		answer:
+			"Every public website product includes SEO foundations such as semantic headings, page titles and descriptions, canonical URLs, sitemap coverage, structured data where relevant, image optimization, and mobile performance. The SEO Improvement Sprint adds a deeper audit and implementation across an existing site. Rankings are never guaranteed.",
 	},
 	{
 		question: "What is your development process?",

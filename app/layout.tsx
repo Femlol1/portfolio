@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 		template: "%s | Osifemi Osibemekun - Web Developer",
 	},
 	description:
-		"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies. Creating exceptional digital experiences with custom web applications, e-commerce solutions, and responsive designs.",
+		"UK full-stack web developer creating responsive websites, e-commerce stores, event platforms, custom web apps, and technical SEO improvements with clear starting prices.",
 	keywords: [
 		"full-stack developer",
 		"web developer",
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
 		"TypeScript",
 		"web development services",
 		"e-commerce development",
+		"SEO services UK",
+		"technical SEO improvements",
+		"website packages and pricing",
 		"custom web applications",
 		"frontend developer",
 		"backend developer",
@@ -56,7 +59,7 @@ export const metadata: Metadata = {
 		title:
 			"Osifemi Osibemekun - Full-Stack Web Developer | Next.js & React",
 		description:
-			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies. Creating exceptional digital experiences.",
+			"Responsive websites, e-commerce stores, event platforms, custom web apps, and technical SEO improvements with clear starting prices.",
 		siteName: "Osifemi Osibemekun Portfolio",
 		images: [
 			{
@@ -71,7 +74,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Osifemi Osibemekun - Full-Stack Web Developer",
 		description:
-			"Professional full-stack web developer specializing in Next.js, React, TypeScript, and modern web technologies.",
+			"Responsive websites, e-commerce stores, custom web apps, and technical SEO improvements with clear starting prices.",
 		images: ["/social-preview.png"],
 	},
 	icons: {

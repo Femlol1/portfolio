@@ -8,15 +8,16 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 - **Modern UI/UX**: Clean, professional design with smooth animations
 - **Services Showcase**: Dedicated services page with detailed offerings
 - **Project Portfolio**: Interactive project gallery with live demos
-- **Contact Form**: Enhanced contact form with service inquiry options
-- **Pricing Plans**: Transparent pricing for different service tiers
+- **Contact Form**: Product and service enquiries with package selection
+- **Product Catalogue**: Nine clearly scoped products with GBP starting prices
+- **SEO Offering**: Dedicated SEO improvement sprint plus SEO foundations across public website builds
 - **3D Animations**: Engaging visual effects using Three.js and GSAP
 - **Email Integration**: Nodemailer integration for contact form submissions
 
 ## Pages
 
 - **Home (`/`)**: Main landing page with hero section, services preview, projects, and contact
-- **Services (`/services`)**: Comprehensive services page with pricing plans
+- **Services (`/services`)**: Product catalogue, transparent starting prices, SEO package, and custom capabilities
 - **Contact Me (`/contact-me`)**: Dedicated contact page
 
 ## Services Offered
@@ -27,6 +28,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 4. **UI/UX Design & Animation**: Modern interfaces with 3D animations
 5. **Database & Backend Solutions**: Robust backend systems with API development
 6. **Maintenance & Support**: Ongoing support and optimization services
+7. **SEO Improvements**: Technical audits, on-page fixes, structured data, indexability, and performance improvements
 
 ## Getting Started
 

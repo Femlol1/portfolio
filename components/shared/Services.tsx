@@ -5,7 +5,22 @@ import { Button } from "../ui/moving-border";
 
 const ServicesSection = () => {
 	return (
-		<section aria-label="Web development services" className="py-20" id="services">
+		<section aria-labelledby="capabilities-heading" className="py-20" id="services">
+			<div className="system-reveal mx-auto max-w-3xl text-center">
+				<p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
+					Custom scope
+				</p>
+				<h2
+					id="capabilities-heading"
+					className="text-3xl font-bold text-white md:text-4xl"
+				>
+					Development <span className="text-purple">capabilities</span>
+				</h2>
+				<p className="mx-auto mt-4 max-w-2xl text-white-100">
+					Need something beyond a fixed package? These capabilities can be
+					combined into a tailored build.
+				</p>
+			</div>
 			<div className="w-full mt-12 grid lg:grid-cols-2 grid-cols-1 gap-8">
 				{services.map((service) => (
 					<ServiceCard key={service.id} service={service} />

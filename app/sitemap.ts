@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const staticPages = [
 		{
 			url: baseUrl,
-			lastModified: "2026-05-29",
+			lastModified: "2026-08-23",
 			changeFrequency: "monthly" as const,
 			priority: 1,
 		},
@@ -26,13 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 		{
 			url: `${baseUrl}/services`,
-			lastModified: "2026-08-03",
+			lastModified: "2026-08-23",
 			changeFrequency: "monthly" as const,
 			priority: 0.8,
 		},
 		{
 			url: `${baseUrl}/contact-me`,
-			lastModified: "2025-06-20",
+			lastModified: "2026-08-23",
 			changeFrequency: "yearly" as const,
 			priority: 0.5,
 		},

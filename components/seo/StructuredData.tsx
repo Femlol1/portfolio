@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, pricingPlans } from "@/data";
+import { CONTACT_EMAIL, serviceProducts } from "@/data";
 
 interface StructuredDataItem {
 	name: string;
@@ -63,34 +63,46 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
 				return {
 					"@context": "https://schema.org",
 					"@type": "Service",
-					name: "Web Development Services",
+					name: "Web Development Products and SEO Services",
 					description:
-						"Professional web development services including full-stack development, e-commerce solutions, and UI/UX design.",
+						"Clearly scoped website, e-commerce, event platform, SEO improvement, AI chatbot, and custom web application packages.",
+					url: `${baseUrl}/services`,
 					provider: {
 						"@type": "Person",
 						name: "Osifemi Osibemekun",
+						url: baseUrl,
 					},
 					serviceType: "Web Development",
 					areaServed: "Worldwide",
-					offers: pricingPlans.map((plan) => {
-						const numericPrice = plan.price.replace(/[^0-9.]/g, "");
-
-						return {
+					hasOfferCatalog: {
+						"@type": "OfferCatalog",
+						name: "Website products and SEO packages",
+						itemListElement: serviceProducts.map((product) => ({
 							"@type": "Offer",
-							name: `${plan.name} Package`,
-							description: plan.description,
-							url: `${baseUrl}/services#pricing`,
-							...(plan.price.includes("+")
-								? {
-										priceSpecification: {
-											"@type": "PriceSpecification",
-											minPrice: numericPrice,
-											priceCurrency: "GBP",
-										},
-								  }
-								: { price: numericPrice, priceCurrency: "GBP" }),
-						};
-					}),
+							name: product.title,
+							description: product.shortDescription,
+							url: `${baseUrl}/services#${product.slug}`,
+							priceCurrency: product.price.currency,
+							priceSpecification: {
+								"@type": "UnitPriceSpecification",
+								minPrice: product.price.amount,
+								priceCurrency: product.price.currency,
+								unitText:
+									product.price.unit === "month" ? "MONTH" : "PROJECT",
+							},
+							itemOffered: {
+								"@type": "Service",
+								name: product.title,
+								description: product.shortDescription,
+								serviceType: product.category,
+								provider: {
+									"@type": "Person",
+									name: "Osifemi Osibemekun",
+									url: baseUrl,
+								},
+							},
+						})),
+					},
 				};
 
 			case "organization":

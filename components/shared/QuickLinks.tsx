@@ -15,10 +15,10 @@ const QuickLinks = ({ currentPage = "" }: QuickLinksProps) => {
 			internal: true,
 		},
 		{
-			title: "Services & Pricing",
+			title: "Products & Pricing",
 			description:
-				"Explore my web development services and transparent pricing",
-			href: "/services",
+				"Compare website, e-commerce, SEO, and web-app packages",
+			href: "/services#products",
 			icon: "💼",
 			internal: true,
 		},

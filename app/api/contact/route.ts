@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { CONTACT_EMAIL, services } from "@/data";
+import { CONTACT_EMAIL, getServiceProductBySlug, services } from "@/data";
 
 // Ensure the route is dynamically generated
 export const dynamic = "force-dynamic";
@@ -200,9 +200,16 @@ export async function POST(req: NextRequest) {
 		);
 	}
 
-	if (service && !services.some((item) => item.title === service)) {
+	const selectedProduct = service ? getServiceProductBySlug(service) : undefined;
+	const selectedService = service
+		? services.find((item) => item.title === service)
+		: undefined;
+	const selectedInterestLabel =
+		selectedProduct?.title ?? selectedService?.title ?? "";
+
+	if (service && !selectedInterestLabel) {
 		return NextResponse.json(
-			{ message: "Please select a valid service." },
+			{ message: "Please select a valid product or service." },
 			{ status: 400, headers: rateLimitHeaders }
 		);
 	}
@@ -224,7 +231,9 @@ export async function POST(req: NextRequest) {
 	const safeName = escapeHtml(name);
 	const safeEmail = escapeHtml(email);
 	const safeMessage = escapeHtml(message);
-	const safeService = service ? escapeHtml(service) : "";
+	const safeService = selectedInterestLabel
+		? escapeHtml(selectedInterestLabel)
+		: "";
 
 	// Nodemailer transporter configuration
 	const transporter = nodemailer.createTransport({
@@ -247,13 +256,15 @@ export async function POST(req: NextRequest) {
 			replyTo: email,
 			to: CONTACT_EMAIL,
 			subject: `New Portfolio message from ${name}${
-				service ? ` - ${service}` : ""
+				selectedInterestLabel ? ` - ${selectedInterestLabel}` : ""
 			}`,
 			text: [
 				"New Portfolio Contact",
 				`Name: ${name}`,
 				`Email: ${email}`,
-				service ? `Service of Interest: ${service}` : "",
+				selectedInterestLabel
+					? `Product or Service of Interest: ${selectedInterestLabel}`
+					: "",
 				"",
 				"Message:",
 				message,
@@ -267,7 +278,7 @@ export async function POST(req: NextRequest) {
 					<p><strong style="color: #555;">Email:</strong> <span style="color: #333;">${safeEmail}</span></p>
 					${
 						safeService
-							? `<p><strong style="color: #555;">Service of Interest:</strong> <span style="color: #7c3aed; font-weight: 500;">${safeService}</span></p>`
+							? `<p><strong style="color: #555;">Product or Service of Interest:</strong> <span style="color: #7c3aed; font-weight: 500;">${safeService}</span></p>`
 							: ""
 					}
 					<p><strong style="color: #555;">Message:</strong></p>

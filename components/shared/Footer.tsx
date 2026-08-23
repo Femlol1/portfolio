@@ -6,41 +6,48 @@ import { FaRegCopyright } from "react-icons/fa6";
 const Footer = () => {
 	const footerLinks = [
 		{
+			id: "navigation",
 			title: "Navigation",
 			links: [
 				{ name: "Home", href: "/", external: false },
 				{ name: "About", href: "/#about", external: false },
 				{ name: "Projects", href: "/projects", external: false },
-				{ name: "Services", href: "/services", external: false },
+				{
+					name: "Products & pricing",
+					href: "/services#products",
+					external: false,
+				},
 				{ name: "Contact", href: "/contact-me", external: false },
 			],
 		},
 		{
-			title: "Services",
+			id: "popular-products",
+			title: "Popular products",
 			links: [
 				{
-					name: "Full-Stack Development",
-					href: "/services#full-stack-web-development",
+					name: "Business Website",
+					href: "/services#business-website",
 					external: false,
 				},
 				{
-					name: "E-commerce Solutions",
-					href: "/services#e-commerce-solutions",
+					name: "SEO Improvement Sprint",
+					href: "/services#seo-improvement-sprint",
 					external: false,
 				},
 				{
-					name: "UI/UX Design",
-					href: "/services#ui-ux-design-animation",
+					name: "E-commerce Store",
+					href: "/services#ecommerce-store",
 					external: false,
 				},
 				{
-					name: "Maintenance & Support",
-					href: "/services#maintenance-support",
+					name: "Custom Web App MVP",
+					href: "/services#web-app-mvp",
 					external: false,
 				},
 			],
 		},
 		{
+			id: "connect",
 			title: "Connect",
 			links: [
 				{ name: "GitHub", href: "https://github.com/Femlol1", external: true },
@@ -107,11 +114,11 @@ const Footer = () => {
 					{footerLinks.map((section) => (
 						<nav
 							key={section.title}
-							aria-labelledby={`footer-${section.title.toLowerCase()}-heading`}
+							aria-labelledby={`footer-${section.id}-heading`}
 							className="md:col-span-1"
 						>
 							<h2
-								id={`footer-${section.title.toLowerCase()}-heading`}
+								id={`footer-${section.id}-heading`}
 								className="text-white font-semibold mb-4"
 							>
 								{section.title}

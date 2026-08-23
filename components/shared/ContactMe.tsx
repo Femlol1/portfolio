@@ -2,7 +2,11 @@
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { services } from "@/data";
+import {
+	formatServiceProductPrice,
+	serviceProducts,
+	services,
+} from "@/data";
 import React, { useRef, useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
 import CVDownloadButton from "../ui/CVDownloadButton";
@@ -13,11 +17,20 @@ import Loading from "./loading";
 type ContactField = "name" | "email" | "message";
 type ContactFieldErrors = Partial<Record<ContactField, string>>;
 
-const ContactMe: React.FC = () => {
+type ContactMeProps = {
+	defaultInterest?: string;
+};
+
+const ContactMe: React.FC<ContactMeProps> = ({ defaultInterest = "" }) => {
+	const initialInterest = serviceProducts.some(
+		(product) => product.slug === defaultInterest
+	)
+		? defaultInterest
+		: "";
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
-	const [service, setService] = useState("");
+	const [service, setService] = useState(initialInterest);
 	const [success, setSuccess] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
@@ -185,7 +198,7 @@ const ContactMe: React.FC = () => {
 								htmlFor="service"
 								className="block text-sm font-medium text-gray-300"
 							>
-								Service of Interest (Optional):
+								Product or Service of Interest (Optional):
 							</Label>
 							<select
 								id="service"
@@ -194,12 +207,23 @@ const ContactMe: React.FC = () => {
 								onChange={(e) => setService(e.target.value)}
 								className="mt-1 min-h-11 w-full rounded-md border border-gray-400 bg-[#2A2A40] px-3 py-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E1E2F]"
 							>
-								<option value="">Select a service...</option>
-								{services.map((serviceOption) => (
-									<option key={serviceOption.id} value={serviceOption.title}>
-										{serviceOption.title}
-									</option>
-								))}
+								<option value="">Select a product or service...</option>
+								<optgroup label="Product packages">
+									{serviceProducts.map((product) => (
+										<option key={product.slug} value={product.slug}>
+											{`${product.title} — from ${formatServiceProductPrice(
+												product
+											)}/${product.price.unit}`}
+										</option>
+									))}
+								</optgroup>
+								<optgroup label="Custom services">
+									{services.map((serviceOption) => (
+										<option key={serviceOption.id} value={serviceOption.title}>
+											{serviceOption.title}
+										</option>
+									))}
+								</optgroup>
 							</select>
 						</div>
 						<div>

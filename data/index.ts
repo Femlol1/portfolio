@@ -270,63 +270,10 @@ export const services = [
 			"Performance monitoring",
 			"Security audits",
 			"Bug fixes & troubleshooting",
-			"24/7 technical support",
+			"Priority technical support",
 		],
 		icon: "/git.svg",
 		gradient: "from-indigo-500 to-purple-600",
-	},
-];
-
-export const pricingPlans = [
-	{
-		id: 1,
-		name: "Starter",
-		price: "£150",
-		duration: "per project",
-		description: "Perfect for small businesses and personal projects",
-		features: [
-			"Responsive website design",
-			"Up to 5 pages",
-			"Basic contact form",
-			"Mobile optimization",
-			"1 month support",
-		],
-		popular: false,
-		color: "from-blue-500 to-purple-600",
-	},
-	{
-		id: 2,
-		name: "Professional",
-		price: "£500",
-		duration: "per project",
-		description: "Ideal for growing businesses with advanced needs",
-		features: [
-			"Custom web application",
-			"Database integration",
-			"API development",
-			"Admin dashboard",
-			"E-commerce functionality",
-			"3 months support",
-		],
-		popular: true,
-		color: "from-purple-500 to-pink-600",
-	},
-	{
-		id: 3,
-		name: "Enterprise",
-		price: "£1000+",
-		duration: "per project",
-		description: "For large-scale applications and complex requirements",
-		features: [
-			"Full-stack development",
-			"Custom integrations",
-			"Advanced animations",
-			"Performance optimization",
-			"Ongoing maintenance",
-			"6 months support",
-		],
-		popular: false,
-		color: "from-orange-500 to-red-600",
 	},
 ];
 
@@ -359,3 +306,10 @@ export const socialMedia = [
 		title: "linkedin",
 	},
 ];
+
+export {
+	formatServiceProductPrice,
+	getServiceProductBySlug,
+	serviceProducts,
+} from "./serviceProducts";
+export type { ServiceProduct, ServiceProductPrice } from "./serviceProducts";

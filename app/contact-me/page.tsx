@@ -43,7 +43,14 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function ContactPage() {
+type ContactPageProps = {
+	searchParams: Promise<{ interest?: string | string[] }>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+	const { interest } = await searchParams;
+	const defaultInterest = typeof interest === "string" ? interest : "";
+
 	return (
 		<>
 			<StructuredData type="organization" />
@@ -68,7 +75,7 @@ export default function ContactPage() {
 							</div>
 						</div>
 					</div>
-					<ContactMe />
+					<ContactMe defaultInterest={defaultInterest} />
 				</div>
 			</main>
 		</>
