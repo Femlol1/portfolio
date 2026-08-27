@@ -12,7 +12,7 @@ const project = projects.find((p) => p.id === 3)!;
 export const metadata: Metadata = {
 	title: "E-commerce Website with AI Chatbot | GadgetCo",
 	description:
-		"A comprehensive e-commerce platform with integrated AI chatbot for customer support. Built with React, Firebase, and TypeScript to enhance user experience and boost sales conversion.",
+		"A demo e-commerce platform with an integrated customer-support chatbot, built with React, Firebase, and TypeScript for a smoother shopping journey.",
 	keywords: [
 		"e-commerce website",
 		"AI chatbot",
@@ -21,20 +21,19 @@ export const metadata: Metadata = {
 		"TypeScript",
 		"customer support",
 		"online shopping",
-		"sales conversion",
 	],
 	openGraph: {
 		title: "E-commerce AI Chatbot Platform | Osifemi Osibemekun Portfolio",
 		description:
-			"A comprehensive e-commerce platform with integrated AI chatbot for enhanced customer support and sales conversion.",
+			"A demo e-commerce platform with an integrated chatbot for customer support and product discovery.",
 		type: "article",
 		url: "https://www.osifemi.dev/projects/ecommerce-ai-chatbot",
 		images: [
 			{
-				url: "/gad.png",
-				width: 1782,
-				height: 881,
-				alt: "E-commerce website with AI chatbot interface",
+				url: "/projects/ecommerce-ai-chatbot/storefront.jpg",
+				width: 1440,
+				height: 900,
+				alt: "GadgetCo storefront homepage captured in August 2026",
 			},
 		],
 	},
@@ -42,8 +41,8 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "E-commerce AI Chatbot Platform | Osifemi Osibemekun",
 		description:
-			"An e-commerce platform with an integrated AI chatbot, built with React, Firebase, and TypeScript.",
-		images: ["/gad.png"],
+			"A demo e-commerce platform with an integrated chatbot, built with React, Firebase, and TypeScript.",
+		images: ["/projects/ecommerce-ai-chatbot/storefront.jpg"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/ecommerce-ai-chatbot",
@@ -59,7 +58,8 @@ export default function EcommerceAIChatbotProjectPage() {
 					name: project.title,
 					description: project.des,
 					url: "https://www.osifemi.dev/projects/ecommerce-ai-chatbot",
-					image: "https://www.osifemi.dev/gad.png",
+					image:
+						"https://www.osifemi.dev/projects/ecommerce-ai-chatbot/storefront.jpg",
 					sameAs: project.link,
 					keywords: ["e-commerce", "AI chatbot", "React", "Firebase"],
 				}}
@@ -80,15 +80,17 @@ export default function EcommerceAIChatbotProjectPage() {
 
 							{/* Project Links */}
 							<div className="flex flex-wrap gap-4 justify-center mb-8">
-								<Link
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-								>
-									<FaExternalLinkAlt className="w-4 h-4" />
-									View Live Store
-								</Link>
+								{project.link && (
+									<Link
+										href={project.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
+									>
+										<FaExternalLinkAlt className="w-4 h-4" />
+										View Live Demo
+									</Link>
+								)}
 							</div>
 						</div>
 
@@ -99,7 +101,7 @@ export default function EcommerceAIChatbotProjectPage() {
 									src={project.img}
 									alt={project.alt}
 									fill
-									className="object-cover"
+									className="object-cover object-top"
 									priority
 								/>
 							</div>
@@ -122,9 +124,9 @@ export default function EcommerceAIChatbotProjectPage() {
 									</p>
 									<p className="text-white-200 leading-relaxed">
 										The AI chatbot assists customers throughout their shopping
-										journey, from product discovery to post-purchase support,
-										resulting in improved customer satisfaction and increased
-										conversion rates.
+										journey, from product discovery to common support questions,
+										demonstrating how conversational help can sit alongside a
+										traditional storefront.
 									</p>
 								</section>
 
@@ -237,27 +239,25 @@ export default function EcommerceAIChatbotProjectPage() {
 
 								<section className="mb-8">
 									<h2 className="text-2xl font-bold text-white mb-4">
-										Business Impact
+									Intended Outcomes
 									</h2>
 									<div className="space-y-4">
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-6">
 											<h3 className="text-white font-semibold mb-2">
-												Increased Conversion Rate
+												Guided Shopping Journey
 											</h3>
 											<p className="text-white-200 text-sm">
-												The AI chatbot helps guide customers through the
-												purchasing process, reducing cart abandonment and
-												increasing overall conversion rates by 25%.
+												The chatbot demonstrates product discovery and purchasing
+												guidance without claiming measured commercial results.
 											</p>
 										</div>
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-6">
 											<h3 className="text-white font-semibold mb-2">
-												Reduced Support Costs
+												Faster First-line Support
 											</h3>
 											<p className="text-white-200 text-sm">
-												Automated customer support handles 70% of inquiries,
-												significantly reducing the workload on human support
-												agents and operational costs.
+												Common questions can be answered inside the shopping flow,
+												with more complex requests left for a human support process.
 											</p>
 										</div>
 									</div>

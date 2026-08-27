@@ -1,7 +1,9 @@
 import StructuredData from "@/components/seo/StructuredData";
+import ProjectPreviewGallery from "@/components/shared/ProjectPreviewGallery";
 import QuickLinks from "@/components/shared/QuickLinks";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
+import { getTechnologyName } from "@/lib/technology";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +12,7 @@ import { FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
 export const metadata: Metadata = {
 	title: "My Projects - Web Development Portfolio",
 	description:
-		"Explore my web development projects including e-commerce solutions, event management platforms, and modern web applications built with Next.js, React, and TypeScript.",
+		"Explore web development case studies with dated public-site captures, a delivered-site archive, and a clearly labelled frontend concept.",
 	keywords: [
 		"web development projects",
 		"portfolio",
@@ -78,9 +80,8 @@ export default function ProjectsPage() {
 									My <span className="text-purple">Projects</span>
 								</h1>
 								<p className="text-center text-white-200 mt-4 text-lg md:text-xl max-w-3xl">
-									Explore my portfolio of web development projects, featuring
-									modern technologies, innovative solutions, and exceptional
-									user experiences.
+									Explore dated public-page captures, a delivered-site archive,
+									and a clearly labelled unofficial frontend concept.
 								</p>
 							</div>
 						</div>
@@ -88,37 +89,20 @@ export default function ProjectsPage() {
 
 					<section className="py-20">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-							{projects.map((project) => (
+							{projects.map((project, projectIndex) => (
 								<article
 									key={project.id}
-									className="system-surface system-surface--lift bg-black-200 border border-white/[0.1] rounded-lg overflow-hidden hover:border-purple/50 transition-colors duration-300"
+									className="system-surface system-surface--lift overflow-hidden rounded-2xl border border-white/[0.12] bg-black-200 transition-colors duration-300 hover:border-purple/50 motion-reduce:transition-none"
 								>
-									<Link
-										href={`/projects/${project.slug}`}
-										className="relative block h-64 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
-										aria-label={`Read the ${project.title} case study`}
-									>
-										{project.video ? (
-											<video
-												className="w-full h-full object-cover"
-												muted
-												loop
-												playsInline
-												preload="none"
-												poster={project.img}
-											>
-												<source src={project.video} type="video/mp4" />
-											</video>
-										) : (
-											<Image
-												src={project.img}
-												alt={project.alt || project.title}
-												fill
-												className="object-cover"
-												sizes="(max-width: 768px) 100vw, 50vw"
-											/>
-										)}
-									</Link>
+									<div className="p-4 pb-0 sm:p-5 sm:pb-0">
+										<ProjectPreviewGallery
+											title={project.title}
+											siteLabel={project.siteLabel}
+											previews={project.previews}
+											status={project.previewStatus}
+											priority={projectIndex === 0}
+										/>
+									</div>
 
 									<div className="p-6">
 										<h2 className="text-xl font-semibold text-white mb-3">
@@ -128,17 +112,22 @@ export default function ProjectsPage() {
 											{project.des}
 										</p>
 
-										<div className="flex flex-wrap gap-2 mb-4">
-											{project.iconLists.map((icon, index) => (
+										<div
+											className="mb-4 flex flex-wrap gap-2"
+											role="list"
+											aria-label="Technologies used"
+										>
+											{project.iconLists.map((icon) => (
 												<div
-													key={index}
-													className="w-8 h-8 bg-black-100 rounded-full flex items-center justify-center"
+													key={icon}
+													role="listitem"
+													className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.15] bg-black-100"
 												>
 													<Image
 														src={icon}
-														alt="Technology icon"
-														width={16}
-														height={16}
+														alt={`${getTechnologyName(icon)} logo`}
+														width={18}
+														height={18}
 													/>
 												</div>
 											))}
@@ -152,15 +141,17 @@ export default function ProjectsPage() {
 												<FaInfoCircle className="w-4 h-4" />
 												<span>Read case study</span>
 											</Link>
-											<Link
-												href={project.link}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="flex items-center gap-2 px-2 py-2 text-purple hover:text-purple-light transition-colors"
-											>
-												<FaExternalLinkAlt className="w-4 h-4" />
-												<span>Live Demo</span>
-											</Link>
+											{project.link && (
+												<Link
+													href={project.link}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="flex items-center gap-2 px-2 py-2 text-purple hover:text-purple-light transition-colors"
+												>
+													<FaExternalLinkAlt className="w-4 h-4" />
+													<span>{project.linkLabel ?? "Live site"}</span>
+												</Link>
+											)}
 										</div>
 									</div>
 								</article>

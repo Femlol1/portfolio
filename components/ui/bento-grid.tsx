@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { CONTACT_EMAIL } from "@/data";
 
 import Image from "next/image";
+import CollaborationProtocol from "./CollaborationProtocol";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "./MagicButton";
 
@@ -75,7 +76,7 @@ export const BentoGridItem = ({
 		<article
 			aria-labelledby={`about-card-${id}-title`}
 			className={cn(
-				"system-surface system-surface--lift row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+				"system-surface system-surface--lift row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 motion-reduce:transition-none",
 				className
 			)}
 			style={{
@@ -85,6 +86,7 @@ export const BentoGridItem = ({
 			}}
 		>
 			<div className={`${id === 6 && "flex justify-center"} h-full`}>
+				{id === 1 && <CollaborationProtocol />}
 				<div className="w-full h-full absolute">
 					{img && (
 						<Image
@@ -93,7 +95,6 @@ export const BentoGridItem = ({
 							width={width}
 							height={height}
 							className={cn(imgClassName, "object-cover object-center")}
-							priority={id === 1} // Prioritize loading for the main blue flames image
 							placeholder="blur"
 							blurDataURL={DEFAULT_BLUR_DATA_URL}
 							onError={(e) => {
@@ -130,7 +131,8 @@ export const BentoGridItem = ({
 				<div
 					className={cn(
 						titleClassName,
-						"group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+						"group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10 motion-reduce:transform-none motion-reduce:transition-none",
+						id === 1 && "h-full"
 					)}
 				>
 					{/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
@@ -141,7 +143,10 @@ export const BentoGridItem = ({
 					{/* remove mb-2 mt-2 */}
 					<h3
 						id={`about-card-${id}-title`}
-						className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
+						className={cn(
+							"z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl",
+							id === 1 && "md:text-2xl"
+						)}
 					>
 						{title}
 					</h3>

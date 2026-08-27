@@ -12,7 +12,7 @@ const project = projects.find((p) => p.id === 4)!;
 export const metadata: Metadata = {
 	title: "Zentry Website Clone | Advanced Animations & 3D Effects",
 	description:
-		"A pixel-perfect recreation of the Zentry website featuring stunning GSAP animations and Three.js 3D effects. Showcases advanced frontend development skills and modern web technologies.",
+		"An unofficial Zentry-inspired frontend study featuring GSAP animations and Three.js effects. Not affiliated with or endorsed by Zentry.",
 	keywords: [
 		"Zentry clone",
 		"GSAP animations",
@@ -26,15 +26,15 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Zentry Website Clone | Osifemi Osibemekun Portfolio",
 		description:
-			"A stunning recreation of the Zentry website with advanced GSAP animations and Three.js 3D effects.",
+			"An unofficial Zentry-inspired frontend study with GSAP animations and Three.js effects.",
 		type: "article",
 		url: "https://www.osifemi.dev/projects/zentry-website-clone",
 		images: [
 			{
-				url: "/social-preview.png",
-				width: 1200,
-				height: 630,
-				alt: "Osifemi Osibemekun full-stack web developer portfolio",
+				url: "/projects/zentry-website-clone/home.jpg",
+				width: 1440,
+				height: 900,
+				alt: "Zentry-inspired animation concept hero",
 			},
 		],
 	},
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Zentry Website Clone | Osifemi Osibemekun",
 		description:
-			"A Zentry website recreation featuring advanced GSAP animations and Three.js effects.",
-		images: ["/social-preview.png"],
+			"An unofficial Zentry-inspired frontend study featuring GSAP animations and Three.js effects.",
+		images: ["/projects/zentry-website-clone/home.jpg"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/zentry-website-clone",
@@ -59,7 +59,8 @@ export default function ZentryCloneProjectPage() {
 					name: project.title,
 					description: project.des,
 					url: "https://www.osifemi.dev/projects/zentry-website-clone",
-					image: "https://www.osifemi.dev/social-preview.png",
+					image:
+						"https://www.osifemi.dev/projects/zentry-website-clone/home.jpg",
 					sameAs: project.link,
 					keywords: ["GSAP", "Three.js", "web animation", "frontend development"],
 				}}
@@ -80,15 +81,17 @@ export default function ZentryCloneProjectPage() {
 
 							{/* Project Links */}
 							<div className="flex flex-wrap gap-4 justify-center mb-8">
-								<Link
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-								>
-									<FaExternalLinkAlt className="w-4 h-4" />
-									View Live Demo
-								</Link>
+								{project.link && (
+									<Link
+										href={project.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
+									>
+										<FaExternalLinkAlt className="w-4 h-4" />
+										View Live Demo
+									</Link>
+								)}
 							</div>
 						</div>
 
@@ -219,8 +222,8 @@ export default function ZentryCloneProjectPage() {
 										The development process began with detailed analysis of the
 										original Zentry website, breaking down each animation and
 										interaction into manageable components. This was followed by
-										systematic implementation of each feature, ensuring
-										pixel-perfect accuracy.
+										systematic implementation of each feature, with close
+										attention to layout and motion timing.
 									</p>
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 										<div className="bg-black-200 border border-white/[0.1] rounded-lg p-4">

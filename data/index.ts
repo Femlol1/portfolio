@@ -12,13 +12,14 @@ export const CONTACT_EMAIL = "osibemekunosifemi@gmail.com";
 export const gridItems = [
 	{
 		id: 1,
-		title: "I prioritize client collaboration, fostering open communication ",
-		description: "",
-		className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
+		title: "You stay in the loop from brief to launch.",
+		description: "Clear decisions, regular updates, no black-box handoffs.",
+		className:
+			"min-h-[22rem] sm:min-h-[28rem] lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
 		imgClassName: "w-full h-full",
 		titleClassName: "justify-end",
-		img: "/assets/Blue.jpeg",
-		imgalt: "blue flames",
+		img: "",
+		imgalt: "",
 		spareImg: "",
 		width: 500,
 		height: 500,
@@ -91,7 +92,37 @@ export const gridItems = [
 	},
 ];
 
-export const projects = [
+export type ProjectPreview = {
+	src: string;
+	alt: string;
+	label: string;
+	href?: string;
+};
+
+export type PortfolioProject = {
+	id: number;
+	title: string;
+	des: string;
+	img: string;
+	alt: string;
+	iconLists: string[];
+	link?: string;
+	linkLabel?: string;
+	slug: string;
+	width: number;
+	height: number;
+	siteLabel: string;
+	previewStatus: {
+		label: string;
+		dateTime?: string;
+	};
+	previews: ProjectPreview[];
+	video?: string;
+	videoTitle?: string;
+	videoDuration?: string;
+};
+
+export const projects: PortfolioProject[] = [
 	{
 		id: 1,
 		title: "Wedding RSVP Website",
@@ -99,41 +130,89 @@ export const projects = [
 		img: "/to.png",
 		alt: "Wedding RSVP website homepage showing elegant design and RSVP functionality",
 		iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/firebase.svg"],
-		link: "https://www.meettheafolabis.com/",
 		slug: "wedding-rsvp-website",
 		width: 500,
 		height: 500,
+		siteLabel: "Client project",
+		previewStatus: { label: "Delivered-site archive" },
+		previews: [
+			{
+				src: "/to.png",
+				alt: "Archived delivered wedding RSVP website homepage",
+				label: "Delivered site",
+			},
+		],
 	},
 	{
 		id: 2,
 		title: "Events Management Website",
 		des: "Developed a full-featured events management platform using Next.js, focusing on responsive design, seamless user interactions, and optimized performance.",
-		img: "/kgn.png",
-		alt: "Events management platform dashboard showing event creation and management features",
+		img: "/projects/events-management-platform/home.jpg",
+		alt: "Kunle's Games Night homepage for London social events, captured in August 2026",
 		iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/c.svg", "/mongodb.svg"],
 		link: "https://www.kunlesgamesnight.com/",
+		linkLabel: "Live platform",
 		slug: "events-management-platform",
 		width: 500,
 		height: 500,
+		siteLabel: "kunlesgamesnight.com",
+		previewStatus: {
+			label: "Captured 23 Aug 2026",
+			dateTime: "2026-08-23",
+		},
+		previews: [
+			{
+				src: "/projects/events-management-platform/home.jpg",
+				alt: "Kunle's Games Night homepage with the London events hero and booking calls to action",
+				label: "Home",
+				href: "https://www.kunlesgamesnight.com/",
+			},
+			{
+				src: "/projects/events-management-platform/events.jpg",
+				alt: "Kunle's Games Night events catalogue with search, filters, and event cards, captured in August 2026",
+				label: "Events",
+				href: "https://www.kunlesgamesnight.com/all-events",
+			},
+		],
 	},
 	{
 		id: 3,
 		title: "E-commerce Website with an AI Chatbot",
-		des: "Built a comprehensive e-commerce platform with integrated AI chatbot for customer support, enhancing user experience and boosting sales conversion.",
-		img: "/gad.png",
-		alt: "E-commerce website with AI chatbot showing product catalog and customer support interface",
+		des: "Built a demo e-commerce platform with an integrated customer-support chatbot, creating a smoother product discovery and shopping journey.",
+		img: "/projects/ecommerce-ai-chatbot/storefront.jpg",
+		alt: "GadgetCo storefront homepage with a modern product hero, captured in August 2026",
 		iconLists: ["/re.svg", "/firebase.svg", "/ts.svg", "/c.svg"],
 		link: "https://gadgetco-3794d.web.app/home",
+		linkLabel: "Live demo",
 		slug: "ecommerce-ai-chatbot",
 		width: 500,
 		height: 500,
+		siteLabel: "gadgetco-3794d.web.app",
+		previewStatus: {
+			label: "Captured 23 Aug 2026",
+			dateTime: "2026-08-23",
+		},
+		previews: [
+			{
+				src: "/projects/ecommerce-ai-chatbot/storefront.jpg",
+				alt: "GadgetCo storefront homepage with the AI assistant minimised",
+				label: "Storefront",
+				href: "https://gadgetco-3794d.web.app/home",
+			},
+			{
+				src: "/projects/ecommerce-ai-chatbot/ai-assistant.jpg",
+				alt: "GadgetCo storefront with the customer support AI assistant open",
+				label: "AI support",
+				href: "https://gadgetco-3794d.web.app/home",
+			},
+		],
 	},
 	{
 		id: 4,
 		title: "Zentry Website Clone",
-		des: "Recreated the Zentry website with stunning GSAP animations and Three.js 3D effects, showcasing advanced frontend development skills.",
-		img: "/p4.svg",
-		alt: "Zentry website clone showcasing advanced animations and 3D effects",
+		des: "Built an unofficial Zentry-inspired frontend study with GSAP animations and Three.js effects. Not affiliated with or endorsed by Zentry.",
+		img: "/projects/zentry-website-clone/home.jpg",
+		alt: "Zentry animation concept hero with game artwork and bold typography, captured in August 2026",
 		video: "/zenrty.mp4",
 		videoTitle: "Zentry Clone - Animation Demo",
 		videoDuration: "PT12S",
@@ -141,7 +220,27 @@ export const projects = [
 		height: 500,
 		iconLists: ["/gsap.svg", "/three.svg", "/re.svg", "/ts.svg"],
 		link: "https://animated-xi.vercel.app/",
+		linkLabel: "Live concept",
 		slug: "zentry-website-clone",
+		siteLabel: "animated-xi.vercel.app",
+		previewStatus: {
+			label: "Captured 23 Aug 2026 · Concept",
+			dateTime: "2026-08-23",
+		},
+		previews: [
+			{
+				src: "/projects/zentry-website-clone/home.jpg",
+				alt: "Zentry-inspired animation concept landing hero",
+				label: "Hero",
+				href: "https://animated-xi.vercel.app/",
+			},
+			{
+				src: "/projects/zentry-website-clone/about.jpg",
+				alt: "Zentry-inspired animation concept about section with oversized typography",
+				label: "About",
+				href: "https://animated-xi.vercel.app/#about",
+			},
+		],
 	},
 ];
 

@@ -4,8 +4,6 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import { projects } from "@/data";
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
 
 const project = projects.find((p) => p.id === 1)!;
 
@@ -60,7 +58,6 @@ export default function WeddingRSVPProjectPage() {
 					description: project.des,
 					url: "https://www.osifemi.dev/projects/wedding-rsvp-website",
 					image: "https://www.osifemi.dev/to.png",
-					sameAs: project.link,
 					keywords: ["wedding website", "RSVP management", "React", "Firebase"],
 				}}
 			/>
@@ -78,18 +75,10 @@ export default function WeddingRSVPProjectPage() {
 								{project.des}
 							</p>
 
-							{/* Project Links */}
-							<div className="flex flex-wrap gap-4 justify-center mb-8">
-								<Link
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-								>
-									<FaExternalLinkAlt className="w-4 h-4" />
-									View Live Site
-								</Link>
-							</div>
+							<p className="mx-auto mb-8 max-w-xl font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
+								Delivered-site archive · the original client site is no longer
+								linked from this portfolio
+							</p>
 						</div>
 
 						{/* Project Image */}
@@ -99,7 +88,7 @@ export default function WeddingRSVPProjectPage() {
 									src={project.img}
 									alt={project.alt}
 									fill
-									className="object-cover"
+									className="object-cover object-top"
 									priority
 								/>
 							</div>

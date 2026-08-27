@@ -5,9 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = "https://www.osifemi.dev";
 	const projectModifiedDates: Record<string, string> = {
 		"wedding-rsvp-website": "2025-06-22",
-		"events-management-platform": "2025-06-22",
-		"ecommerce-ai-chatbot": "2025-06-22",
-		"zentry-website-clone": "2025-06-29",
+		"events-management-platform": "2026-08-23",
+		"ecommerce-ai-chatbot": "2026-08-23",
+		"zentry-website-clone": "2026-08-23",
 	};
 
 	// Static pages
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 		{
 			url: `${baseUrl}/projects`,
-			lastModified: "2026-08-03",
+			lastModified: "2026-08-23",
 			changeFrequency: "weekly" as const,
 			priority: 0.9,
 		},
@@ -62,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		.filter((project) => project.video)
 		.map((project) => ({
 			url: `${baseUrl}/videos/${project.slug}`,
-			lastModified: "2025-06-22",
+			lastModified: "2026-08-23",
 			changeFrequency: "yearly" as const,
 			priority: 0.7,
 		}));

@@ -227,15 +227,17 @@ export default async function VideoWatchPage({ params }: VideoPageProps) {
 										Project Links
 									</h3>
 									<div className="space-y-3">
-										<Link
-											href={project.link}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-4 py-2 rounded-lg transition-colors duration-200 text-sm"
-										>
-											<FaExternalLinkAlt className="w-3 h-3" />
-											View Live Site
-										</Link>
+										{project.link && (
+											<Link
+												href={project.link}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-4 py-2 rounded-lg transition-colors duration-200 text-sm"
+											>
+												<FaExternalLinkAlt className="w-3 h-3" />
+												View Live Site
+											</Link>
+										)}
 										<Link
 											href={`/projects/${project.slug}`}
 											className="flex items-center gap-2 bg-black-100 hover:bg-black-300 border border-white/[0.1] text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm"

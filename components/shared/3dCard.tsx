@@ -1,131 +1,127 @@
 "use client";
 
 import { projects } from "@/data";
+import { getTechnologyName } from "@/lib/technology";
 import Image from "next/image";
 import Link from "next/link";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
+import ProjectPreviewGallery from "./ProjectPreviewGallery";
 
 export function ProjectsShowcase() {
 	return (
 		<section className="py-20" id="projects" aria-labelledby="projects-title">
-			<h2 className="heading system-reveal" id="projects-title">
-				<span className="text-purple uppercase"> recent PROJECTS</span>
-			</h2>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr min-h-full">
+			<div className="mx-auto max-w-3xl text-center">
+				<p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
+					Selected work
+				</p>
+				<h2 className="heading system-reveal" id="projects-title">
+					Recent <span className="text-purple">projects</span>
+				</h2>
+				<p className="mt-5 text-base leading-relaxed text-white-200 sm:text-lg">
+					Browse dated public-page captures, a delivered-site archive, and a
+					clearly labelled unofficial frontend concept.
+				</p>
+			</div>
+
+			<div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
 				{projects.map((project) => (
-					<article key={project.id}>
-					<CardContainer className="inter-var">
-						<CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full max-w-sm mx-auto rounded-xl p-6 border min-h-[500px] items-stretch flex flex-col">
-							<h3>
-								<CardItem
-									as={Link}
-									href={`/projects/${project.slug}`}
-									translateZ="50"
-									className="text-lg font-bold text-neutral-700 dark:text-white line-clamp-2 leading-tight hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
-								>
-									{project.title}
-								</CardItem>
-							</h3>
-							<CardItem
-								as="p"
-								translateZ="60"
-								className="text-neutral-500 text-sm mt-2 dark:text-neutral-300 line-clamp-3 leading-relaxed"
-							>
-								{project.des}
-							</CardItem>
-							<CardItem translateZ="100" className="w-full mt-4">
-								<Link
-									href={`/projects/${project.slug}`}
-									className="block relative group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple"
-									aria-label={`Read the ${project.title} case study`}
-								>
-									{project.video ? (
-										<div className="relative w-full h-48 rounded-xl overflow-hidden border border-white/[0.1]">
-											<video
-												src={project.video}
-												poster={project.img}
-												width={project.width}
-												height={project.height}
-												loop
-												muted
-												playsInline
-												preload="none"
-												aria-hidden="true"
-												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-											/>
-
-											<div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-												Video Demo
-											</div>
-										</div>
-									) : (
-										<Image
-											src={project.img}
-											height={project.height}
-											width={project.width}
-											sizes="(max-width: 640px) calc(100vw - 5.5rem), (max-width: 1024px) 45vw, 24rem"
-											className="h-auto w-full object-cover rounded-xl group-hover/card:shadow-xl"
-											alt={project.title}
-										/>
-									)}
-								</Link>
-							</CardItem>
-							<div className="flex-grow"></div>
-
-							{/* Technology Icons */}
-							<div className="flex items-center gap-2 mt-4 mb-4">
-								{project.iconLists.map((icon, index) => (
-									<CardItem key={index} translateZ={20}>
-										<div className="border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center">
-											<Image
-												src={icon}
-												alt={`Technology: ${
-													icon.split("/").pop()?.split(".")[0]
-												}`}
-												width={20}
-												height={20}
-												className="object-contain"
-											/>
-										</div>
-									</CardItem>
-								))}
-							</div>
-
-							{/* Action Buttons */}
-							<div className="flex justify-between items-center mt-auto">
-								<div className="flex gap-2">
+					<article key={project.id} className="h-full">
+						<CardContainer
+							className="inter-var h-full w-full"
+							containerClassName="h-full py-0"
+						>
+							<CardBody className="system-surface system-surface--lift relative flex h-full min-h-[610px] w-full flex-col items-stretch rounded-2xl border border-white/[0.12] bg-[#090d24] p-5 sm:p-6">
+								<div className="mb-4 flex items-center justify-between gap-4">
 									<CardItem
 										translateZ={20}
-										as={Link}
-										href={`/projects/${project.slug}`}
-										className="px-3 py-2 rounded-xl text-xs font-normal dark:text-white hover:text-purple transition-colors"
+										className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-200"
 									>
-										Read case study →
+										Case study · {String(project.id).padStart(2, "0")}
 									</CardItem>
 									{project.video && (
 										<CardItem
 											translateZ={20}
-											as={Link}
-											href={`/videos/${project.slug}`}
-											className="px-3 py-2 rounded-xl text-xs font-normal text-purple hover:text-white transition-colors"
+											className="rounded-full border border-purple/30 bg-purple/10 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-purple"
 										>
-											📹 Watch
+											Motion build
 										</CardItem>
 									)}
 								</div>
+
+								<h3>
+									<CardItem
+										as={Link}
+										href={`/projects/${project.slug}`}
+										translateZ={45}
+										className="line-clamp-2 text-xl font-bold leading-tight text-white transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple motion-reduce:transition-none"
+									>
+										{project.title}
+									</CardItem>
+								</h3>
 								<CardItem
-									translateZ={20}
-									as={Link}
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:bg-purple transition-colors"
+									as="p"
+									translateZ={50}
+									className="mt-2 text-sm leading-relaxed text-white-200"
 								>
-									Live Site →
+									{project.des}
 								</CardItem>
-							</div>
-						</CardBody>
-					</CardContainer>
+
+								<CardItem translateZ={70} className="mt-5 w-full">
+									<ProjectPreviewGallery
+										title={project.title}
+										siteLabel={project.siteLabel}
+										previews={project.previews}
+										status={project.previewStatus}
+									/>
+								</CardItem>
+
+								<div className="mt-auto flex items-end justify-between gap-4 pt-5">
+									<div
+										className="flex flex-wrap items-center gap-2"
+										role="list"
+										aria-label="Technologies used"
+									>
+										{project.iconLists.map((icon) => (
+											<CardItem key={icon} translateZ={20} role="listitem">
+												<div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.15] bg-black-100">
+													<Image
+														src={icon}
+														alt={`${getTechnologyName(icon)} logo`}
+														width={18}
+														height={18}
+														className="object-contain"
+													/>
+												</div>
+											</CardItem>
+										))}
+									</div>
+
+								</div>
+
+								<div className={`mt-5 grid gap-3 ${project.link ? "grid-cols-2" : "grid-cols-1"}`}>
+									<CardItem
+										translateZ={20}
+										as={Link}
+										href={`/projects/${project.slug}`}
+										className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-purple px-3 text-center text-xs font-bold text-black-100 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white motion-reduce:transition-none"
+									>
+										Read case study
+									</CardItem>
+									{project.link && (
+										<CardItem
+											translateZ={20}
+											as={Link}
+											href={project.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex min-h-11 w-full items-center justify-center gap-1 rounded-lg border border-purple/50 px-3 text-center text-xs font-semibold text-purple transition-colors hover:border-purple hover:bg-purple/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple motion-reduce:transition-none"
+										>
+											{project.linkLabel ?? "Live site"} <span aria-hidden="true">&#8599;</span>
+										</CardItem>
+									)}
+								</div>
+							</CardBody>
+						</CardContainer>
 					</article>
 				))}
 			</div>

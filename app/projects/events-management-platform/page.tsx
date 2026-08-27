@@ -31,10 +31,10 @@ export const metadata: Metadata = {
 		url: "https://www.osifemi.dev/projects/events-management-platform",
 		images: [
 			{
-				url: "/kgn.png",
-				width: 1791,
-				height: 876,
-				alt: "Events management platform dashboard",
+				url: "/projects/events-management-platform/home.jpg",
+				width: 1440,
+				height: 900,
+				alt: "Kunle's Games Night events platform homepage captured in August 2026",
 			},
 		],
 	},
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 		title: "Events Management Platform | Osifemi Osibemekun",
 		description:
 			"A responsive event creation and management platform built with Next.js, TypeScript, and MongoDB.",
-		images: ["/kgn.png"],
+		images: ["/projects/events-management-platform/home.jpg"],
 	},
 	alternates: {
 		canonical: "https://www.osifemi.dev/projects/events-management-platform",
@@ -59,7 +59,8 @@ export default function EventsManagementProjectPage() {
 					name: project.title,
 					description: project.des,
 					url: "https://www.osifemi.dev/projects/events-management-platform",
-					image: "https://www.osifemi.dev/kgn.png",
+					image:
+						"https://www.osifemi.dev/projects/events-management-platform/home.jpg",
 					sameAs: project.link,
 					keywords: [
 						"event management",
@@ -85,15 +86,17 @@ export default function EventsManagementProjectPage() {
 
 							{/* Project Links */}
 							<div className="flex flex-wrap gap-4 justify-center mb-8">
-								<Link
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-								>
-									<FaExternalLinkAlt className="w-4 h-4" />
-									View Live Platform
-								</Link>
+								{project.link && (
+									<Link
+										href={project.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center gap-2 bg-purple hover:bg-purple/90 text-black-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
+									>
+										<FaExternalLinkAlt className="w-4 h-4" />
+										View Live Platform
+									</Link>
+								)}
 							</div>
 						</div>
 
@@ -104,7 +107,7 @@ export default function EventsManagementProjectPage() {
 									src={project.img}
 									alt={project.alt}
 									fill
-									className="object-cover"
+									className="object-cover object-top"
 									priority
 								/>
 							</div>
